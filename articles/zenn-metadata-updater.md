@@ -266,7 +266,7 @@ function saveUpdatedZennArticle(markdownPath: string, updateKey: string, updateV
   delete metadata.__content; // loadFront() が返す object に含まれる __content を削除する
 
   const metadataByYaml = dump(metadata) // metadata の object を YAML 形式の string にする
-  const regex = /(---)[\n\S\s]*(---)/; 
+  const regex = /(---)[\S\s\w\W]*?(---)/;
   const replacedMarkdown = markdown.replace(   
     // 元の Markdown の `---` で囲まれた YAML を更新したメタデータで置き換える
     regex,
