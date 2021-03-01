@@ -2,7 +2,7 @@
 title: "published: trueを自動化することで Zenn への記事投稿フローを改善した話"
 emoji: "💪"
 type: "tech" # tech: 技術記事 / idea: アイデア
-topics: ["Zenn", "生産性向上"]
+topics: ["Zenn", "githubactions", "git", "typescript", "typescript"]
 published: false
 ---
 
