@@ -13,14 +13,14 @@
     "npm": "7.x"
   },
   "devDependencies": {
-    "@proofdict/textlint-rule-proofdict": "^3.1.2",
-    "node-actionlint": "^1.2.0",
-    "renovate": "^26.19.1",
-    "textlint": "^12.0.2",
-    "textlint-filter-rule-comments": "^1.2.2",
-    "textlint-rule-preset-ja-spacing": "^2.2.0",
-    "textlint-rule-preset-ja-technical-writing": "^7.0.0",
-    "textlint-rule-spellcheck-tech-word": "^5.0.0",
-    "zenn-cli": "^0.1.95"
+    "@proofdict/textlint-rule-proofdict": "3.1.2",
+    "node-actionlint": "1.2.0",
+    "renovate": "26.19.1",
+    "textlint": "12.0.2",
+    "textlint-filter-rule-comments": "1.2.2",
+    "textlint-rule-preset-ja-spacing": "2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "7.0.0",
+    "textlint-rule-spellcheck-tech-word": "5.0.0",
+    "zenn-cli": "0.1.95"
   }
 }
