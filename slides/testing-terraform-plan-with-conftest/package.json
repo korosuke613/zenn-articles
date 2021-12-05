@@ -6,12 +6,12 @@
     "export": "slidev export --dark --with-clicks"
   },
   "dependencies": {
-    "@slidev/cli": "0.27.17",
+    "@slidev/cli": "0.27.18",
     "@slidev/theme-apple-basic": "0.20.0",
     "@slidev/theme-bricks": "0.0.2",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*",
-    "playwright-chromium": "1.16.3",
+    "playwright-chromium": "1.17.1",
     "slidev-theme-purplin": "1.1.0"
   },
   "name": "kintwi",
