@@ -8,14 +8,14 @@
     "lint:node-actionlint": "node-actionlint",
     "lint:renovate-config-validator": "renovate-config-validator"
   },
-  "packageManager": "npm@8.2.0",
+  "packageManager": "npm@8.3.0",
   "engines": {
     "node": "16.x"
   },
   "devDependencies": {
     "@proofdict/textlint-rule-proofdict": "3.1.2",
     "node-actionlint": "1.2.1",
-    "renovate": "29.32.3",
+    "renovate": "30.3.1",
     "textlint": "12.1.0",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.2.0",

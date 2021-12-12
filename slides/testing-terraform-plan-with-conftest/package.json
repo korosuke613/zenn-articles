@@ -16,6 +16,6 @@
   },
   "name": "kintwi",
   "devDependencies": {
-    "@iconify-json/bi": "1.0.9"
+    "@iconify-json/bi": "1.0.10"
   }
 }
