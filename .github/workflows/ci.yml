@@ -60,3 +60,15 @@ jobs:
       - run: corepack enable npm
       - run: npm ci
       - run: npm run lint:renovate-config-validator
+
+  validate-zenn-metadata:
+    name: Validate Zenn metadata
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 2  # Because if `fetch-depth >= 2` is not set, unchanged files will be updated.
+      - uses: korosuke613/zenn-metadata-updater-action@feat-validate-metadata
+        with:
+          validate-only: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
