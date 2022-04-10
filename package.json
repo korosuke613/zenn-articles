@@ -15,7 +15,7 @@
   "devDependencies": {
     "@proofdict/textlint-rule-proofdict": "3.1.2",
     "node-actionlint": "1.2.2",
-    "renovate": "32.10.5",
+    "renovate": "32.17.1",
     "textlint": "12.1.1",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.2.0",
