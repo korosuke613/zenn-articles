@@ -11,7 +11,7 @@
     "@slidev/theme-bricks": "0.0.2",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*",
-    "playwright-chromium": "1.21.0",
+    "playwright-chromium": "1.21.1",
     "slidev-theme-purplin": "1.1.0"
   },
   "name": "kintwi",
