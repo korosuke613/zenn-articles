@@ -6,7 +6,7 @@
     "export": "slidev export --dark --with-clicks"
   },
   "dependencies": {
-    "@slidev/cli": "0.30.3",
+    "@slidev/cli": "0.31.2",
     "@slidev/theme-apple-basic": "0.20.0",
     "@slidev/theme-bricks": "0.0.2",
     "@slidev/theme-default": "*",
@@ -16,6 +16,6 @@
   },
   "name": "kintwi",
   "devDependencies": {
-    "@iconify-json/bi": "1.1.1"
+    "@iconify-json/bi": "1.1.2"
   }
 }
