@@ -6,7 +6,7 @@
     "export": "slidev export --dark --with-clicks"
   },
   "dependencies": {
-    "@slidev/cli": "0.32.1",
+    "@slidev/cli": "0.32.3",
     "@slidev/theme-apple-basic": "0.20.0",
     "@slidev/theme-bricks": "0.0.2",
     "@slidev/theme-default": "*",
