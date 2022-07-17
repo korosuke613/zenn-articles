@@ -11,11 +11,11 @@
     "@slidev/theme-bricks": "0.0.2",
     "@slidev/theme-default": "*",
     "@slidev/theme-seriph": "*",
-    "playwright-chromium": "1.23.2",
+    "playwright-chromium": "1.23.4",
     "slidev-theme-purplin": "1.1.0"
   },
   "name": "kintwi",
   "devDependencies": {
-    "@iconify-json/bi": "1.1.4"
+    "@iconify-json/bi": "1.1.5"
   }
 }
