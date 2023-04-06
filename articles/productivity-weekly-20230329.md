@@ -59,17 +59,6 @@ https://github.blog/2023-03-28-announcing-the-github-actions-extension-for-vs-co
 VSCode の GitHub Actions 拡張機能触ってみたツイート
 https://twitter.com/Shitimi_613/status/1640895043178491905
 
-## We're no longer sunsetting the Free Team plan | Docker
-https://www.docker.com/blog/no-longer-sunsetting-the-free-team-plan/
-
-Docker 社、3/14 に Free Team プランの廃止をアナウンスしてたんですけど、3/25 に撤回しました。
-3/14 以降に有料プランにアップグレードしてた場合は 30 日分の返金が自動でされるとのこと。
-
-## AWSに最適化された「Amazon Linux 2023」正式リリース。カーネルライブパッチなど新機能、今後は5年間無償サポート、2年ごとにメジャーバージョンアップ － Publickey
-https://www.publickey1.jp/blog/23/awsamazon_linux_202352.html
-
-カーネルライブパッチが利用可能になったり、SELinux の permissive がデフォルトで有効化されていたりするそうです。
-
 # know-how 🎓
 
 ## GitHub SponsorsではPayPalを使った支払いはできなくなったので、クレジットカードに切り替える必要があります | Web Scratch
@@ -87,23 +76,17 @@ SOURCE_DATE_EPOCH でタイムスタンプを、repro-get でパッケージバ�
 ## モノレポでの GitHub Actions CI の泥臭い高速化
 https://zenn.dev/ascend/articles/github-actions-on-push-history
 
-## ソフトウェアエンジニアリングサバイバルガイド: 廃墟を直す、廃墟を出る、廃墟を壊す、あるいは廃墟に暮らす、廃墟に死す - Google Slides
-https://docs.google.com/presentation/d/1hDY2pb-nYVSLr0HrtQ4EVyrDU4QGgwp4-VRG-Rf26DA/edit
-
-廃墟＝「動いているけどメンテできない、されてないもの」との付き合い方についての発表スライド。
-
 # tool 🔨
-
-## GitHub Actions: The setup-go Action now enables caching by default | GitHub Changelog
-https://github.blog/changelog/2023-03-24-github-actions-the-setup-go-action-now-enables-caching-by-default/
-
-actions/setup-go アクション、v4 からは cache パラメータを指定しなくてもデフォルトでキャッシュが有効になるとのことです。
-actions/setup-* アクションのキャッシュ挙動を統一してほしい。。
 
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
+  - [GitHub Actions: The setup-go Action now enables caching by default | GitHub Changelog](https://github.blog/changelog/2023-03-24-github-actions-the-setup-go-action-now-enables-caching-by-default/)
+    - actions/setup-go アクション、v4 からは cache パラメータを指定しなくてもデフォルトでキャッシュが有効になるとのことです。
+    - actions/setup-* アクションのキャッシュ挙動を統一してほしい。。
+  - [AWSに最適化された「Amazon Linux 2023」正式リリース。カーネルライブパッチなど新機能、今後は5年間無償サポート、2年ごとにメジャーバージョンアップ － Publickey](https://www.publickey1.jp/blog/23/awsamazon_linux_202352.html)
+    - カーネルライブパッチが利用可能になったり、SELinux の permissive がデフォルトで有効化されていたりするそうです。
   - [We updated our RSA SSH host key | The GitHub Blog](https://github.blog/2023-03-23-we-updated-our-rsa-ssh-host-key/)
     - GitHub のホスト認証用の RSA SSH 秘密鍵が GitHub の公開リポジトリで短時間公開されていたことが判明したため、3/24 にリプレースされた話。
     - github.com に SSH アクセスしてエラーになる場合は .ssh/known_hosts の更新が必要。
@@ -111,7 +94,12 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
       - 今回問題になってるのはホスト認証用の鍵で、クライアント側の鍵の暗号方式は関係ないよという話。
   - [iOS/iPadOS 16.4リリース 〜ホーム画面に追加したWebアプリ（PWA）からの通知が可能に。またUnicode 15.0の絵文字も追加される | gihyo.jp](https://gihyo.jp/article/2023/03/ios16.4-release)
     - とうとう iOS にも PWA からの push 通知が来たよ
+  - [We're no longer sunsetting the Free Team plan | Docker](https://www.docker.com/blog/no-longer-sunsetting-the-free-team-plan/)
+    - Docker 社、3/14 に Free Team プランの廃止をアナウンスしてたんですけど、3/25 に撤回しました。
+    - 3/14 以降に有料プランにアップグレードしてた場合は 30 日分の返金が自動でされるとのこと。
 - **know-how 🎓**
+  - [ソフトウェアエンジニアリングサバイバルガイド: 廃墟を直す、廃墟を出る、廃墟を壊す、あるいは廃墟に暮らす、廃墟に死す - Google Slides](https://docs.google.com/presentation/d/1hDY2pb-nYVSLr0HrtQ4EVyrDU4QGgwp4-VRG-Rf26DA/edit)
+    - 廃墟＝「動いているけどメンテできない、されてないもの」との付き合い方についての発表スライド。
 - **tool 🔨**
 
 # あとがき
