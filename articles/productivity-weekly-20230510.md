@@ -1,6 +1,6 @@
 ---
 title: "Productivity Weekly (2023-05-10号)"
-emoji: ""
+emoji: "⛺️"
 type: "idea"
 topics: ["ProductivityWeekly", "生産性向上"]
 published: false
@@ -21,7 +21,55 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 
 # news 📺
 
+## More secure private attachments | GitHub Changelog
+https://github.blog/changelog/2023-05-09-more-secure-private-attachments/
+
+宮田さんのツイート
+https://twitter.com/miyajan/status/1655914766102298629?conversation=none
+
+## GitHub Actions: All Actions will run on Node16 instead of Node12 | GitHub Changelog
+https://github.blog/changelog/2023-05-04-github-actions-all-actions-will-run-on-node16-instead-of-node12/
+
+5/18 より GitHub Actions の全てのアクションは Node.js 16 で動作するようになる。
+
+## GraphQL improvements for fine-grained PATs and GitHub Apps | GitHub Changelog
+https://github.blog/changelog/2023-04-27-graphql-improvements-for-fine-grained-pats-and-github-apps/
+
+github において fine-grained な PAT、および GitHub Apps で GraphQL が叩けるようになった。
+とはいえ相変わらず有効期限が有限である問題は解決してないはずなのであまり選択肢には入らない気がする
+
+## Secret scanning's push protection is available on public repositories, for free | GitHub Changelog
+https://github.blog/changelog/2023-05-09-secret-scannings-push-protection-is-available-on-public-repositories-for-free/
+
+github の secret scanning の push protection が全てのパブリックリポジトリで利用可能になったお y
+
+## Introducing Actions on the Repository view on GitHub Mobile | GitHub Changelog
+https://github.blog/changelog/2023-05-09-introducing-actions-on-the-repository-view-on-github-mobile/
+
+GitHub Mobile で Actions の情報が見れるようになったよ
+
+https://twitter.com/Shitimi_613/status/1655958448176259072?conversation=none
+
+## Codespaces Settings Sync Updates | GitHub Changelog
+https://github.blog/changelog/2023-05-04-codespaces-settings-sync-updates/
+
+Codespaces において VSCode の設定の同期が双方向でできるようになったよ
+
+## Terraform Cloud no-code provisioning is now GA with new features
+
+https://www.hashicorp.com/blog/terraform-cloud-no-code-provisioning-is-now-ga-with-new-features
+
+## Slack、さまざまなAIをSlackに統合する「Slack GPT」発表 - Publickey
+https://www.publickey1.jp/blog/23/aislackslack_gpt.html
+
+未読スレッドの要約、メールの文面生成などなどができるようになる。
+
 # know-how 🎓
+
+## Technology Radar | An opinionated guide to technology frontiers | Thoughtworks
+https://www.thoughtworks.com/radar
+
+半年に一度ほど更新される、Thoughtworks 社の Technology Radar の最新版 Vol.28 が公開。
 
 # tool 🔨
 
@@ -29,7 +77,11 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
+  - [The new code search and code view is now generally available | GitHub Changelog](https://github.blog/changelog/2023-05-08-the-new-code-search-and-code-view-is-now-generally-available/)
+    - github の code search が GA になったよ
 - **know-how 🎓**
+  - [GitHub Actionsにおける設定ミスに起因したGitHubスタッフのアクセストークン漏洩](https://blog.ryotak.net/post/github-actions-staff-access-token/)
+
 - **tool 🔨**
 
 # あとがき
