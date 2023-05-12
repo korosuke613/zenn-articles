@@ -74,6 +74,42 @@ https://github.blog/changelog/2023-05-09-secret-scannings-push-protection-is-ava
 
 github の secret scanning の push protection が全てのパブリックリポジトリで利用可能になったお y
 
+`github_pat_hogehogehogehoge...`
+
+```
+❯ git push
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 722 bytes | 722.00 KiB/s, done.
+Total 4 (delta 3), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (3/3), completed with 3 local objects.
+remote: error GH009: Secrets detected! This push failed.
+remote:
+remote:             GITHUB PUSH PROTECTION (beta)
+remote: ——————————————————————————————————————————————————————
+remote:  Resolve the following secrets before pushing again.
+remote:
+remote:  (?) Learn how to resolve a blocked push
+remote:  https://docs.github.com/code-security/secret-scanning/pushing-a-branch-blocked-by-push-protection
+remote:
+remote:
+remote: —— GitHub Personal Access Token ——————————————————————
+remote:  locations:
+remote:    - commit: 1cb6f4aa448dd3938335a681a3929697d93e6f70
+remote:      path: articles/productivity-weekly-20230510.md:72
+remote:
+remote:  (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:  http://github.com/korosuke613/zenn-articles/security/secret-scanning/unblock-secret/2PgIy2ISok5kggoIl2C5uOgyNEg
+remote:
+remote:
+remote:
+To https://github.com/korosuke613/zenn-articles
+ ! [remote rejected] pw-20230510 -> pw-20230510 (push declined due to a detected secret)
+error: failed to push some refs to 'https://github.com/korosuke613/zenn-articles'
+```
+
 ## Introducing Actions on the Repository view on GitHub Mobile | GitHub Changelog
 https://github.blog/changelog/2023-05-09-introducing-actions-on-the-repository-view-on-github-mobile/
 
