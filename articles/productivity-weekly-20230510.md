@@ -147,9 +147,27 @@ REST API に関しては一昨年似たような対応がされています[^res
 ## Introducing Actions on the Repository view on GitHub Mobile | GitHub Changelog
 https://github.blog/changelog/2023-05-09-introducing-actions-on-the-repository-view-on-github-mobile/
 
-GitHub Mobile で Actions の情報が見れるようになったよ
+GitHub Mobile で GitHub Actions の情報が見られるようになりました。ワークフローの再実行もできます。
+
+リポジトリのトップ画面に Actions への導線が用意されており、そこからワークフロー一覧に飛ぶことができます[^japanese]。
 
 https://twitter.com/Shitimi_613/status/1655958448176259072?conversation=none
+
+色々見たところ、次のようなことが可能でした。
+- ワークフロー一覧の表示
+- ワークフローラン一覧の表示
+- ワークフローランの詳細表示
+  - 再実行（失敗したジョブのみ再実行も可能）
+- ジョブのログの表示
+
+逆に、次のようなことはできませんでした（確認できてないだけ説も）。
+- `workflow_dispatch` の実行
+- `$GITHUB_STEP_SUMMARY` の表示
+
+これで外出先でも CI の再実行や落ちた原因を調べやすくなりますね（？）
+単純にモバイルでも確認できるのは嬉しいです。
+
+[^japanese]: ちなみに日本語だと「アクションアクション」となぜか 2 回繰り返されています。多分そのうち直ると思います。https://twitter.com/Shitimi_613/status/1655958441784143875
 
 ## Terraform Cloud no-code provisioning is now GA with new features
 https://www.hashicorp.com/blog/terraform-cloud-no-code-provisioning-is-now-ga-with-new-features
