@@ -203,8 +203,6 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
 - **know-how 🎓**
   - [GitHub Actionsにおける設定ミスに起因したGitHubスタッフのアクセストークン漏洩](https://blog.ryotak.net/post/github-actions-staff-access-token/)
 
-- **tool 🔨**
-
 # あとがき
 
 
