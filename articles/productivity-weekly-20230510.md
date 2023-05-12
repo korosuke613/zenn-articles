@@ -76,7 +76,7 @@ github の secret scanning の push protection が全てのパブリックリポ
 
 `github_pat_hogehogehogehoge...`
 
-```
+```text:GitHub の PAT（削除済み）をコミットして push しようとした場合の例
 ❯ git push
 Enumerating objects: 7, done.
 Counting objects: 100% (7/7), done.
@@ -109,6 +109,12 @@ To https://github.com/korosuke613/zenn-articles
  ! [remote rejected] pw-20230510 -> pw-20230510 (push declined due to a detected secret)
 error: failed to push some refs to 'https://github.com/korosuke613/zenn-articles'
 ```
+
+![](/images/productivity-weekly-20230510/push_protection_enable_all.png)
+*https://github.com/settings/security_analysis から自分がオーナーの全リポジトリに一括設定できる*
+
+![](/images/productivity-weekly-20230510/push_protection_bypass.png =400x)
+*テスト用途や誤検知した時に引っかかった文字列をバイパスして push することもできる*
 
 ## Introducing Actions on the Repository view on GitHub Mobile | GitHub Changelog
 https://github.blog/changelog/2023-05-09-introducing-actions-on-the-repository-view-on-github-mobile/
