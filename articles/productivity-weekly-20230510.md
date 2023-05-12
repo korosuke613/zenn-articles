@@ -72,9 +72,17 @@ REST API に関しては一昨年似たような対応がされています[^res
 ## Secret scanning's push protection is available on public repositories, for free | GitHub Changelog
 https://github.blog/changelog/2023-05-09-secret-scannings-push-protection-is-available-on-public-repositories-for-free/
 
-github の secret scanning の push protection が全てのパブリックリポジトリで利用可能になったお y
+GitHub の Secret scanning において、push protection がすべてのパブリックリポジトリで利用可能になりました。
 
-`github_pat_hogehogehogehoge...`
+push protection は、push しようとしたコミットに GitHub の PAT などのシークレットが含まれていた場合、push を拒否する機能で、[2022 年 4 月にリリースされました](https://github.blog/changelog/2022-04-04-secret-scanning-prevents-secret-leaks-with-protection-on-push/)。
+
+既存の Secret scanning はリモートリポジトリ上のシークレットを検知してくれますが、push protection はリモートリポジトリへの push 前にシークレットを検知してくれるため、漏洩を未然に防止できます。
+
+これまでは GitHub Advanced Security を契約している場合に利用可能でしたが、今回の変更により、すべてのパブリックリポジトリで利用可能になりました。
+
+実際に有効化した上で、シークレットをコミットして push しようとすると、以下のようなエラーが出て push が拒否されます。
+
+※ 今回は GitHub の PAT（削除済み）をコミットしました。`github_pat_hogehogehogehoge...`
 
 ```text:GitHub の PAT（削除済み）をコミットして push しようとした場合の例
 ❯ git push
@@ -101,7 +109,7 @@ remote:    - commit: 1cb6f4aa448dd3938335a681a3929697d93e6f70
 remote:      path: articles/productivity-weekly-20230510.md:72
 remote:
 remote:  (?) To push, remove secret from commit(s) or follow this URL to allow the secret.
-remote:  http://github.com/korosuke613/zenn-articles/security/secret-scanning/unblock-secret/2PgIy2ISok5kggoIl2C5uOgyNEg
+remote:  http://github.com/korosuke613/zenn-articles/security/secret-scanning/unblock-secret/hogehoge
 remote:
 remote:
 remote:
@@ -110,11 +118,31 @@ To https://github.com/korosuke613/zenn-articles
 error: failed to push some refs to 'https://github.com/korosuke613/zenn-articles'
 ```
 
-![](/images/productivity-weekly-20230510/push_protection_enable_all.png)
-*https://github.com/settings/security_analysis から自分がオーナーの全リポジトリに一括設定できる*
+push がちゃんと失敗してますね。push protection によるものであることも明記されてて親切です。
+また、どのコミットでどのファイルの何行目が何に引っかかったかも教えてくれます。
+
+> To push, remove secret from commit(s) or follow this URL to allow the secret.
+remote:  http://github.com/korosuke613/zenn-articles/security/secret-scanning/unblock-secret/hogehoge
+
+さらに、push をバイパスするためのリンクも表示されています。リンクをクリックすると次のような画面が表示されます。
 
 ![](/images/productivity-weekly-20230510/push_protection_bypass.png =400x)
 *テスト用途や誤検知した時に引っかかった文字列をバイパスして push することもできる*
+
+> - [x] It's used in tests
+The secret poses no risk, and if anyone finds it, they cannot do any damage or gain access to sensitive information.
+> - [ ] It's a false positive
+The detected string is not a real secret.
+> - [ ] I'll fix it later
+The secret is real, I understand the risk, and I will need to revoke it. This will open a security alert and notify admins of this repository.
+
+テスト用途だから、誤検知だから、後で直すからといった理由を選択し、`Allow me to push this secret` をクリックすることで検知された文字列を含んだまま push が可能になるようです。
+
+![](/images/productivity-weekly-20230510/push_protection_enable_all.png)
+*https://github.com/settings/security_analysis から自分がオーナーの全リポジトリに一括設定できる*
+
+push protection、うっかりコミットをだいぶ減らせてくれそうですね。
+各リポジトリへ個別設定もできますが、ユーザの設定画面から一括設定＆新規リポジトリに自動設定も可能です。基本的に有効化して損しない機能だと思うので、ぜひ有効化しましょう。
 
 ## Introducing Actions on the Repository view on GitHub Mobile | GitHub Changelog
 https://github.blog/changelog/2023-05-09-introducing-actions-on-the-repository-view-on-github-mobile/
