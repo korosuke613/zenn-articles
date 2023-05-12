@@ -47,6 +47,8 @@ https://github.blog/changelog/2023-05-04-github-actions-all-actions-will-run-on-
 
 JavaScript アクションを開発している方でまだ `node12` を指定している方は `node16` でも動くようにアクションを更新しましょう。
 
+そういや [Node.js 16 は 2023 年 9 月にサポート終了予定](https://nodejs.org/en/blog/announcements/nodejs16-eol)ですが、まだ `node18` は出ていませんね。
+
 [^node16]: [JavaScript Actionsをnode16で動かすようにする - Kengo's blog](https://zenn.dev/korosuke613/articles/productivity-weekly-20220216#javascript-actions%E3%82%92node16%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B---kengo's-blog)
 [^actions_can]: [Actions can now run in a Node.js 16 runtime | GitHub Changelog](https://zenn.dev/korosuke613/articles/productivity-weekly-20220525#actions-can-now-run-in-a-node.js-16-runtime-%7C-github-changelog)
 
