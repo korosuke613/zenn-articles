@@ -38,7 +38,17 @@ https://twitter.com/miyajan/status/1655914766102298629?conversation=none
 ## GitHub Actions: All Actions will run on Node16 instead of Node12 | GitHub Changelog
 https://github.blog/changelog/2023-05-04-github-actions-all-actions-will-run-on-node16-instead-of-node12/
 
-5/18 より GitHub Actions の全てのアクションは Node.js 16 で動作するようになる。
+[以前より告知されていた](https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/)通り、GitHub Actions において、5/18 より GitHub Actions で動作する全ての JavaScript アクションは Node.js v16 で動作するようになります。
+
+元々 JavaScript アクションで指定できる Node.js のバージョンは v12 のみでした(`node12`)が、一昨年末から Node.js v16 も指定できるようになりました(`node16`)[^node16][^actions_can]。
+
+5/18 以降は `node12` を指定しても Node.js v16 で動作するようになります。
+（もとより Node.js v12 自体は 2022 年 4 月にサポートが終了しています。）
+
+JavaScript アクションを開発している方でまだ `node12` を指定している方は `node16` でも動くようにアクションを更新しましょう。
+
+[^node16]: [JavaScript Actionsをnode16で動かすようにする - Kengo's blog](https://zenn.dev/korosuke613/articles/productivity-weekly-20220216#javascript-actions%E3%82%92node16%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B---kengo's-blog)
+[^actions_can]: [Actions can now run in a Node.js 16 runtime | GitHub Changelog](https://zenn.dev/korosuke613/articles/productivity-weekly-20220525#actions-can-now-run-in-a-node.js-16-runtime-%7C-github-changelog)
 
 ## GraphQL improvements for fine-grained PATs and GitHub Apps | GitHub Changelog
 https://github.blog/changelog/2023-04-27-graphql-improvements-for-fine-grained-pats-and-github-apps/
