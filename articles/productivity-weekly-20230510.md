@@ -27,6 +27,8 @@ https://github.blog/changelog/2023-05-09-more-secure-private-attachments/
 宮田さんのツイート
 https://twitter.com/miyajan/status/1655914766102298629?conversation=none
 
+*本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
+
 ## GitHub Actions: All Actions will run on Node16 instead of Node12 | GitHub Changelog
 https://github.blog/changelog/2023-05-04-github-actions-all-actions-will-run-on-node16-instead-of-node12/
 
@@ -56,13 +58,16 @@ https://github.blog/changelog/2023-05-04-codespaces-settings-sync-updates/
 Codespaces において VSCode の設定の同期が双方向でできるようになったよ
 
 ## Terraform Cloud no-code provisioning is now GA with new features
-
 https://www.hashicorp.com/blog/terraform-cloud-no-code-provisioning-is-now-ga-with-new-features
+
+*本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
 ## Slack、さまざまなAIをSlackに統合する「Slack GPT」発表 - Publickey
 https://www.publickey1.jp/blog/23/aislackslack_gpt.html
 
 未読スレッドの要約、メールの文面生成などなどができるようになる。
+
+*本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
 # know-how 🎓
 
@@ -70,6 +75,8 @@ https://www.publickey1.jp/blog/23/aislackslack_gpt.html
 https://www.thoughtworks.com/radar
 
 半年に一度ほど更新される、Thoughtworks 社の Technology Radar の最新版 Vol.28 が公開。
+
+*本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
 # tool 🔨
 
