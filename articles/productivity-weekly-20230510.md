@@ -19,6 +19,12 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 
 今回が第 112 回目です。過去の記事は[こちら](https://zenn.dev/topics/productivityweekly?order=latest)。
 
+:::message
+今週号から、実験的に生産性向上チームの他メンバーにいくつかのトピックを紹介していただくことにします。
+
+対象のトピックでは、文章の最後に `本項の執筆者: <執筆者名>` を追加しています。
+:::
+
 # news 📺
 
 ## More secure private attachments | GitHub Changelog
