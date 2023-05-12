@@ -151,11 +151,6 @@ GitHub Mobile で Actions の情報が見れるようになったよ
 
 https://twitter.com/Shitimi_613/status/1655958448176259072?conversation=none
 
-## Codespaces Settings Sync Updates | GitHub Changelog
-https://github.blog/changelog/2023-05-04-codespaces-settings-sync-updates/
-
-Codespaces において VSCode の設定の同期が双方向でできるようになったよ
-
 ## Terraform Cloud no-code provisioning is now GA with new features
 https://www.hashicorp.com/blog/terraform-cloud-no-code-provisioning-is-now-ga-with-new-features
 
@@ -183,6 +178,8 @@ https://www.thoughtworks.com/radar
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
+  - [Codespaces Settings Sync Updates | GitHub Changelog](https://github.blog/changelog/2023-05-04-codespaces-settings-sync-updates/)
+    - Codespaces において VSCode の設定の同期が双方向でできるようになったよ
   - [The new code search and code view is now generally available | GitHub Changelog](https://github.blog/changelog/2023-05-08-the-new-code-search-and-code-view-is-now-generally-available/)
     - github の code search が GA になったよ
 - **know-how 🎓**
