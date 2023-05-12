@@ -52,23 +52,6 @@ JavaScript アクションを開発している方でまだ `node12` を指定�
 [^node16]: [JavaScript Actionsをnode16で動かすようにする - Kengo's blog](https://zenn.dev/korosuke613/articles/productivity-weekly-20220216#javascript-actions%E3%82%92node16%E3%81%A7%E5%8B%95%E3%81%8B%E3%81%99%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B---kengo's-blog)
 [^actions_can]: [Actions can now run in a Node.js 16 runtime | GitHub Changelog](https://zenn.dev/korosuke613/articles/productivity-weekly-20220525#actions-can-now-run-in-a-node.js-16-runtime-%7C-github-changelog)
 
-## GraphQL improvements for fine-grained PATs and GitHub Apps | GitHub Changelog
-https://github.blog/changelog/2023-04-27-graphql-improvements-for-fine-grained-pats-and-github-apps/
-
-GitHub において fine-grained Personal Access Token および GitHub Apps で GraphQL API が叩けるようになりました。
-
-fine-grained PAT が登場した段階では GitHub の GraphQL API には対応していなかったため、GraphQL API を利用するためには classic PAT の利用が必要でした。
-
-また、GitHub Apps に関しても改良がされており、user-to-server トークン[^user-to-server]を使用する場合、デフォルトでパブリックリソースへの GraphQL での read アクセスが可能になりました[^graphql_for_github_apps]。
-REST API に関しては一昨年似たような対応がされています[^rest_api]。
-
-ようやく fine-grained PAT で GraphQL が叩けるようになったなという感じです。使いやすくなりましたね。ただ、いまだに有効期限を必ず設定しないといけない仕様であるため、個人的には fine-grained PAT はまだまだ使わないかなという感じです[^expire]。
-
-[^graphql_for_github_apps]: GitHub Apps から GraphQL を叩くこと自体は結構前から対応されています。[GraphQL API support for GitHub Apps | GitHub Changelog](https://github.blog/changelog/2018-04-30-graphql-supports-gh-apps/)
-[^user-to-server]: GitHub Apps の権限を使いつつ、ユーザとして操作したことにする場合の話（だと思います）。https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app
-[^rest_api]: [GitHub App user-to-server REST API requests now have read access to public resources | GitHub Changelog](https://github.blog/changelog/2021-08-02-github-app-user-to-server-rest-api-requests-now-have-read-access-to-public-resources/)
-[^expire]: 特に中の人を交えた議論もされてなさそう。https://github.com/orgs/community/discussions/36441#discussioncomment-3908900
-
 ## Secret scanning's push protection is available on public repositories, for free | GitHub Changelog
 https://github.blog/changelog/2023-05-09-secret-scannings-push-protection-is-available-on-public-repositories-for-free/
 
@@ -143,6 +126,23 @@ The secret is real, I understand the risk, and I will need to revoke it. This wi
 
 push protection、うっかりコミットをだいぶ減らせてくれそうですね。
 各リポジトリへ個別設定もできますが、ユーザの設定画面から一括設定＆新規リポジトリに自動設定も可能です。基本的に有効化して損しない機能だと思うので、ぜひ有効化しましょう。
+
+## GraphQL improvements for fine-grained PATs and GitHub Apps | GitHub Changelog
+https://github.blog/changelog/2023-04-27-graphql-improvements-for-fine-grained-pats-and-github-apps/
+
+GitHub において fine-grained Personal Access Token および GitHub Apps で GraphQL API が叩けるようになりました。
+
+fine-grained PAT が登場した段階では GitHub の GraphQL API には対応していなかったため、GraphQL API を利用するためには classic PAT の利用が必要でした。
+
+また、GitHub Apps に関しても改良がされており、user-to-server トークン[^user-to-server]を使用する場合、デフォルトでパブリックリソースへの GraphQL での read アクセスが可能になりました[^graphql_for_github_apps]。
+REST API に関しては一昨年似たような対応がされています[^rest_api]。
+
+ようやく fine-grained PAT で GraphQL が叩けるようになったなという感じです。使いやすくなりましたね。ただ、いまだに有効期限を必ず設定しないといけない仕様であるため、個人的には fine-grained PAT はまだまだ使わないかなという感じです[^expire]。
+
+[^graphql_for_github_apps]: GitHub Apps から GraphQL を叩くこと自体は結構前から対応されています。[GraphQL API support for GitHub Apps | GitHub Changelog](https://github.blog/changelog/2018-04-30-graphql-supports-gh-apps/)
+[^user-to-server]: GitHub Apps の権限を使いつつ、ユーザとして操作したことにする場合の話（だと思います）。https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-user-access-token-for-a-github-app
+[^rest_api]: [GitHub App user-to-server REST API requests now have read access to public resources | GitHub Changelog](https://github.blog/changelog/2021-08-02-github-app-user-to-server-rest-api-requests-now-have-read-access-to-public-resources/)
+[^expire]: 特に中の人を交えた議論もされてなさそう。https://github.com/orgs/community/discussions/36441#discussioncomment-3908900
 
 ## Introducing Actions on the Repository view on GitHub Mobile | GitHub Changelog
 https://github.blog/changelog/2023-05-09-introducing-actions-on-the-repository-view-on-github-mobile/
