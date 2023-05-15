@@ -191,6 +191,21 @@ https://twitter.com/Shitimi_613/status/1655958448176259072?conversation=none
 ## Terraform Cloud no-code provisioning is now GA with new features
 https://www.hashicorp.com/blog/terraform-cloud-no-code-provisioning-is-now-ga-with-new-features
 
+Terraform Cloud にて、ノーコードで簡単にモジュールをデプロイすることができるようになりました。
+
+Terraform Cloud の Business tier である必要があります。
+
+通常のモジュール開発と違って、ノーコードモジュールは次の特徴があります。
+- provider を宣言する必要がある
+- Terraform やインフラに不慣れな人のために次を意識する
+    - 変数の数は少ないほど良い
+    - 組織の要件に合わせて、予めハードコーティングしておくと良い
+
+なお、モジュールに変更を加えても、作成済みのノーコードワークスペースにその変更を適用できません。変更済みのモジュールで新しくワークスペースを作り直す必要があります。
+ここは不便なような気がします...
+
+しかし社内のエンジニアがあらかじめモジュールを作成しておき、それを使って社内の誰でもインフラ含め量産することができると考えると、それなりに需要のある機能のように思います。
+
 *本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
 ## Slack、さまざまなAIをSlackに統合する「Slack GPT」発表 - Publickey
