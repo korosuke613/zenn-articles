@@ -196,12 +196,20 @@ https://www.thoughtworks.com/radar
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
-  - [Codespaces Settings Sync Updates | GitHub Changelog](https://github.blog/changelog/2023-05-04-codespaces-settings-sync-updates/)
-    - Codespaces において VSCode の設定の同期が双方向でできるようになったよ
   - [The new code search and code view is now generally available | GitHub Changelog](https://github.blog/changelog/2023-05-08-the-new-code-search-and-code-view-is-now-generally-available/)
-    - github の code search が GA になったよ
+    - GitHub の新しい code search が GA になりました
+      - 2 月よりパブリックベータとなっていました
+    - 僕はよく使っていますが、やっぱり正規表現を使えるのがとても嬉しいです
+  - [Codespaces Settings Sync Updates | GitHub Changelog](https://github.blog/changelog/2023-05-04-codespaces-settings-sync-updates/)
+    - GitHub Codespaces を VSCode for Web で利用する際に設定の同期を双方向でできるようになりました
+      - これまでも設定を変えたら双方向にはできたようですが、それについてはよくわかっていません
+    - これまでは VSCode for Web 上ではデフォルトで片方向の設定同期がされるようになっていました
+    - これからは Settings Sync を有効にすることで Web 上でも双方向の同期ができるようになります
 - **know-how 🎓**
   - [GitHub Actionsにおける設定ミスに起因したGitHubスタッフのアクセストークン漏洩](https://blog.ryotak.net/post/github-actions-staff-access-token/)
+    - GitHub Actions のセルフホストランナーを開発している public repo において、E2E テスト時のワークフローの不備で GitHub スタッフのアクセストークンを悪用できたという話です。著者の報告により既に修正済みです
+    - もし悪用されていたら大変なことになっていましたね。GitHub Actions の権限には気をつけましょう
+      - パブリックリポジトリで PAT を使うなという話でもあると思う
 
 # あとがき
 
