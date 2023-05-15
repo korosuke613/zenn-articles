@@ -35,7 +35,22 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 https://github.blog/changelog/2023-05-09-more-secure-private-attachments/
 
 宮田さんのツイート
-https://twitter.com/miyajan/status/1655914766102298629?conversation=none
+@[tweet](https://twitter.com/miyajan/status/1655914766102298629)
+
+GitHub の Issue や Pull Request などに添付したファイルは、今まで URL さえ知っていれば無期限でアクセスすることができました。
+企業などは機微情報を載せないよう気をつけながら運用していたように思います。
+
+それが、このブログが公開された5月9日以降に添付されたファイルへのアクセスには認証が必要になりました。
+
+具体的には次のような変更があります。
+- ウェブブラウザから Issue や Pull Request を閲覧する際に表示される画像の URL には jwt のパラメータが付与されており、5分で失効して以降は404が返ります。
+  - 次のような形で jwt が入っています
+  - https://private-user-images.githubusercontent.com/xxx.png?jwt=xxx
+- プライベートリポジトリに関する電子メールには Issue や Pull Request で添付されたファイルは直接載らないようになり、代わりに URL が載るようになりました。
+
+なお、今回の変更は過去に遡っては適用されないため、注意が必要です。
+
+組織によっては機微情報を含むファイルを載せても良くなるかもしれず、便利になりそうですね。
 
 *本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
