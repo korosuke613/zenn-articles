@@ -211,7 +211,19 @@ Terraform Cloud の Business tier である必要があります。
 ## Slack、さまざまなAIをSlackに統合する「Slack GPT」発表 - Publickey
 https://www.publickey1.jp/blog/23/aislackslack_gpt.html
 
-未読スレッドの要約、メールの文面生成などなどができるようになる。
+未読スレッドの要約、メールの文面生成などなどができるようになるとのことです。
+
+- OpenAI のChatGPT や Anthropic の Claude を使ったアプリなど、好みの学習モデルを統合して自動化できます。
+  - 今年後半には Workflow Builder でステップの1つに AI の処理を追加できるようになる
+- AI による会話要約や文章作成機能などが Slack に組み込まれます。
+  - 未読メッセージや下書きを要約してくれたりする機能が予定されているそうです。
+- Salesforce Customer 360 と Data Cloud と連携して、AI を活用した顧客インサイトを見られる Enstein GPT app が登場します。
+  - 自動でチケットを作ってくれたりするそうです。
+
+Anthropic の Claude は ChatGPT と競合の汎用チャット bot です。
+ユースケースに合わせて学習モデルを変更できるのは嬉しいですね。
+
+それに要約機能はとても便利そうですね！今後が待ち遠しいです。
 
 *本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
@@ -220,7 +232,31 @@ https://www.publickey1.jp/blog/23/aislackslack_gpt.html
 ## Technology Radar | An opinionated guide to technology frontiers | Thoughtworks
 https://www.thoughtworks.com/radar
 
-半年に一度ほど更新される、Thoughtworks 社の Technology Radar の最新版 Vol.28 が公開。
+半年に一度ほど更新される、Thoughtworks 社の Technology Radar の最新版 Vol.28 が公開されました。
+眺めてみると知っているものもあれば知らないものもあり、勉強になります。
+
+以下に私が個人的に気になったものを挙げます。
+
+- Adopt（企業が取り入れるべき技術）
+  - CI/CD の SaaS
+    - 新しいテクノロジーだろうか、とちょっと驚き
+  - Dependency Pruning（刈り込み）
+    - ビルド時間の短縮は勿論のこと、セキュリティ的にも攻撃対象を減らすことは重要であるとのこと、確かに
+- Trial（追いかける価値のある技術）
+  - Helm
+- Access（探求すべき技術）
+  - CI/CD のゼロトラストセキュリティ
+  - ChatGPT
+  - GitHub Copilot
+  - Philips のセルフホストランナー
+    - https://github.com/philips-labs/terraform-aws-github-runner
+    - 弊チームで使ってますね！
+      - https://blog.cybozu.io/entry/2022/12/01/102842
+- Hold（注意を払うべき技術）
+  - WebHook がカジュアルに保管されている件
+    - WebHook URL は機密情報として扱うべし、確かにという感じです
+
+探求ネタに困ったら、ここの技術を追いかけてみると良いかもしれません。
 
 *本項の執筆者: [@defaultcf](https://twitter.com/defaultcf)*
 
