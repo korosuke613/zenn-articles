@@ -1,6 +1,6 @@
 ---
 title: "Productivity Weekly (2023-05-17号)"
-emoji: ""
+emoji: "🫨"
 type: "idea"
 topics: ["ProductivityWeekly", "生産性向上"]
 published: false
