@@ -34,7 +34,15 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## Private Access to the AWS Management Console is generally available
 https://aws.amazon.com/jp/about-aws/whats-new/2023/05/aws-management-console-private-access/
 
-AWS マネジメントコンソールへのアクセス制限。組織的には嬉しかったりする……かも？
+AWSマネジメントコンソールへのアクセスを制限することができる機能が GA となりました。
+これは組織内のアカウントに限定することができるというものです。
+つまり誤って意図していないAWSアカウントへのサインインを防ぐことができます。
+
+なお、マネジメントコンソール内の各種アセット（CSS, Stylesheet, JavaScript）へのアクセスはインターネットを経由する必要があり、閉域網からのアクセスを実現するものではありません。
+また現在は東京リージョン（ap-northeast-1）をサポートしていません。
+
+ユースケースとしては、操作ミスによる情報漏洩を防ぐといったところでしょうか。
+こういった手段もあると覚えておくと、今後便利かもしれません。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
@@ -61,16 +69,60 @@ https://github.com/actions/actions-runner-controller/discussions/2072
 ## Terraform Cloud updates plans with an enhanced Free tier and more flexibility
 https://www.hashicorp.com/blog/terraform-cloud-updates-plans-with-an-enhanced-free-tier-and-more-flexibility
 
+Terraform Cloud の無料版がより便利になりました。
+具体的には次の変更があります。
+
+- 500リソースまでは無料で扱えるようになりました。
+    - 以前は最大5ユーザーという制限でしたが、それが撤廃されリソースによる制限となりました。
+    - スモールスタートのチームにとっては有り難い変更のように思います。
+- 無料枠でも使えるようになった機能
+    - SSO
+        - 企業で導入する際に気にするポイントだったかと思いますので、対応されて嬉しいですね。
+    - HashiCorp Sentinel と OPA（Open Policy Agent）
+        - Policy as Code を実現できる機能です。
+        - Policy as Code を初期から導入できるのは、個人にとってはもちろん、企業にとってメリットが大きいですね。
+    - Run Task
+        - Terraform Cloud の run の任意のタイミングでタスクを実行できる機能です。
+            - [Policy Enforcement | Terraform Cloud](https://developer.hashicorp.com/terraform/cloud-docs/policy-enforcement)
+        - 使用できるサービスは [Terraform Registry](https://registry.terraform.io/browse/run-tasks) から調べることができます。
+    - Terraform Cloud Agent
+        - オンプレで Terraform の Plan, Apply を実行できる機能です。
+            - [Run Tasks | Terraform Cloud](https://developer.hashicorp.com/terraform/cloud-docs/workspaces/settings/run-tasks)
+        - 社内ネットワークからしかアクセスできないリソースの管理に非常に便利そうです。
+
+企業で導入する際に便利な機能が無料枠に追加されて、嬉しいですね。
+
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## Container Registry deprecation  |  Container Registry documentation  |  Google Cloud
 https://cloud.google.com/container-registry/docs/deprecations/container-registry-deprecation
+
+2023年5月15日から、Container Registry は非推奨となりました。
+今後は Artifact Registry を使用する必要があります。
+
+Container Registry を使用している開発者は、2024年5月15日までに次のいずれかの操作が必要になるそうです。
+
+- Artifact Registry の標準リポジトリに移行する
+  - 標準リポジトリを作成して、コンテナイメージをプッシュし直す
+  - 詳しくは https://cloud.google.com/artifact-registry/docs/transition/setup-repo?hl=ja
+- gcr.io をサポートするリポジトリを作成する
+  - まだ gcr.io ドメインから移行するのが難しい場合、こちらの選択肢を採ることになると思われます。
+  - 詳しくは https://cloud.google.com/artifact-registry/docs/transition/setup-gcr-repo?hl=ja
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## Google Cloud、クラウドで開発環境を提供する「Cloud Workstations」正式リリース。ゼロトラストのBeyondCorpとの統合など新機能 － Publickey
 https://www.publickey1.jp/blog/23/google_cloudcloud_workstationsbeyondcorp.html
 
+GCP のコンテナ上で実行される開発環境で、開発者は CODE-OSS や各種 JetBrains の IDE の中から IDE を選択して開発することができます。
+
+Cloud shell の上位互換という感じでしょうか。
+
+- 特定の VPC 上に環境を立てることができ、固定IPアドレスを使用できる
+- IAM によるアクセス制御ができる
+- IDE を選択できる
+
+AWS CodeCatalyst や GitHub Codespaces の対抗馬という感じがして、今後の動向が気になりますね。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
