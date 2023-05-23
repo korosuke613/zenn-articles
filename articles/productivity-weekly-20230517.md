@@ -20,7 +20,7 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 今回が第 113 回目です。過去の記事は[こちら](https://zenn.dev/topics/productivityweekly?order=latest)。
 
 :::message
-2023-05-10号から、実験的に生産性向上チームの他メンバーにいくつかのトピックを紹介していただくことにしています。
+2023-05-10 号から、実験的に生産性向上チームの他メンバーにいくつかのトピックを紹介していただくことにしています。
 
 対象のトピックでは、文章の最後に `本項の執筆者: <執筆者名>` を追加しています。
 
@@ -34,12 +34,29 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## Private Access to the AWS Management Console is generally available
 https://aws.amazon.com/jp/about-aws/whats-new/2023/05/aws-management-console-private-access/
 
-AWSマネジメントコンソールへのアクセス制限。組織的には嬉しかったりする……かも？
+AWS マネジメントコンソールへのアクセス制限。組織的には嬉しかったりする……かも？
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## GitHub Actions - Actions Runner Controller Public Beta | GitHub Changelog
 https://github.blog/changelog/2023-05-10-github-actions-actions-runner-controller-public-beta/
+
+[先日、GitHub が Actions Runner Controller を自社のものとしました](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20221214?redirected=1#actions-runner-controller-is-moving-to-a-new-home!-%C2%B7-discussion-%232072-%C2%B7-actions%2Factions-runner-controller)が、その Actions Runner Controller が Public Beta となりました。
+Actions Runner Controller は k8s 上でオートスケールする GitHub Actions セルフホストランナーを構築するための OSS です。
+
+この Changelog には、「the actions runner controller and runner scale sets is now in public beta」と書かれており、従来の Actions Runner Controller だけでなく、runner scale sets というものも public beta となったことがわかります。
+
+runner scale sets の詳細は Changelog には載っていません。
+しかし、当時の GitHub 配下へ移ることを示した Discussions には、今後はまず新しいオートスケーリングモードの導入に取り組む旨が載っており、これのことを示していると思われます。
+
+> Looking ahead, we will be working on first introducing a new auto scaling mode which will hopefully eliminate some of the over and under scaling issues in the current approaches. 
+https://github.com/actions/actions-runner-controller/discussions/2072
+
+正式名称、Autoscaling Runner Scale Sets mode の詳細はリポジトリのドキュメントに載っています。
+
+- [actions-runner-controller/docs/preview/gha-runner-scale-set-controller at 032443fcfd4cf7b6e8bb09ed9dca639bcba9f8a4 · actions/actions-runner-controller · GitHub](https://github.com/actions/actions-runner-controller/tree/032443fcfd4cf7b6e8bb09ed9dca639bcba9f8a4/docs/preview/gha-runner-scale-set-controller)
+
+
 
 ## Terraform Cloud updates plans with an enhanced Free tier and more flexibility
 https://www.hashicorp.com/blog/terraform-cloud-updates-plans-with-an-enhanced-free-tier-and-more-flexibility
@@ -69,7 +86,7 @@ DX 社（Four Keys の Nicole Forsgren とかプロダクティビティ界隈�
 さらに、全体の指標となる KPI も設定する。
 
 この手法は、ファイザーや eBay などの企業で実地検証された。
-eBay では、リードタイムを6倍短縮し、リリースを2倍早くした。
+eBay では、リードタイムを 6 倍短縮し、リリースを 2 倍早くした。
 
 ## CTOの視点から見たAzure OpenAI ServiceとOpenAIのChatGPT APIの深堀り比較 - Qiita
 https://qiita.com/lazy-kz/items/32e8e7c86bdce67beb48
@@ -85,18 +102,18 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
 
 - **news 📺**
   - [Edit workflow files on GitHub Mobile | GitHub Changelog](https://github.blog/changelog/2023-05-11-edit-workflow-files-on-github-mobile/)
-    - 出先でgithub actionsのワークフロー間違いを修正できるようになったよ！
+    - 出先で github actions のワークフロー間違いを修正できるようになったよ！
     - これでどこでも働けるね！
   - [CloudflareスタックにAIをもたらすConstellationの紹介](https://blog.cloudflare.com/ja-jp/introducing-constellation-ja-jp/)
-    - Cloudflare Workers上で機械学習モデルを実行して、渡されたデータから推論した結果を出力できる
+    - Cloudflare Workers 上で機械学習モデルを実行して、渡されたデータから推論した結果を出力できる
 - **know-how 🎓**
   - [君はVS Codeのデバッグの知られざる機能について知っているか](https://qiita.com/_ken_/items/c5aa4841be74b06530b4)
-    - 自分はもう3年以上VSCodeメインなのに全然知りませんでした……
+    - 自分はもう 3 年以上 VSCode メインなのに全然知りませんでした……
 - **tool 🔨**
   - [ellie/atuin: 🐢 Magical shell history](https://github.com/ellie/atuin)
     - Rust 実装のシェル履歴管理ツール
     - sqlite でシェルの履歴を保存して，インタラクティブに検索したり統計情報出したりできるそうな．
-    - リモートに保存して異なる端末間で同期もできて，E2Eで暗号化してるらしい．
+    - リモートに保存して異なる端末間で同期もできて，E2E で暗号化してるらしい．
     - 触ってないけど便利そー
 
 # あとがき
