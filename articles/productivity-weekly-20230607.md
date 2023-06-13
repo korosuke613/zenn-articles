@@ -53,9 +53,10 @@ https://twitter.com/Kesin11/status/1665335604366962688
 ## View repository pushes on the new activity view | GitHub Changelog
 https://github.blog/changelog/2023-05-31-view-repository-pushes-on-the-new-activity-view/
 
-activity という項目がリポジトリに対して追加された。全ブランチであったイベントを時系列で眺められるのが便利そう。
-GitHub で Activity ビューが追加されました。リポジトリごとにどのようなアクティビティがあったか確認できます。アクティビティやユーザーで絞り込んだりできます。
-git clone やダウンロードといったものはここに表示されないので、完全な証跡としては使えなさそう。
+リポジトリ上でどのようなアクティビティがあったか、簡単に確認できるようになりました。リポジトリへの push もここで確認することができます。
+GitHub 上のリポジトリのトップページに、「Activity」というリンクからアクセスできます。
+
+ただ、git clone や Download Zip といったユーザーのイベントはここに記録されないため、なにかインシデントが発生した時の証跡として使えるわけではなさそうです。少し残念です。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
@@ -64,15 +65,45 @@ git clone やダウンロードといったものはここに表示されない�
 ## コンテナのセルフホストランナーの中でコンテナを使えるようにするrunner-container-hooks
 https://zenn.dev/kesin11/articles/20230514_container_hooks
 
-jobs..services とか jobs..container や、各ステップで uses: docker:// とかする際、VM ではなくコンテナ方式の self-hosted runner でどうやって実現しているかの話でした。
+今までコンテナ上で動かしているセルフホストランナーでは、GitHub Actions のコンテナ機能を使用することができませんでしたが、新しく登場した Runner Container Hooks を使うことで使えるようになったとのことです。
+
+序盤はセルフホストランナーをコンテナで動かしていて、そこからさらにコンテナを使う方法について、とても詳しく書かれています。
+しかし GitHub Actions のコンテナ機能である `jobs.<job_id>.container` や `jobs.<job_id>.services` 、`jobs.<job_id>.steps[*].uses` は使えませんでした。
+
+それが Runner Container Hooks の登場で、これらの機能が使えるようになりました。その使い方が具体的に書かれています。
+
+セルフホストランナーをコンテナで動かしている方は必見です。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## AWS CLI を使いこなそう ! ~ 2 種類の補完機能 / aws sso / yaml-stream の紹介 - 変化を求めるデベロッパーを応援するウェブマガジン | AWS
 https://aws.amazon.com/jp/builders-flash/202306/handle-aws-cli/?awsf.filter-name=*all
 
-aws cli の補完ってみんなどんな感じですか？
-aws sso login --profile my-dev-profile こんな感じで使う。AWS_PROFILE と組み合わせて aws sso login できるように
+AWS CLI の Tips が3つ紹介されています。
+
+まずは補完機能についてです。シェルの complete 機能を使って、Tab キーを押すとサブコマンドやオプションを補完できます。
+
+参考: [コマンド補完 - AWS Command Line Interface](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-configure-completion.html)
+
+また自動プロンプトという機能もあって、先述した complete 機能よりリッチな UI でコマンドを組み立てることができます。こちらは私は初めて知りました...
+初期状態では無効化されているので、`aws --cli-auto-prompt` というようにオプションを渡すか、設定ファイルに `cli_auto_prompt = on` と書くことで使用できるようになります。
+
+参考: [AWS CLI でコマンドの入力プロンプトを表示する - AWS Command Line Interface](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/cli-usage-parameters-prompting.html)
+
+
+次に AWS IAM Identity Center を使った AWS CLI での SSO についてです。
+
+設定さえできれば、`aws sso login --profile $PROFILE_NAME` でログインできます。
+
+参考: [AWS IAM Identity Center (successor to AWS Single Sign-On) の自動認証更新によるトークンプロバイダーの設定 - AWS Command Line Interface](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/sso-configure-profile-token.html)
+
+なお、現在生産性向上チームでは [assam コマンド](https://github.com/cybozu/assam) を使って、CLI 環境での SSO ログインを実現しています。
+
+参考: [AWS + Azure ADによるSingle Sign-Onと複数AWSアカウント切り替えのしくみ作り - Cybozu Inside Out | サイボウズエンジニアのブログ](https://blog.cybozu.io/entry/2019/10/18/080000)
+
+これを、AWS CLI 標準の機能で実現できるようになったら、楽になりますね。
+上手く使えないか、探求を進めていきます。
+
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
