@@ -59,13 +59,6 @@ git clone やダウンロードといったものはここに表示されない�
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
-
-## Notion Projects 
-https://www.notion.so/product/projects
-
-Notion に Timeline の View がついて、プロジェクト管理ツールとしてより機能が増えた印象
-GitHub Project にも date を書ける場所が増えてたし、最近プロジェクト管理ツールがアツい
-
 # know-how 🎓
 
 ## コンテナのセルフホストランナーの中でコンテナを使えるようにするrunner-container-hooks
@@ -74,12 +67,6 @@ https://zenn.dev/kesin11/articles/20230514_container_hooks
 jobs..services とか jobs..container や、各ステップで uses: docker:// とかする際、VM ではなくコンテナ方式の self-hosted runner でどうやって実現しているかの話でした。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
-
-
-## オフライン「リハビリ」勉強会をやってみたらだいぶ良かった！ - BASEプロダクトチームブログ
-https://devblog.thebase.in/entry/2023/06/07/110000
-
-生産性向上チームもイベントのハイブリッド開催にシフトしていこうとしてますし，ぶっつけ本番よりもこういうリハビリ挟んだ方がいいかも？
 
 ## AWS CLI を使いこなそう ! ~ 2 種類の補完機能 / aws sso / yaml-stream の紹介 - 変化を求めるデベロッパーを応援するウェブマガジン | AWS
 https://aws.amazon.com/jp/builders-flash/202306/handle-aws-cli/?awsf.filter-name=*all
@@ -96,7 +83,12 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
 
 - **news 📺**
 - **know-how 🎓**
+  - [オフライン「リハビリ」勉強会をやってみたらだいぶ良かった！ - BASEプロダクトチームブログ](https://devblog.thebase.in/entry/2023/06/07/110000)
+    - 生産性向上チームもイベントのハイブリッド開催にシフトしていこうとしてますし，ぶっつけ本番よりもこういうリハビリ挟んだ方がいいかも？
 - **tool 🔨**
+  - [Notion Projects](https://www.notion.so/product/projects)
+    - Notion に Timeline の View がついて、プロジェクト管理ツールとしてより機能が増えた印象
+    - GitHub Project にも date を書ける場所が増えてたし、最近プロジェクト管理ツールがアツい
 
 # あとがき
 
