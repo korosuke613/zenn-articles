@@ -12,10 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - uses: actions/setup-node@v3
         with:
           node-version-file: .tool-versions
           cache: 'npm'
+
+      - name: Install latest corepack
+        run: |
+          npm i -g corepack@latest
+
       - run: corepack enable npm
+
       - run: npm ci
+
       - run: npm run lint:renovate-config-validator
