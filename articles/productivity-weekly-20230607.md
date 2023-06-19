@@ -67,7 +67,7 @@ https://zenn.dev/kesin11/articles/20230514_container_hooks
 
 今までコンテナ上で動かしているセルフホストランナーでは、GitHub Actions のコンテナ機能を使用することができませんでしたが、新しく登場した Runner Container Hooks を使うことで使えるようになったとのことです。
 
-序盤はセルフホストランナーをコンテナで動かしていて、そこからさらにコンテナを使う方法について、とても詳しく書かれています。
+最初に、メジャーな方法であるセルフホストランナーをコンテナ上で動かし、そこからさらにコンテナを使う方法(コンテナの中でコンテナを動かしている)についてを説明されています。
 しかし GitHub Actions のコンテナ機能である `jobs.<job_id>.container` や `jobs.<job_id>.services` 、`jobs.<job_id>.steps[*].uses` は使えませんでした。
 
 それが Runner Container Hooks の登場で、これらの機能が使えるようになりました。その使い方が具体的に書かれています。
