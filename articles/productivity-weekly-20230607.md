@@ -97,7 +97,9 @@ AWS CLI の Tips が3つ紹介されています。
 
 参考: [AWS IAM Identity Center (successor to AWS Single Sign-On) の自動認証更新によるトークンプロバイダーの設定 - AWS Command Line Interface](https://docs.aws.amazon.com/ja_jp/cli/latest/userguide/sso-configure-profile-token.html)
 
-なお、現在生産性向上チームでは [assam コマンド](https://github.com/cybozu/assam) を使って、CLI 環境での SSO ログインを実現しています。
+なお、現在生産性向上チームでは [assam コマンド](https://github.com/cybozu/assam) を使って、CLI 環境での SSO ログインを実現しています[^aws_sso]。
+
+[^aws_sso]: ちなみに assam は、AWS IAM アイデンティティセンター（AWS Single Sign-On の後継）を使っていません。開発当時は AWS SSO がなかったからですね。
 
 参考: [AWS + Azure ADによるSingle Sign-Onと複数AWSアカウント切り替えのしくみ作り - Cybozu Inside Out | サイボウズエンジニアのブログ](https://blog.cybozu.io/entry/2019/10/18/080000)
 
