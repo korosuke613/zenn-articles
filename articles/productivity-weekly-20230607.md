@@ -72,7 +72,7 @@ https://zenn.dev/kesin11/articles/20230514_container_hooks
 
 今回、Runner Container Hooks が登場したことで、上記の問題を回避できるようになりました。この記事では、Runner Container Hooks の使い方、仕組みが詳しく書かれています。
 
-セルフホストランナーをコンテナで動かしている方は必見です。
+セルフホストランナーをコンテナで動かしている方にとてもおすすめしたい記事です。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
