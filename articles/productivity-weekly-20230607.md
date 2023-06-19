@@ -56,7 +56,11 @@ https://github.blog/changelog/2023-05-31-view-repository-pushes-on-the-new-activ
 リポジトリ上でどのようなアクティビティがあったか、簡単に確認できるようになりました。リポジトリへの push もここで確認することができます。
 GitHub 上のリポジトリのトップページに、「Activity」というリンクからアクセスできます。
 
-ただ、git clone や Download Zip といったユーザーのイベントはここに記録されないため、なにかインシデントが発生した時の証跡として使えるわけではなさそうです。少し残念です。
+ただ、git clone や Download Zip といったユーザーのイベントはここに記録されないため、なにかインシデントが発生した時の証跡として万能ではなさそうです。少し残念な人もいるかもですが、そういうのは Audit log の役割かと思います[^noise]。
+
+なんにせよ、リポジトリに対する変更を追いやすくなるのはよいですね。
+
+[^noise]: git clone などの Read な操作が Activity に入ると、(github から見ると)データ量の増加、(利用者から見ると)ノイズになりそうってのもある。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
