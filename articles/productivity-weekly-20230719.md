@@ -137,6 +137,8 @@ https://zenn.dev/kesin11/articles/gha_releasenote_ghes
 ### GitHub Copilotの全社導入とその効果 - ZOZO TECH BLOG
 https://techblog.zozo.com/entry/introducing_github_copilot
 
+ZOZO さんによる、GitHub Copilot 導入事例です。
+
 ### サイバーエージェントのGitHub CopilotのAnalyticsデータを公開！利用開始から約3ヶ月でエンジニアの生産性は向上したのか？ | CyberAgent Developers Blog
 https://developers.cyberagent.co.jp/blog/archives/43059/
 
