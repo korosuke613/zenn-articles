@@ -139,6 +139,26 @@ https://techblog.zozo.com/entry/introducing_github_copilot
 
 ZOZO さんによる、GitHub Copilot 導入事例です。
 
+GitHub Copilot 導入の背景や、導入する上での課題（セキュリティ、ライセンス侵害リスク、費用対効果）と対応、社内での利用 Tips 共有などが書かれています。
+
+特に興味深かったのは次の 3 点でした。
+
+- ライセンス侵害が問題になった場合の GitHub 社からの補償について、カスタマーへの問い合わせ
+- 試験導入の詳細と、それを踏まえた費用対効果の見積もり
+- 社内での利用 Tips 共有（社内 LT 会）
+
+以前、[ライセンス侵害が問題になった際は最大 50 万ドルの支援が受けられるという文言が規約から消えている話](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230614#github-copilot-product-specific-terms-%E3%81%AE%E7%AC%AC%E4%B8%89%E8%80%85%E3%81%8B%E3%82%89%E8%A8%B4%E3%81%88%E3%82%89%E3%82%8C%E3%81%9F%E5%A0%B4%E5%90%88%E3%81%AF-github-%E3%81%8C%E6%9C%80%E5%A4%A7-50-%E4%B8%87%E3%83%89%E3%83%AB%E3%81%BE%E3%81%A7%E4%BF%9D%E8%AD%B7%E3%81%99%E3%82%8B%E8%A9%B1%E3%81%8C%E6%B6%88%E3%81%88%E3%81%A6%E3%81%84%E3%82%8B%E4%BB%B6)をしましたが、結局最大いくらまで支援してくれるのかはわかっていませんでした。
+「GitHub Copilot Product Specific Terms」および「GitHub Customer Agreement」によると GitHub による無制限の補償が受けられるというのは嬉しいですね。（記事の注釈にもある通り、契約内容などによって詳細は異なる可能性があるので注意が必要です。）
+
+また、試験導入が詳しく書かれており、どのように費用対効果を見積ったかがわかるのはとても参考になります。
+最終的に数字を出せるのは導入を検討している企業にとって嬉しいかもしれません。
+
+社内 LT 大会は僕も GitHub Copilot を利用しているので普通に気になりました。資料探せば見つかるかな。
+
+GitHub Copilot 導入を考えている企業にはとても参考になると思います。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
+
 ### サイバーエージェントのGitHub CopilotのAnalyticsデータを公開！利用開始から約3ヶ月でエンジニアの生産性は向上したのか？ | CyberAgent Developers Blog
 https://developers.cyberagent.co.jp/blog/archives/43059/
 
@@ -188,6 +208,9 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
     - ちなみに macOS 上で VM を立てる場合はライセンス条項が色々面倒なので注意です
 - **tool 🔨**
   - [Introducing new and updated models to Azure OpenAI Service - Microsoft Community Hub](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-new-and-updated-models-to-azure-openai-service/ba-p/3860351)
+
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 # あとがき
 
