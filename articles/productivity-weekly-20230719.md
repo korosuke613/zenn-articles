@@ -122,9 +122,6 @@ https://github.blog/changelog/2023-07-11-improvements-to-granular-access-tokens-
 npm にも GitHub の fine grained token のように read only やパッケージの範囲を絞れる新しいトークン形式が最近追加されていて、それの有効期限を完全に自由に設定できるようになったらしい。
 allowing for durations that span multiple years. が嬉しいですね。セキュリティ的にはよろしくないだろうけど・・・
 
-## Introducing passwordless authentication on GitHub.com - The GitHub Blog
-https://github.blog/2023-07-12-introducing-passwordless-authentication-on-github-com/
-
 ## GitHub Copilot 関係の更新
 
 ### Visual Studio Code June 2023
@@ -182,6 +179,7 @@ https://blog.cloudnative.co.jp/18182/
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
+  - [Introducing passwordless authentication on GitHub.com - The GitHub Blog](https://github.blog/2023-07-12-introducing-passwordless-authentication-on-github-com/)
   - [GitHub Actions – OIDC integration with AWS no longer requires pinning of intermediate TLS certificates](https://github.blog/changelog/2023-07-13-github-actions-oidc-integration-with-aws-no-longer-requires-pinning-of-intermediate-tls-certificates/)
     - GitHub Actions から AWS への OIDC でサムプリントをべた書きしないといけなかった件、対応されてべた書きする必要がなくなったそう
   - [GitHub Actions - Actions Runner General availability | GitHub Changelog](https://github.blog/changelog/2023-06-30-github-actions-actions-runner-general-availability/)
