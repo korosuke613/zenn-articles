@@ -90,7 +90,7 @@ GitHub の Enterprise および Organization において、audit logs の WebUI
 
 ペイロードで得られる情報は API、log streaming で得られる情報と同じで、例えば `repo.download_zip` の場合、ユーザーエージェントやトークンの種類（GitHub App server-to-server token）などが含まれています。
 
-これまで詳細を知りたければ API を叩いたり、log streaming を有効化する必要がありましたが、これからは手軽に WebUI 上でログの詳細が見れるようになって良いですね。
+これまで詳細を知りたければ API を叩いたり、log streaming を有効化する必要がありましたが、これからは手軽に WebUI 上でログの詳細が見られるようになって良いですね。
 
 *本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
@@ -121,29 +121,6 @@ https://github.blog/changelog/2023-07-11-improvements-to-granular-access-tokens-
 
 npm にも GitHub の fine grained token のように read only やパッケージの範囲を絞れる新しいトークン形式が最近追加されていて、それの有効期限を完全に自由に設定できるようになったらしい。
 allowing for durations that span multiple years. が嬉しいですね。セキュリティ的にはよろしくないだろうけど・・・
-
-## GitHub Copilot 関係の更新
-
-### Visual Studio Code June 2023
-https://code.visualstudio.com/updates/v1_80#_github-copilot
-
-Copilot にチャットで新しいプロジェクトをテンプレートから作ってもらったり、検索のための正規表現を作ってもらえるようになる。
-正規表現を考えるのはちょっと手間なので便利そう
-
-### GitHub Copilot July 14th Update - The GitHub Blog
-https://github.blog/changelog/2023-07-14-github-copilot-july-14th-update/
-
-GitHub Copilot for Business の API が beta で追加。今までは UI からシートを割り当てるしかなかったが API で行えるようになり、割り当て済みのアカウント情報に最後に使った日などの情報も入っているらしいので棚卸しに便利そう。
-社内で Copilot のアカウント管理してくれている方に伝えたら喜ばれそう？
-
-### Copilot June-2023 update - The GitHub Blog
-https://github.blog/changelog/2023-06-29-copilot-june-2023-update/
-
-GitHub Copilot の 6 月アプデまとめ。
-- VSCode の Stable で Copilot Chat が使えるようになった
-- VSCode で Copilot を使用してプルリクへのレビューコメントが書けるようになった
-- コード補完の改善
-- など
 
 ### GitHub Enterprise Server 3.9 is now generally available | The GitHub Blog
 https://github.blog/2023-06-29-github-enterprise-server-3-9-is-now-generally-available/
@@ -189,6 +166,19 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
     - 新 Project を gh から操作できる gh-project の extension がアーカイブされて gh v2.31.0 から本体に取り込まれた。
     - 新 Project の API はたしか GraphQL が必要で、API を叩くために GraphQL のドキュメントとにらめっこするのが REST に比べるとかなり面倒だった記憶がある。
     - 今後は Project 関連の操作であれば github actions から gh を使うのが簡単そう。
+  - GitHub Copilot 関係の更新
+    - [Visual Studio Code June 2023](https://code.visualstudio.com/updates/v1_80#_github-copilot)
+      - Copilot にチャットで新しいプロジェクトをテンプレートから作ってもらったり、検索のための正規表現を作ってもらえるようになる。
+      - 正規表現を考えるのはちょっと手間なので便利そう
+    - [GitHub Copilot July 14th Update - The GitHub Blog](https://github.blog/changelog/2023-07-14-github-copilot-july-14th-update/)
+      - GitHub Copilot for Business の API が beta で追加。今までは UI からシートを割り当てるしかなかったが API で行えるようになり、割り当て済みのアカウント情報に最後に使った日などの情報も入っているらしいので棚卸しに便利そう。
+      - 社内で Copilot のアカウント管理してくれている方に伝えたら喜ばれそう？
+    - [Copilot June-2023 update - The GitHub Blog](https://github.blog/changelog/2023-06-29-copilot-june-2023-update/)
+      - GitHub Copilot の 6 月アプデまとめ。
+        - VSCode の Stable で Copilot Chat が使えるようになった
+        - VSCode で Copilot を使用してプルリクへのレビューコメントが書けるようになった
+        - コード補完の改善
+        - など
 - **know-how 🎓**
   - [iOS開発におけるGitHub Actions self-hosted runnerを利用したオンプレ CI/CD のすゝめ | CADC 2023](https://cadc.cyberagent.co.jp/2023/sessions/ios-github-actions-self-hosted-runner/)
     - サイバーエージェントさんでセルフホストランナーを運用している whywaita さんの新作。
