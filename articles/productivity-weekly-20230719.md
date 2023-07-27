@@ -35,18 +35,20 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## AWS CodeBuild が GitHub Actions をサポート開始
 https://aws.amazon.com/jp/about-aws/whats-new/2023/07/aws-codebuild-github-actions/
 
-Github Actions のセルフホストランナーとは関係なく、CodeBuild が actions（actions/setup-node とか）を解釈して実行できるようになったということか？？
-確かに actions の中身は js とか Dockerfile だし、https://github.com/nektos/act みたいな Github Actions のエミュレータみたいな先行事例も存在するので可能そうではある。
 
-リリースノートを見てもイマイチ分かっていないのですが、制約を見る感じそんな雰囲気を感じる。
+AWS CodeBuild にて、GitHub Actions のアクションを使用できるようになりました。
+
+詳しいドキュメントはコチラです。
 https://docs.aws.amazon.com/codebuild/latest/userguide/action-runner.html
-> Limitations of the GitHub action runner in CodeBuild
 
-・github context はサポートしていないのでそれに依存している actions は動かない
-・Docker container actions を使う場合は privileged mode が必要（CodeBuild 内で Docker in Docker するのかな？）
-
+すでに試されている方がいらっしゃいます。
 https://dev.classmethod.jp/articles/codebuild-github-actions/
 https://developer.mamezou-tech.com/blogs/2023/07/12/githubactions-with-codebuild/
+
+これにより、便利なものがたくさんある GitHub マーケットプレイスのアクションを、AWS CodeBuild で使用することができます。
+
+ただし、github context に依存したものは使えません。
+また Issue や PullRequest への書き込みなど、GitHub Actions のワークフローからなら簡単にできた操作もできません。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
@@ -97,8 +99,18 @@ GitHub の Enterprise および Organization において、audit logs の WebUI
 ## Grouped version updates for Dependabot public beta | GitHub Changelog
 https://github.blog/changelog/2023-06-30-grouped-version-updates-for-dependabot-public-beta/
 
-Dependabot でアップデートのグループ化ができるようになりました。
-パブリックベータ。
+Dependabot で依存関係のパッケージをグループにして、1 つのプルリクエストにまとめることができる機能がパブリックベータになりました。
+
+これまでは、プルリクエストが 1 つにまとまっていないので一覧時に見づらかった他、複数の依存関係が同時に更新されないことが理由でテストが落ちるといったことが起こりがちでした。
+それらの問題がこの機能を使うことで解消されます。
+依存関係のパッケージ名で一致したもの[^wildcard]をグループにすることができます。また、除外設定を行うことで、指定したパッケージをグループから除外することもできます。
+
+[^wildcard]: パターンにはワイルドカード(`*`)を利用できます。
+
+ただし Dependabot が行うセキュリティアップデートにはグループは適用されず、従来どおり個別のプルリクエストが作成されます。
+
+生産性向上チームでは、前からグループ機能がありより細かく設定ができる [Renovate](https://github.com/renovatebot/renovate) を使っていて、今回の機能追加で Dependabot に乗り換えることはなさそうです。
+ただ日頃 Dependabot を使っている方にとってはこの機能は便利かと思うので、この機会に使ってみてはいかがでしょうか。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
@@ -125,7 +137,14 @@ allowing for durations that span multiple years. が嬉しいですね。セキ�
 ### GitHub Enterprise Server 3.9 is now generally available | The GitHub Blog
 https://github.blog/2023-06-29-github-enterprise-server-3-9-is-now-generally-available/
 
-GHES と github.com の Actions 関連の対応表
+GitHub Enterprise Server (GHES) 3.9 が GA になりました。
+
+GitHub Projects でロードマップのビューが使用できるようになったりしています。
+
+また、[Actions Runner Controller](https://docs.github.com/en/enterprise-server@3.9/actions/hosting-your-own-runners/managing-self-hosted-runners-with-actions-runner-controller/about-actions-runner-controller) が使えるようになったとあります。
+Actions Runner Controller は k8s を使ったセルフホストランナーなので、ランナーのスケールイン・アウトを柔軟に行うことができます。
+
+ちなみに、kesin11 さんが GHES と github.com の Actions 関連の対応表を書いてくださっていて、毎度参考にしています 🙏
 https://zenn.dev/kesin11/articles/gha_releasenote_ghes
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
@@ -181,10 +200,23 @@ https://twitter.com/lionbaby/status/1681504795004407808
 ### A developer's guide to prompt engineering and LLMs - The GitHub Blog
 https://github.blog/2023-07-17-prompt-engineering-guide-generative-ai-llms/
 
+GitHub がプロンプトエンジニアリングと LLMs の開発者向けガイドを出しています。
+
+LLMs がどのようにして動作するかの簡単な説明、LLMs を使用したアプリケーションはどう動作すべきかが書かれています。
+そして GitHub Copilot でのプロンプトエンジニアリングの工夫が書かれています。
+
+記事を読んで、GitHub Copilot の裏側でどのようなことが起こっているか想いを馳せてみてはいかがでしょうか。
+
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## Docker Desktop for Macの代替ツールOrbStackを導入したら社内バックアップが停止してしまった話 – CloudNative Inc. BLOGs
 https://blog.cloudnative.co.jp/18182/
+
+Docker Desktop for Mac 代替のツールはいくつかありますが、そのうちの 1 つの OrbStack が最近注目されているように思います。
+高速で起動し、軽量を謳っており、筆者も気になっています。
+
+今回読んだこの記事では、OrbStack がホームディレクトリ配下にスパースファイルを作成していて、それがバックアップを逼迫している話が書かれています。
+スパースファイルを考慮していないバックアップシステムがバックアップしようとするとこうなるんだと初めて知りました...皆さんもお気をつけください...
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
