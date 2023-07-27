@@ -204,27 +204,30 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
     - GitHub Actions セルフホストランナーの Actions Runner Controller と Runner Scale Sets mode が GA になりました
     - どういうものかは[先日](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230517#github-actions---actions-runner-controller-public-beta-%7C-github-changelog)の記事を参照してください
   - [GitHub CLI project command is now generally available! - The GitHub Blog](https://github.blog/2023-07-11-github-cli-project-command-is-now-generally-available/)
-    - 新 Project を gh から操作できる gh-project の extension がアーカイブされて gh v2.31.0 から本体に取り込まれた。
-    - 新 Project の API はたしか GraphQL が必要で、API を叩くために GraphQL のドキュメントとにらめっこするのが REST に比べるとかなり面倒だった記憶がある。
-    - 今後は Project 関連の操作であれば github actions から gh を使うのが簡単そう。
+    - 新しい GitHub Projects を GitHub CLI (gh) から操作できる gh-project extension がアーカイブされ GitHub CLI v2.31.0 から本体に取り込まれました
+    - 「新 Projects の API は GraphQL が必要なので、API を叩くために GraphQL のドキュメントとにらめっこするのが REST に比べるとかなり面倒だった記憶がある」という意見が会では出ました
+    - 今後は Projects 関連の操作が楽になりますね
   - GitHub Copilot 関係の更新
     - [Visual Studio Code June 2023](https://code.visualstudio.com/updates/v1_80#_github-copilot)
-      - Copilot にチャットで新しいプロジェクトをテンプレートから作ってもらったり、検索のための正規表現を作ってもらえるようになる。
-      - 正規表現を考えるのはちょっと手間なので便利そう
+      - VSCode の 1.80 における GitHub Copilot の更新です
+      - GitHub Copilot Chat で新しいプロジェクトをテンプレートから作ってもらったり、検索のための正規表現を作ってもらえるようになります
+      - それぞれの機能は `github.copilot.advanced` で有効化する必要があります
     - [GitHub Copilot July 14th Update - The GitHub Blog](https://github.blog/changelog/2023-07-14-github-copilot-july-14th-update/)
-      - GitHub Copilot for Business の API が beta で追加。今までは UI からシートを割り当てるしかなかったが API で行えるようになり、割り当て済みのアカウント情報に最後に使った日などの情報も入っているらしいので棚卸しに便利そう。
-      - 社内で Copilot のアカウント管理してくれている方に伝えたら喜ばれそう？
+      - GitHub Copilot の 7 月アプデまとめ
+        - for Business でユーザ管理 API が beta で追加
+          - 例えば、今までは UI からシートを割り当てるしかなかったが、割り当て済みのアカウント情報に最後に使った日などの情報も入っているらしいので棚卸しに便利そう
     - [Copilot June-2023 update - The GitHub Blog](https://github.blog/changelog/2023-06-29-copilot-june-2023-update/)
-      - GitHub Copilot の 6 月アプデまとめ。
+      - GitHub Copilot の 6 月アプデまとめ
         - VSCode の Stable で Copilot Chat が使えるようになった
         - VSCode で Copilot を使用してプルリクへのレビューコメントが書けるようになった
         - コード補完の改善
         - など
 - **know-how 🎓**
   - [iOS開発におけるGitHub Actions self-hosted runnerを利用したオンプレ CI/CD のすゝめ | CADC 2023](https://cadc.cyberagent.co.jp/2023/sessions/ios-github-actions-self-hosted-runner/)
-    - サイバーエージェントさんでセルフホストランナーを運用している whywaita さんの新作。
-    - https://github.com/utmapp/UTM で macOS の VM を使うことで、mac でもジョブごとにランナーを使い捨てる運用ができてる。
+    - サイバーエージェントさんでセルフホストランナーを運用している whywaita さんの新作です
+    - https://github.com/utmapp/UTM で macOS の VM を使うことで、mac でもジョブごとにランナーを使い捨てる運用となっています
     - ちなみに macOS 上で VM を立てる場合はライセンス条項が色々面倒なので注意です
+    - これを実現したのはすごいと思います
 - **tool 🔨**
   - [Introducing new and updated models to Azure OpenAI Service - Microsoft Community Hub](https://techcommunity.microsoft.com/t5/ai-cognitive-services-blog/introducing-new-and-updated-models-to-azure-openai-service/ba-p/3860351)
 
