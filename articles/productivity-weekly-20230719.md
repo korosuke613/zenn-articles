@@ -195,11 +195,14 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
 
 - **news 📺**
   - [Introducing passwordless authentication on GitHub.com - The GitHub Blog](https://github.blog/2023-07-12-introducing-passwordless-authentication-on-github-com/)
+    - GitHub が PassKeys による認証に対応しました
+    - GitHub は WebAuthn 自体には対応していましたが、今回 PassKeys にも対応したことで利便性が増しました
+    - PassKeys の使えるサイトが増えていっていいですね
   - [GitHub Actions – OIDC integration with AWS no longer requires pinning of intermediate TLS certificates](https://github.blog/changelog/2023-07-13-github-actions-oidc-integration-with-aws-no-longer-requires-pinning-of-intermediate-tls-certificates/)
-    - GitHub Actions から AWS への OIDC でサムプリントをべた書きしないといけなかった件、対応されてべた書きする必要がなくなったそう
+    - [前回チラッと書いた](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230628#github-actions-%E2%80%93-update-on-oidc-integration-with-aws-%7C-github-changelog)、GitHub Actions から AWS への OIDC において、AWS が証明書の pinning を辞めたことでサムプリントを適当な値にしても良くなった件ですが、GitHub からも公式にアナウンスがされました
   - [GitHub Actions - Actions Runner General availability | GitHub Changelog](https://github.blog/changelog/2023-06-30-github-actions-actions-runner-general-availability/)
-    - GitHub Actions セルフホストランナーの ARC と runner scale sets mode が GA に。
-    - 早かったな
+    - GitHub Actions セルフホストランナーの Actions Runner Controller と Runner Scale Sets mode が GA になりました
+    - どういうものかは[先日](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230517#github-actions---actions-runner-controller-public-beta-%7C-github-changelog)の記事を参照してください
   - [GitHub CLI project command is now generally available! - The GitHub Blog](https://github.blog/2023-07-11-github-cli-project-command-is-now-generally-available/)
     - 新 Project を gh から操作できる gh-project の extension がアーカイブされて gh v2.31.0 から本体に取り込まれた。
     - 新 Project の API はたしか GraphQL が必要で、API を叩くために GraphQL のドキュメントとにらめっこするのが REST に比べるとかなり面倒だった記憶がある。
