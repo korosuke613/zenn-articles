@@ -39,16 +39,6 @@ GitHub Actions 初期から存在する save-state, set-output というコマ�
 
 save-state, set-output は既にドキュメントからも削除されているので新規に使う人が意識することは無いはずですが、昔に作られた actions がこれらの機能を使っていることがあるので混乱を避けるために延期されたのかもしれない？
 
-## Metrics for issues, pull requests, and discussions - The GitHub Blog
-https://github.blog/2023-07-19-metrics-for-issues-pull-requests-and-discussions/
-
-issue や pull-request などの time to first response, time to close などのメトリクスを集計できる GitHub Actions を GitHub が公式でリリースしてくれた模様。
-https://github.com/github/issue-metrics
-
-Four Keys 的な意味合いよりは、OSS としてどれだけ早く issue や pull-request に反応できてるかみたいな指標を github actions でお手軽に集計できる方向を目指しているのかな？
-
-*執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
-
 # know-how 🎓
 
 ## GitHub の merge queue で 「マージ待ち」を解消した話 - Akatsuki Hackers Lab | 株式会社アカツキ（Akatsuki Inc.)
@@ -75,6 +65,27 @@ https://dev.classmethod.jp/articles/development-productivity-conf-report-sato/
 この前のカンファレンスがクラメソさんにまとめられていた（全てではなさそう
 
 # tool 🔨
+
+## Metrics for issues, pull requests, and discussions - The GitHub Blog
+https://github.blog/2023-07-19-metrics-for-issues-pull-requests-and-discussions/
+
+GitHub リポジトリの issue やプルリクエストの time to first response、time to close などのメトリクス集計ができる GitHub Actions のアクションが GitHub によってリリースされました。
+
+https://github.com/github/issue-metrics
+
+どれだけ早く issue やプルリクエストのに反応できてるかみたいな指標を GitHub Actions でお手軽に集計できます。
+記事には使い方だけでなく、いろんな立場の人のためのユースケースも載っています。
+
+僕の管理してるリポジトリに issue が活発なものはなかったので、プルリクエストを対象に実際に試してみました。
+
+- [github/issue-metrics アクション触ってみる](https://zenn.dev/korosuke613/scraps/c801cb634bb42c)
+
+全体の time to first response や time to close ももちろんのこと、どのプルリクエストに時間がかかったのかなどもわかり、なかなかおもしろいです。クエリを工夫して柔軟に集計できるのも良いですね。
+ただ、得られたデータをどう活用するかは利用者の手にかかっているので、そこはがんばらないといけません。
+
+OSS だけじゃなく、プライベートな製品リポジトリでも活用できそうです。
+
+*執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
