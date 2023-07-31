@@ -47,6 +47,8 @@ https://github.com/github/issue-metrics
 
 Four Keys 的な意味合いよりは、OSS としてどれだけ早く issue や pull-request に反応できてるかみたいな指標を github actions でお手軽に集計できる方向を目指しているのかな？
 
+*執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
+
 # know-how 🎓
 
 ## GitHub の merge queue で 「マージ待ち」を解消した話 - Akatsuki Hackers Lab | 株式会社アカツキ（Akatsuki Inc.)
