@@ -47,9 +47,18 @@ save-state, set-output は既にドキュメントからも削除されている
 ## GitHub の merge queue で 「マージ待ち」を解消した話 - Akatsuki Hackers Lab | 株式会社アカツキ（Akatsuki Inc.)
 https://hackerslab.aktsk.jp/2023/07/20/183510
 
-7/12 に GA したばかりの merge queue の活用事例。以下の引用みたいな状況で、かつボトルネック部分（テスト時間とか）をどうしても解消できないようなケースでは merge queue は便利なのかもしれない。
+アカツキさんによる、7/12 に GA となったばかりの GitHub における [merge queue](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230222?redirected=1#pull-request-merge-queue-(public-beta)-%7C-github-changelog) の活用事例です。
+merge queue があることで何が嬉しいのか、使ってみて出てきた問題とワークアラウンドなどが載っています。
 
-> 私の担当するゲーム内通貨管理基盤の GitHub リポジトリでは PR のマージ後に走る、同時に実施できない 15 分程度の E2E test が存在しました。 すなわち PR をマージして 15 分程度、違うブランチをマージできないといった課題を抱えていたのです。
+アカツキさんのあるリポジトリには同時実行できず時間のかかる E2E テストが存在するため、マージするまでに待ち時間が発生してしまうという問題がありましたが、merge queue を使うことでその問題を解消できたとのことです。
+同時実行できないテストがある際は、どうしてもマージ待ち行列ができてしまうと思うので、merge queue は効果的でしょうね。
+
+merge queue は僕も以前探求したのですが、仕様がちょっと複雑で、慣れるまで手こずりました。記事内でも仕様について触れられており、普通に使うと「merge queue の為のジョブを 2 回実行しなければいけない問題」の話も書かれています。
+僕もダミーのワークフロー・ジョブを用意することで回避したのですが、やっぱりこの方法しかワークアラウンドは無さそうですね...
+
+merge queue 導入のメリットだけでなく、誰もがぶつかりそうな壁についての話も入っており、merge queue をまだゴリゴリに使ってない人には特に参考になると思いました。「マージ待ち」で困っている方は、ぜひ一度読んでみてください。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Github Merge Queueの何が嬉しいのか - ymtdzzz.dev
 https://ymtdzzz.dev/post/merit-of-github-merge-queue/
