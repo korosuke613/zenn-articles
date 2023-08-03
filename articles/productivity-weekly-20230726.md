@@ -63,8 +63,15 @@ merge queue 導入のメリットだけでなく、誰もがぶつかりそう�
 ## Github Merge Queueの何が嬉しいのか - ymtdzzz.dev
 https://ymtdzzz.dev/post/merit-of-github-merge-queue/
 
-こちらも嬉しい事例の紹介記事。
-テストに時間がかかる以外にも PR のマージでコンフリクトが多発するような場合にも merge queue を使うと便利っぽい
+こちらも GitHub における　merge queue の事例記事です。
+
+先の紹介記事では、時間がかかって同時実行できないテストがある場合に効果的という話でしたが、こちらの記事では、デフォルトブランチの変更によりトピックブランチのテストが落ちるようになっても、rebase せずテスト失敗に気づけるという merge queue 活用話が書かれています。
+丁寧に一作業ずつ説明されており、merge queue の上記のユースケースがわかりやすいです。
+
+正直全く予想していなかった merge queue の使い方でした。最小プルリク数（`Minimum pull requests to merge`）を 1 にする理由が思い浮かんでなかったのですが、なるほどこういう時は便利ですね。
+rebase の回数を減らせるのは楽で良いです（branch protection で `Require branches to be up to date before merging` を設定すればいいだけかもしれませんが、だとしても自動で rebase はしてくれないので便利だと思います）。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Git履歴をgit resetとgit rebaseで管理する（翻訳）｜TechRacho by BPS株式会社
 https://techracho.bpsinc.jp/hachi8833/2023_07_24/131590
