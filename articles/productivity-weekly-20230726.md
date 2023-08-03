@@ -67,7 +67,29 @@ squash & merge だと巨大なコミットができてしまうので、reset & 
 ## AWS コストの最適化を検討する時、最初にチェックしたい定番の項目をまとめてみた（2023年夏版） | DevelopersIO
 https://dev.classmethod.jp/articles/aws-cost-optimize-cheat-sheet-202307/
 
-コストを見直すことがあれば役立ちそう
+クラスメソッドさんが、AWS のコスト最適化を検討する際にチェックしたい項目をまとめています。
+主要サービスごとにチェックリストがあり、それぞれのチェック項目に対して、どのように検討・対応すればいいか、推奨度合い、関連リンクが載っています。
+
+例えば、以下のようなチェック項目があります。（これらは一例であり、多くの項目があります。）
+- Amazon EC2: 停止または削除可能（利用頻度が低い・用途不明・代替可能）なリソースの有無
+- Amazon S3: 不完全なマルチパートアップロードをクリーンアップ
+- Amazon CloudWatch: Amazon CloudWatch Logs の利用状況（保存期間、利用状況、不要なログ）
+- ...
+
+どのように検討・対応すればよいかも箇条書きで簡潔に書かれており、とてもわかりやすいです。
+サービスごとにまとまっているため、Cost Explorer などでコスト配分の大きいサービスから確認していくと良いかもしれませんね。
+
+みなさんも AWS のコスト最適化、やっていきましょう。
+
+:::message
+何気にチェックリストの各サービスはすべて `Amazon` から始まるサービスでした。
+Amazon〜 から始まるサービス名は、独立したサービスに付けられています（対して AWS〜 から始まるサービスは他のサービスを利用しています）。
+料金体系も独立しているため、自然と `Amazon` から始まるサービスが多いリストとなったのかもしれませんね。
+
+- [AWSサービス名の「AWS ○○」と「Amazon ○○」の違いを調べてみた | DevelopersIO](https://dev.classmethod.jp/articles/awsservice_naming/)
+:::
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## 開発生産性の最新動向を知ろう！開発生産性Conference参加レポート #開発生産性con_findy | DevelopersIO
 https://dev.classmethod.jp/articles/development-productivity-conf-report-sato/
