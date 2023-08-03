@@ -27,6 +27,7 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 今週の共同著者は次の方です。
 - [@korosuke613](https://zenn.dev/korosuke613)
 - [@defaultcf](https://zenn.dev/defaultcf)
+- [@kesin11](https://zenn.dev/kesin11)
 
 :::
 
@@ -38,6 +39,8 @@ https://github.blog/changelog/2023-07-24-github-actions-update-on-save-state-and
 GitHub Actions 初期から存在する save-state, set-output というコマンドは以前に Deprecated アナウンスがあって廃止時期まで名言されていたのですが、延期が決定したようです。しかも次に期限が明記されていない。
 
 save-state, set-output は既にドキュメントからも削除されているので新規に使う人が意識することは無いはずですが、昔に作られた actions がこれらの機能を使っていることがあるので混乱を避けるために延期されたのかもしれない？
+
+*本項の執筆者: [@kesin11](https://zenn.dev/kesin11)*
 
 # know-how 🎓
 
@@ -53,6 +56,13 @@ https://ymtdzzz.dev/post/merit-of-github-merge-queue/
 
 こちらも嬉しい事例の紹介記事。
 テストに時間がかかる以外にも PR のマージでコンフリクトが多発するような場合にも merge queue を使うと便利っぽい
+
+## Git履歴をgit resetとgit rebaseで管理する（翻訳）｜TechRacho by BPS株式会社
+https://techracho.bpsinc.jp/hachi8833/2023_07_24/131590
+
+squash & merge だと巨大なコミットができてしまうので、reset & rebase を使って綺麗なコミットにしようという主張。
+
+*本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## AWS コストの最適化を検討する時、最初にチェックしたい定番の項目をまとめてみた（2023年夏版） | DevelopersIO
 https://dev.classmethod.jp/articles/aws-cost-optimize-cheat-sheet-202307/
@@ -104,8 +114,6 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
     - PGO: Profile-guide optimization(インライン展開するやつ)がデフォルトで有効化される。速度は 2-7%早くなり、コンパイル時間は最大 6%悪化するように。
     - log/slog 構造化ログ、ログレベルを指定可能な logger が package に入った
 - **know-how 🎓**
-  - [Git履歴をgit resetとgit rebaseで管理する（翻訳）｜TechRacho by BPS株式会社](https://techracho.bpsinc.jp/hachi8833/2023_07_24/131590)
-    - squash & merge だと巨大なコミットができてしまうので、reset & rebase を使って綺麗なコミットにしようという主張。
   - [Google Online Security Blog: Supply chain security for Go, Part 3: Shifting left](https://security.googleblog.com/2023/07/supply-chain-security-for-go-part-3.html)
     - Shift left: セキュリティに関する施作を開発の早い段階で組み込むこと
     - CI でリリース前に脆弱性チェックを走らせると、開発時点では脆弱な依存の上で行われてしまうので脆弱な依存を用いる時間が長くなる。だから開発段階から手元でセキュリティに関するチェックを回しましょうという話。
