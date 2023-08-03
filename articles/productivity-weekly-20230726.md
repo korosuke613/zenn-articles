@@ -36,9 +36,11 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## GitHub Actions: Update on save-state and set-output commands - The GitHub Blog
 https://github.blog/changelog/2023-07-24-github-actions-update-on-save-state-and-set-output-commands/
 
-GitHub Actions 初期から存在する save-state, set-output というコマンドは以前に Deprecated アナウンスがあって廃止時期まで名言されていたのですが、延期が決定したようです。しかも次に期限が明記されていない。
+GitHub Actions 初期の頃から存在する `save-state`, `set-output` というコマンドは[既に2022/10に Deprecated アナウンス](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/)が行われて廃止時期2023/05/31と名言もされていたのですが、今回延期が決定したようです。さらに今回のアナウンスでは延期後の次の廃止時期について明記されませんでした。
 
-save-state, set-output は既にドキュメントからも削除されているので新規に使う人が意識することは無いはずですが、昔に作られた actions がこれらの機能を使っていることがあるので混乱を避けるために延期されたのかもしれない？
+`save-state`, `set-output`を使っているワークフローはwarningのアノテーションが出るものの引き続き利用できるとのことです。ただ、この2つの古い方法は既にドキュメントからも削除されています。過去にこれらを使用したワークフローやactionsを作成していた場合は `GITHUB_STATE`, `GITHUB_OUTPUT` の環境変数を使用する新しい方式に移行しましょう。移行の具体的な方法は[前回のアナウンス](https://github.blog/changelog/2022-10-11-github-actions-deprecating-save-state-and-set-output-commands/)が参考になるはずです。
+
+*執筆者: [@Kesin11](https://zenn.dev/kesin11)*
 
 *本項の執筆者: [@kesin11](https://zenn.dev/kesin11)*
 
