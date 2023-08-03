@@ -27,7 +27,7 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 今週の共同著者は次の方です。
 - [@korosuke613](https://zenn.dev/korosuke613)
 - [@defaultcf](https://zenn.dev/defaultcf)
-- [@Kesin11](https://zenn.dev/kesin11)
+- [@kesin11](https://zenn.dev/kesin11)
 
 :::
 
@@ -42,14 +42,25 @@ GitHub Actions 初期の頃から存在する `save-state`, `set-output` とい�
 
 *執筆者: [@Kesin11](https://zenn.dev/kesin11)*
 
+*本項の執筆者: [@kesin11](https://zenn.dev/kesin11)*
+
 # know-how 🎓
 
 ## GitHub の merge queue で 「マージ待ち」を解消した話 - Akatsuki Hackers Lab | 株式会社アカツキ（Akatsuki Inc.)
 https://hackerslab.aktsk.jp/2023/07/20/183510
 
-7/12 に GA したばかりの merge queue の活用事例。以下の引用みたいな状況で、かつボトルネック部分（テスト時間とか）をどうしても解消できないようなケースでは merge queue は便利なのかもしれない。
+アカツキさんによる、7/12 に GA となったばかりの GitHub における [merge queue](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230222?redirected=1#pull-request-merge-queue-(public-beta)-%7C-github-changelog) の活用事例です。
+merge queue があることで何が嬉しいのか、使ってみて出てきた問題とワークアラウンドなどが載っています。
 
-> 私の担当するゲーム内通貨管理基盤の GitHub リポジトリでは PR のマージ後に走る、同時に実施できない 15 分程度の E2E test が存在しました。 すなわち PR をマージして 15 分程度、違うブランチをマージできないといった課題を抱えていたのです。
+アカツキさんのあるリポジトリには同時実行できず時間のかかる E2E テストが存在するため、マージするまでに待ち時間が発生してしまうという問題がありましたが、merge queue を使うことでその問題を解消できたとのことです。
+同時実行できないテストがある際は、どうしてもマージ待ち行列ができてしまうと思うので、merge queue は効果的でしょうね。
+
+merge queue は僕も以前探求したのですが、仕様がちょっと複雑で、慣れるまで手こずりました。記事内でも仕様について触れられており、普通に使うと「merge queue の為のジョブを 2 回実行しなければいけない問題」の話も書かれています。
+僕もダミーのワークフロー・ジョブを用意することで回避したのですが、やっぱりこの方法しかワークアラウンドは無さそうですね...
+
+merge queue 導入のメリットだけでなく、誰もがぶつかりそうな壁についての話も入っており、merge queue をまだゴリゴリに使ってない人には特に参考になると思いました。「マージ待ち」で困っている方は、ぜひ一度読んでみてください。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Github Merge Queueの何が嬉しいのか - ymtdzzz.dev
 https://ymtdzzz.dev/post/merit-of-github-merge-queue/
@@ -57,10 +68,39 @@ https://ymtdzzz.dev/post/merit-of-github-merge-queue/
 こちらも嬉しい事例の紹介記事。
 テストに時間がかかる以外にも PR のマージでコンフリクトが多発するような場合にも merge queue を使うと便利っぽい
 
+## Git履歴をgit resetとgit rebaseで管理する（翻訳）｜TechRacho by BPS株式会社
+https://techracho.bpsinc.jp/hachi8833/2023_07_24/131590
+
+squash & merge だと巨大なコミットができてしまうので、reset & rebase を使って綺麗なコミットにしようという主張。
+
+*本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
+
 ## AWS コストの最適化を検討する時、最初にチェックしたい定番の項目をまとめてみた（2023年夏版） | DevelopersIO
 https://dev.classmethod.jp/articles/aws-cost-optimize-cheat-sheet-202307/
 
-コストを見直すことがあれば役立ちそう
+クラスメソッドさんが、AWS のコスト最適化を検討する際にチェックしたい項目をまとめています。
+主要サービスごとにチェックリストがあり、それぞれのチェック項目に対して、どのように検討・対応すればいいか、推奨度合い、関連リンクが載っています。
+
+例えば、以下のようなチェック項目があります。（これらは一例であり、多くの項目があります。）
+- Amazon EC2: 停止または削除可能（利用頻度が低い・用途不明・代替可能）なリソースの有無
+- Amazon S3: 不完全なマルチパートアップロードをクリーンアップ
+- Amazon CloudWatch: Amazon CloudWatch Logs の利用状況（保存期間、利用状況、不要なログ）
+- ...
+
+どのように検討・対応すればよいかも箇条書きで簡潔に書かれており、とてもわかりやすいです。
+サービスごとにまとまっているため、Cost Explorer などでコスト配分の大きいサービスから確認していくと良いかもしれませんね。
+
+みなさんも AWS のコスト最適化、やっていきましょう。
+
+:::message
+何気にチェックリストの各サービスはすべて `Amazon` から始まるサービスでした。
+Amazon〜 から始まるサービス名は、独立したサービスに付けられています（対して AWS〜 から始まるサービスは他のサービスを利用しています）。
+料金体系も独立しているため、自然と `Amazon` から始まるサービスが多いリストとなったのかもしれませんね。
+
+- [AWSサービス名の「AWS ○○」と「Amazon ○○」の違いを調べてみた | DevelopersIO](https://dev.classmethod.jp/articles/awsservice_naming/)
+:::
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## 開発生産性の最新動向を知ろう！開発生産性Conference参加レポート #開発生産性con_findy | DevelopersIO
 https://dev.classmethod.jp/articles/development-productivity-conf-report-sato/
@@ -107,8 +147,6 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
     - PGO: Profile-guide optimization(インライン展開するやつ)がデフォルトで有効化される。速度は 2-7%早くなり、コンパイル時間は最大 6%悪化するように。
     - log/slog 構造化ログ、ログレベルを指定可能な logger が package に入った
 - **know-how 🎓**
-  - [Git履歴をgit resetとgit rebaseで管理する（翻訳）｜TechRacho by BPS株式会社](https://techracho.bpsinc.jp/hachi8833/2023_07_24/131590)
-    - squash & merge だと巨大なコミットができてしまうので、reset & rebase を使って綺麗なコミットにしようという主張。
   - [Google Online Security Blog: Supply chain security for Go, Part 3: Shifting left](https://security.googleblog.com/2023/07/supply-chain-security-for-go-part-3.html)
     - Shift left: セキュリティに関する施作を開発の早い段階で組み込むこと
     - CI でリリース前に脆弱性チェックを走らせると、開発時点では脆弱な依存の上で行われてしまうので脆弱な依存を用いる時間が長くなる。だから開発段階から手元でセキュリティに関するチェックを回しましょうという話。
