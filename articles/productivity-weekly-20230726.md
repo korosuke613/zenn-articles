@@ -75,8 +75,24 @@ rebase の回数を減らせるのは楽で良いです（branch protection で 
 
 ## Git履歴をgit resetとgit rebaseで管理する（翻訳）｜TechRacho by BPS株式会社
 https://techracho.bpsinc.jp/hachi8833/2023_07_24/131590
+原文: https://binarysolo.chapter24.blog/how-i-manage-my-git-history/
 
-squash & merge だと巨大なコミットができてしまうので、reset & rebase を使って綺麗なコミットにしようという主張。
+squash & merge だと巨大なコミットができてしまうので、reset & rebase を使って綺麗なコミットにすると良いでしょう、という記事です。
+
+まず初めに `git reset --mixed` の説明があり、手元でガンガンコミットしてちょっと汚くなってしまったログをキレイに整える話が出てきます。
+`git reset --mixed main` のように実行し、手元のファイルはそのままにコミットだけを取り消します。
+そして改めてキレイにコミットしていくというものです。
+
+そして、複数のコミットを修正するために `git rebase -i` を使います。
+`git rebase -i` では、コミットを時系列（上から下へ、旧から新の順に並びます）で眺めながら、各コミットをどう処理するか指定できます。
+
+記事の例では lint の修正を後からコミットして、それを前のコミットにまとめることが書かれています。
+lint の修正コミットの行を、まとめたい先のコミットの行の直後に移動させ、修正コミットの処理には squash を指定してエディタを閉じます。
+すると squash が行われ、コミットがまとめられます。非常に直感的で簡単ですね。
+
+また `git rebase -i` では過去のコミットの削除（drop）や、コミットメッセージの修正（reword）など、他にもいろんなことができます。
+reset と rebase は破壊的なイメージがあるから使わない人もいると聞きますが、上手く使うとこのように非常に便利です。
+是非お試しください。
 
 *本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
