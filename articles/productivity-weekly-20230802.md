@@ -36,10 +36,14 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## 新着情報 – パブリック IPv4 アドレスの利用に対する新しい料金体系を発表 / Amazon VPC IP Address Manager が Public IP Insights の提供を開始 | Amazon Web Services ブログ
 https://aws.amazon.com/jp/blogs/news/new-aws-public-ipv4-address-charge-public-ip-insights/
 
-2024/02/01 よりパブリック IPv4 アドレスが有料化。
-1 IP アドレスあたり $0.005/hour が課金される。月 $3.6。
-これまでも未割り当てで確保している IP アドレスには課金されていたけど、今後は割り当て済みの IP アドレスにも課金されるということ。
-Public IP Insights という新機能ができて、パブリック IPv4 アドレスの利用状況が分析できるようになってる。
+AWS において、パブリック IPv4 アドレスの料金体系が変わり、割り当てられているかどうかに関わらず IPv4 アドレスごとに有料となります（2024/02/01 より）。
+
+理由としては、IPv4 アドレスの保全のためで、IPv6 の採用を促すためとのことです。
+
+これまでも、どこにも割り当てられていないパブリック IPv4 アドレスは、1 アドレスあたり $0.005/hour が課金されていました（だいたい月 $3.6）。これからは全てのパブリック IPv4 アドレスが課金対象となります。
+月当たりの金額は大したことはありませんが、多くのパブリック IPv4 アドレスを抱えている場合は注意が必要です。
+
+また、Amazon VPC IP Address Manager に Public IP Insights という新機能ができました。パブリック IPv4 アドレスの利用状況を分析できます。案外パブリック IPv4 アドレスを大量に持っているかもしれません。これを機に棚卸ししましょう。
 
 *本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
