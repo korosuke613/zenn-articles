@@ -57,6 +57,31 @@ octokit が fetch を使うようになったらしいので、node18 じゃな�
 ## Shhh… 🤫 @Cloudflare Registrar just quietly rolled out support for the following TLDs:
 https://twitter.com/eastdakota/status/1686513213503127557
 
+Cloudflare のドメイン販売・管理サービスである Cloudflare Registrar が .dev や .app といった TLD[^tld]をサポートするようになりました。
+
+[先日](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230628#squarespace-%E3%81%B8%E3%81%AE-google-domains-%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E7%99%BB%E9%8C%B2%E3%81%AE%E8%AD%B2%E6%B8%A1%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6---google-domains-%E3%83%98%E3%83%AB%E3%83%97)、Google のドメイン販売・管理サービスの Google Domains が Squarespace 社に売却されるため、Google Domains および Google Cloud Domains が将来的に使えなくなる話をしました。
+
+サービスは Squarespace 社が引き継ぎますが、さまざまな理由でもっと別のレジストラを使いたいパターンもあったと思います。
+多くの TLD はいろんなレジストラで扱えますが、例えば .dev ドメインはかつて Google Domains でしか購入・管理ができませんでした[^dev_dominant]。そのため、.dev ドメインを持っている方は Squarespace 提供のレジストラを使わざるを得ない状況でした（僕もです）。
+
+しかし、今回の Cloudflare Registrar のアップデートにより、.dev ドメインを含むいくつかの TLD を Cloudflare Registrar で購入・管理できるようになりました。
+Cloudflare ならヨシ！という方はこれで .dev ドメインなどのドメインを Cloudflare Registrar で扱えるようになります。
+
+:::message
+ていうか今回調べてわかったんですけど、いつの間にかムームードメインとかお名前.com とかでも .dev ドメインが購入・管理できるようになってたんすね。知りませんでした。まあ Cloudflare だけ対応ということはないもんな。
+:::
+
+僕は [korosuke613.dev](https://korosuke613.dev) というドメインを Google Cloud Domains に持っていたのですが、今回 Cloudflare Registrar にドメインを移管しました。ついでに DNS も Google Cloud DNS から Cloudflare DNS へ移行しました。
+
+- [GoogleドメインからCloudFlareに移管する。 - Qiita](https://qiita.com/napspans/items/3e4030ea54948295c53e)
+- [Google DomainsからCloudflareにドメインを移管した - ぷらすのブログ](https://blog.p1ass.com/posts/transfer-domain-to-cloudflare/)
+
+ここら辺のブログ記事を参考にやってみたら簡単にできたので、Cloudflare Registrar 移行を考えている人は参考にしてみてください。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
+
+[^tld]: Top Level Domain の略。ドメインの最後の部分。
+[^dev_dominant]: 要出典。昔は Google Domains でしか買えなかったと思うけど、ググってもそれを示す一次的なソースを見つけられなかった...
 
 # know-how 🎓
 
