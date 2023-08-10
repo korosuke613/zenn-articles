@@ -98,19 +98,22 @@ https://aws.amazon.com/jp/blogs/news/aws-fargate-enables-faster-container-startu
 そして記事には直接関係ないですが、最近の nerdctl 1.5.0 のリリースノートにも SOCI 対応が書かれていたのでユーザーの手元でも nerdctl run で試せるのかもしれない
 https://github.com/containerd/nerdctl/releases/tag/v1.5.0
 
-# tool 🔨
-
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
   - [経済産業省、「ソフトウェア管理に向けたSBOM（Software Bill of Materials）の導入に関する手引」公開。環境構築、SBOM作成、運用管理など解説 － Publickey](https://www.publickey1.jp/blog/23/sbomsoftware_bill_of_materialssbom.html)
-    - 日本政府も SBOM に乗り出してきた！機運が高まってきた
-- **know-how 🎓**
+    - 経産省が SBOM 導入の手引きを公開しました
+    - [GitHub でも SBOM を出せるようになった](https://github.blog/changelog/2023-03-28-generate-an-sbom-from-the-dependency-graph/)りと、だんだんエコシステムが拡充してる感がありますが、まだまだめちゃ使われているという印象は（主観ですが）ありません。こういった手引きが出ると日本の利用者も増えてよさそうですね
+    - 手引きでは、SBOMの背景や目的、概要、導入プロセスや各フェーズで大事なポイントなどが書かれています
+    - 「SBOM に関する誤解と事実」がよくある誤解を書いてて面白かったのとわかりやすくてよかったです
+    - 僕も正直さわりしか知らないので、この手引きを読んでみようと思います（ボリューミーだけど）
 - **tool 🔨**
   - [8ヶ月で リリース速度が約2倍、プルリクエスト件数122%向上した話](https://zenn.dev/offersmgr/articles/cf9e7282d5f2c8)
     - Offer MGR という Findy Team+とは違うツール
     - [Offers MGR 14 日間無料で試せる「トライアルプラン」を募集開始 - CNET Japan](https://japan.cnet.com/release/30882464/)
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 # あとがき
 
