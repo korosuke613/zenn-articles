@@ -36,13 +36,12 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## GitHub Actions: Required Workflows will move to Repository Rules - The GitHub Blog
 https://github.blog/changelog/2023-08-02-github-actions-required-workflows-will-move-to-repository-rules/
 
-GitHub Actions の required workflow が Repository Rules 内の機能となります。
+GitHub Actions の Required Workflows が Repository Rules 内の機能に移行します。
+2023/09/20 より Repository Rules から Required Workflows を設定できるようになり、かつ、既存の Required Workflows は自動的に Repository Rules に移行されていきます。2023/10/18 以降は既存の Required Workflow の画面にアクセスできなくなるようです。
+GHES の場合はバージョンによって影響が異なります（対応はそれほどしなくて良さそう）。
 
-required workflow は Organization を横断して必須のワークフローを設定できる機能です。以前の Weekly でも取り上げているので、そちらも参照ください（[1](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230111#github-actions-%E2%80%93-support-for-organization-wide-required-workflows-public-beta), [2](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230315#github-actions---required-workflows-improvements-%7C-github-changelog)）。
+required workflow は Organization を横断して必須のワークフローを設定できる機能です（private beta）。以前の Weekly でも取り上げているので、そちらも参照ください（[1](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230111#github-actions-%E2%80%93-support-for-organization-wide-required-workflows-public-beta), [2](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230315#github-actions---required-workflows-improvements-%7C-github-changelog)）。
 
-
-
-private beta 中の required workflow が GitHub Actions から Repository Rules の方に 9/20 から移動される。既に利用している場合は 10/18 に自動でマイグレートされる。らしいのだけど自分で使っていないから具体的な内容はよくわからない
 
 *本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
