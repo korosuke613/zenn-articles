@@ -36,7 +36,15 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## GitHub Actions: Required Workflows will move to Repository Rules - The GitHub Blog
 https://github.blog/changelog/2023-08-02-github-actions-required-workflows-will-move-to-repository-rules/
 
+GitHub Actions の required workflow が Repository Rules 内の機能となります。
+
+required workflow は Organization を横断して必須のワークフローを設定できる機能です。以前の Weekly でも取り上げているので、そちらも参照ください（[1](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230111#github-actions-%E2%80%93-support-for-organization-wide-required-workflows-public-beta), [2](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230315#github-actions---required-workflows-improvements-%7C-github-changelog)）。
+
+
+
 private beta 中の required workflow が GitHub Actions から Repository Rules の方に 9/20 から移動される。既に利用している場合は 10/18 に自動でマイグレートされる。らしいのだけど自分で使っていないから具体的な内容はよくわからない
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Introducing code referencing for GitHub Copilot - The GitHub Blog
 https://github.blog/2023-08-03-introducing-code-referencing-for-github-copilot/
@@ -48,6 +56,8 @@ https://github.blog/2023-08-03-introducing-code-referencing-for-github-copilot/
 > As a Copilot for Business user, you are not currently eligible to join the waitlist.
 
 ちな GitHub Copilot for Business ユーザは waitlist に入ることすらできず
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Codespaces gives you a free upgrade - The GitHub Blog
 https://github.blog/changelog/2023-08-04-codespaces-gives-you-a-free-upgrade/
