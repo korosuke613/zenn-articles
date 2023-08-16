@@ -61,11 +61,9 @@ https://github.blog/2023-08-03-introducing-code-referencing-for-github-copilot/
 ## Codespaces gives you a free upgrade - The GitHub Blog
 https://github.blog/changelog/2023-08-04-codespaces-gives-you-a-free-upgrade/
 
-2023/08/04 より Codespaces の CPU とメモリスペックが向上しました。
-具体的には、4コア以上の CPU をもつ Codespaces では RAM が 2倍に、CPU 性能が 30% 向上し、料金はそのままとのことです。
+2023/08/04 より GitHub Codespaces の CPU とメモリスペックが向上しました。
+具体的には、4コア以上の CPU をもつ Codespaces では RAM が 2倍に、CPU 性能が 30% 向上しており、料金は変わらないとのことです。
 ただし、2コアの Codespaces については現時点ではアップグレードされていないようなので注意です。
-
-Codespaces の無料使用量は1時間あたりのコア数で計算されるため、これにより無料使用量が2倍になったということになります。
 
 手動で設定等を変更する必要はなく、自動的に適用されているので単純にユーザーにとって嬉しいアップデートです。
 
