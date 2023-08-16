@@ -61,7 +61,16 @@ https://github.blog/2023-08-03-introducing-code-referencing-for-github-copilot/
 ## Codespaces gives you a free upgrade - The GitHub Blog
 https://github.blog/changelog/2023-08-04-codespaces-gives-you-a-free-upgrade/
 
-Codespaces の CPU とメモリスペックが向上したらしい。料金はそのままらしいので単純にユーザーとして嬉しいアップデート
+2023/08/04 より Codespaces の CPU とメモリスペックが向上しました。
+具体的には、4コア以上の CPU をもつ Codespaces では RAM が 2倍に、CPU 性能が 30% 向上し、料金はそのままとのことです。
+ただし、2コアの Codespaces については現時点ではアップグレードされていないようなので注意です。
+
+Codespaces の無料使用量は1時間あたりのコア数で計算されるため、これにより無料使用量が2倍になったということになります。
+
+手動で設定等を変更する必要はなく、自動的に適用されているので単純にユーザーにとって嬉しいアップデートです。
+
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Codecov is now open source - Codecov
 https://about.codecov.io/blog/codecov-is-now-open-source/
@@ -85,6 +94,21 @@ datadog の DASH2023 で発表されたらしい。
 
 ## The GitHub Enterprise Server 3.10 Release Candidate is available
 https://github.blog/changelog/2023-08-08-the-github-enterprise-server-3-10-release-candidate-is-available/
+
+GitHub Enterprise Server 3.10 でリリースされる機能の RC が公開されました。以下に新機能候補の一部を列挙します。
+
+- Code Scanning configuration can be customized per repository
+- Fine-grained personal access tokens (PAT) are now available as a public beta on Enterprise Server
+  - Fine-grained Personal Access Token により PAT の権限のスコープを細かく設定できるようになった
+- Define who can merge pull requests
+  - 誰がどのように PR をマージできるかを制御できるようになった
+- GitHub Projects is now generally available in Enterprise Server
+
+PAT の Fine-grained 機能や PR のマージ制御は Enterprise や Organization の管理者にとっては嬉しい機能だと思います。
+その他詳しいリリース内容は [Enterprise Server 3.10 release notes](https://docs.github.com/en/enterprise-server@3.10/admin/release-notes) を参照してください。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
+
 
 ## Simplified post-migration identity mapping for Enterprise Managed Users - The GitHub Blog
 https://github.blog/changelog/2023-08-07-simplified-post-migration-identity-mapping-for-enterprise-managed-users/
