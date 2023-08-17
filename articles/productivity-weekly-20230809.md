@@ -104,7 +104,7 @@ Terraform Cloud での OIDC について、1 つのプロバイダにつき複�
 ## Pull Request（プルリク）を小さくする戦略 - 開発チームのパフォーマンス向上のための第一歩 - Agile Journey
 https://agilejourney.uzabase.com/entry/2023/07/31/103000
 
-Findy Teams+ で pull-request が作成されてからマージまでの時間が長い現状把握から出発し、様々な改善によってマージまでの時間を大幅に改善した事例です。
+Findy Team+ で pull-request が作成されてからマージまでの時間が長い現状把握から出発し、様々な改善によってマージまでの時間を大幅に改善した事例です。
 
 サブタスクへの分割・Feature Flags による pull-request の粒度の細分化にとどまらず、pull-request テンプレートの充実、Slack 通知、レビュワー自動アサイン、ラベルルールなど自動化や手作業の省力化などの足回りも同時に改善している点が個人的には印象的でした。
 
