@@ -36,8 +36,8 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## X-Accepted-GitHub-Permissions header for fine-grained permission actors - The GitHub Blog
 https://github.blog/changelog/2023-08-10-x-accepted-github-permissions-header-for-fine-grained-permission-actors/
 
-GitHub Apps か新しい fine-grained のトークンを使用して API を呼び出した際に x-accepted-github-permissions というヘッダーにどの権限が必要なのか返してくれるようになった。
-これは覚えておくとデバッグが捗りそう。特に今後は PAT を発行する際に fine-grained トークンを使いたいし、Github Actions でも permissions を設定する機会が今後増えるのは間違いないし。
+GitHub Apps か新しい fine-grained のトークンを使用して API を呼び出した際に x-accepted-GitHub-permissions というヘッダーにどの権限が必要なのか返してくれるようになった。
+これは覚えておくとデバッグが捗りそう。特に今後は PAT を発行する際に fine-grained トークンを使いたいし、GitHub Actions でも permissions を設定する機会が今後増えるのは間違いないし。
 
 ## HashiCorp adopts Business Source License
 https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
@@ -54,7 +54,7 @@ https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
 https://cloud.google.com/blog/products/serverless/announcing-direct-vpc-egress-for-cloud-run/
 
 Cloud Run で Direct VPC egress が Preview！
-サーバーレス VPC アクセスコネクタ無しで Cloud Run から VPC へアクセスできるのでめっちゃタイムリーに嬉しい
+サーバーレス VPC アクセスコネクタ無しで Cloud Run から VPC へアクセスできるのでめっちゃタイムリーに嬉しい。
 
 ## Network Load Balancer now supports security groups
 https://aws.amazon.com/jp/about-aws/whats-new/2023/08/network-load-balancer-supports-security-groups/
@@ -67,7 +67,7 @@ https://aws.amazon.com/jp/about-aws/whats-new/2023/08/network-load-balancer-supp
 ## actions/runner に Node.js v20 が搭載、v12 は削除 | Release v2.308.0 · actions/runner
 https://github.com/actions/runner/releases/tag/v2.308.0
 
-前回取り上げたランナー内蔵の Node.js のバージョン問題でついに v20 が搭載された。代りに昔に Deprecated 済みの v12 はいよいよ削除された。
+前回取り上げたランナー内蔵の Node.js のバージョン問題でついに v20 が搭載された。代りに昔 Deprecated 済みの v12 はいよいよ削除された。
 あとほとんどの人に関係はないですが、公式の runner コンテナイメージに linux/arm64 が追加されました。actions-runner-controller とかを使っている人は arm のランナーを簡単に建てられるようになるのかも？
 
 ## Rancher Desktop が Rosetta 2 に対応 | Release Rancher Desktop 1.9 · rancher-sandbox/rancher-desktop
@@ -78,7 +78,7 @@ https://github.com/rancher-sandbox/rancher-desktop/releases/tag/v1.9.0
 ## Enhanced push protection features for developers and organizations - The GitHub Blog
 https://github.blog/2023-08-09-enhanced-push-protection-features-for-developers-and-organizations/
 
-シークレットを含むコードの push を防ぐ push protection は今までリポジトリ単位だったがユーザー自身の設定として ON にすることが可能になったのと、Organization にどれだけガードされたかを見るダッシュボードが追加された
+シークレットを含むコードの push を防ぐ push protection は今までリポジトリ単位だったがユーザー自身の設定として ON にすることが可能になったのと、Organization にどれだけガードされたかを見るダッシュボードが追加された。
 
 ## HCP Vault Secrets extends secret sync to GitHub Actions
 https://www.hashicorp.com/blog/hcp-vault-secrets-extends-secret-sync-to-github-actions
@@ -90,8 +90,8 @@ Secret Sync が GitHub Actions で使えるようになったらしい。
 ## DeepLのChrome拡張機能を使ってるとGitHubのページ内検索で表示崩れが起きる - Carpe Diem
 https://christina04.hatenablog.com/entry/deepl-chrome-extension
 
-GitHub でブラウザ検索した時に表示が壊れるのは DeepL のブラウザ拡張が悪さしてるらしい．
-最近結構頻発して困ってたので助かる．
+GitHub でブラウザ検索した時に表示が壊れるのは DeepL のブラウザ拡張が悪さしてるらしい。
+最近結構頻発して困ってたので助かる。
 
 ## 1リリース6,108行から18行へ。ビッグバンリリースを改善した話 - CARTA TECH BLOG
 https://techblog.cartaholdings.co.jp/entry/2023/08/15/163000
@@ -100,14 +100,14 @@ https://techblog.cartaholdings.co.jp/entry/2023/08/15/163000
 https://zenn.dev/pinto0309/scraps/c6413eb15a1b2a
 
 GitHub Actions のランナーにはじめからプリインストールされているツールを削除して空き容量を確保する方法の紹介。
-ドキュメント上では SSD の容量は 14GB と書かれているのですが、そもそも最初から 27GB 空いていたらしいのがまずちょっと意外だったのですが、ビルド時にストレージの容量を大量に必要とする場合には思い出したいテクニック。
+ドキュメント上では SSD の容量は 14GB と書かれているのですが、そもそも最初から 27GB 空いていたらしいのがまずちょっと意外だった。ビルド時にストレージの容量を大量に必要とする場合には思い出したいテクニック。
 
 ちなみに 2023/06 に GA したばかりのハイスペックな Larger runner は SSD の容量が通常のランナーより圧倒的に多いので、最初からこちらを使用するという選択肢もあります。
 
 ## Four tips to keep your GitHub Actions workflows secure - The GitHub Blog
 https://github.blog/2023-08-09-four-tips-to-keep-your-github-actions-workflows-secure/
 
-主に公開リポジトリにおいて、issurやprのタイトルとか経由でコマンドインジェクションされうる箇所があるよ、みたいな案内とか、PVR有効化しようねとかそういうのが書いてあります。
+主に公開リポジトリにおいて、issur や pr のタイトルとか経由でコマンドインジェクションされうる箇所があるよ、みたいな案内とか、PVR 有効化しようねとかそういうのが書いてあります。
 
 ## Renovateで正規表現を使い独自フォーマットファイルの依存を自動更新をする - notebook
 https://swfz.hatenablog.com/entry/2020/06/09/031148
@@ -120,7 +120,7 @@ https://docs.renovatebot.com/user-stories/maintaining-aur-packages-with-renovate
 ちなみに dockerfile などに関しては自分で同様の設定を書かずともプリセットが存在するので、上記記事を読んで理解した上でこのプリセットの正規表現で事足りそうならばこれを使うのが早い。
 https://docs.renovatebot.com/presets-regexManagers/
 
-ちなみに自分用の renovate config のプリセットにはこういう感じで Dockerfile に加えて Earthfile も対象にできるようにしました
+ちなみに自分用の renovate config のプリセットにはこういう感じで Dockerfile に加えて Earthfile も対象にできるようしました
 https://github.com/Kesin11/renovate-config/pull/1
 
 # tool 🔨
