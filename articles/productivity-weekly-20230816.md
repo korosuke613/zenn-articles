@@ -28,6 +28,7 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 - [@korosuke613](https://zenn.dev/korosuke613)
 - [@defaultcf](https://zenn.dev/defaultcf)
 - [@Kesin11](https://zenn.dev/kesin11)
+- [@r4mimu](https://zenn.dev/r4mimu)
 
 :::
 
@@ -53,8 +54,15 @@ https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
 ## Direct VPC egress in Cloud Run sends traffic over a VPC easily | Google Cloud Blog
 https://cloud.google.com/blog/products/serverless/announcing-direct-vpc-egress-for-cloud-run/
 
-Cloud Run で Direct VPC egress が Preview！
-サーバーレス VPC アクセスコネクタ無しで Cloud Run から VPC へアクセスできるのでめっちゃタイムリーに嬉しい。
+Google Cloud の Cloud Run にて Direct VPC egress が Preview になりました。
+Cloud Run から VPC 内のリソースにアクセスするための機能で、これまでは VPC Access Connector という別のリソースを作成剃る必要がありましたが、これが不要になります。
+Direct VPC egress を用いると VPC Access Connector のインスタンス代がかからなくなります。
+また、Cloud Run から VPC 内のリソースにアクセスするためのネットワークのレイテンシーが軽減され、パフォーマンスが向上するとのことです。
+
+Direct VPC egress はまだプレビュー機能なので本番適用は控えたほうがよいですが、検証環境において Cloud Run から VPC 内のリソースにアクセスする際には、VPC Access Connector を使うよりもこちらを使ったほうがお手軽で良さそうです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
+
 
 ## Network Load Balancer now supports security groups
 https://aws.amazon.com/jp/about-aws/whats-new/2023/08/network-load-balancer-supports-security-groups/
@@ -99,10 +107,29 @@ https://techblog.cartaholdings.co.jp/entry/2023/08/15/163000
 ## GitHub Actions のストレージ空き容量を限界まで拡張する
 https://zenn.dev/pinto0309/scraps/c6413eb15a1b2a
 
-GitHub Actions のランナーにはじめからプリインストールされているツールを削除して空き容量を確保する方法の紹介。
-ドキュメント上では SSD の容量は 14GB と書かれているのですが、そもそも最初から 27GB 空いていたらしいのがまずちょっと意外だった。ビルド時にストレージの容量を大量に必要とする場合には思い出したいテクニック。
+GitHub Actions の GitHub hosted ランナーにプリインストールされているツールを削除することでストレージの空き容量を確保する方法の紹介。
+[runner-images の installers](https://github.com/actions/runner-images/tree/main/images/linux/scripts/installers) のプリインストールツール群を逆算し、apt でインストールされているツールや docker image などを削除することで最終的に 63GB 程度の空き容量を確保できるとのことでした。
 
-ちなみに 2023/06 に GA したばかりのハイスペックな Larger runner は SSD の容量が通常のランナーより圧倒的に多いので、最初からこちらを使用するという選択肢もあります。
+若干ハック的な方法ではありますが、GitHub Actions のランナーのストレージ容量が足りなくなった時には参考になりそうです。さらにストレージ容量が欲しい場合は素直に [Larger runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners) を使うのがいいと思います。
+
+余談ですが、[ドキュメント](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)では Linux の GitHub hosted ランナー の SSD の容量は 14GB と書かれているのですが、検証記事によるとデフォルト起動時には 27GB 空いているとのことです。
+気になったため、自分のリポジトリで確認してみたところ、22GB 空いていました。
+
+```
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/root        84G   62G   22G  75% /
+tmpfs           3.4G  172K  3.4G   1% /dev/shm
+tmpfs           1.4G  1.1M  1.4G   1% /run
+tmpfs           5.0M     0  5.0M   0% /run/lock
+/dev/sda15      105M  6.1M   99M   6% /boot/efi
+/dev/sdb1        14G  4.1G  9.0G  31% /mnt
+tmpfs           694M   12K  694M   1% /run/user/1001
+```
+
+では、 14GB と書かれているのは何なのかというと、[GitHub Hosted ランナーが起動している Azure VM(Standard_DS2_v2)](https://learn.microsoft.com/ja-jp/azure/virtual-machines/dv2-dsv2-series#dsv2-series) の一時ストレージのようです。ファイルシステムや Azure VM について詳しくないのですが、GitHubのドキュメントを読んだだけでは、ストレージとして使えるのは 14GB ということなのかなと思っていたので、この機会に勉強になりました。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
+
 
 ## Four tips to keep your GitHub Actions workflows secure - The GitHub Blog
 https://github.blog/2023-08-09-four-tips-to-keep-your-github-actions-workflows-secure/
