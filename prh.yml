@@ -4,6 +4,18 @@
 # https://github.com/prh/rules/blob/master/media/techbooster.yml
 rules:
   - expected: GitHub
+    patterns:
+      - /gitHub/
+      - /Github/
+    excludes:
+      - pattern: /github/
+    specs:
+      - from: gitHub
+        to: GitHub
+      - from: Github
+        to: GitHub
+      - from: github
+        to: github
   - expected: GitHub Actions
   - expected: Four Keys
   # "+"を含めて正しく認識されるためにクォーテーションが必要

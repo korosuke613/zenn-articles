@@ -36,8 +36,52 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## X-Accepted-GitHub-Permissions header for fine-grained permission actors - The GitHub Blog
 https://github.blog/changelog/2023-08-10-x-accepted-github-permissions-header-for-fine-grained-permission-actors/
 
-GitHub Apps か新しい fine-grained のトークンを使用して API を呼び出した際に x-accepted-GitHub-permissions というヘッダーにどの権限が必要なのか返してくれるようになった。
+GitHub において、GitHub Apps、もしくは fine-grained な Personal Access Token を使用して API を呼び出した際に、どの権限が必要なのかを返すヘッダー `x-accepted-github-permissions` が追加されました。
+
+API を呼び出すと成否に関わらず、`x-accepted-github-permissions: repository_projects=write; organization_projects=admin` のようなヘッダーが返ってきます。
+必要な権限のセットが `;` で区切られており、上記の例だと、`repository_projects=write` もしくは `organization_projects=admin` のどちらかが必要であることを示しているとのことです。
+
+OAuth アプリや古い PAT（Classic）にある `x-accepted-oauth-scopes` ヘッダでも必要なスコープを出してくれていましたが、それと似たような機能になります。
+
+実際に僕が持つプライベートリポジトリに対して、プルリクエストを GET する API を叩いて検証しました。今回は fine-grained PAT を使っています。
+
+`X-Accepted-Github-Permissions: pull_requests=read; contents=read`
+
+`Pull requests: Read-only` のみを付与。
+
+```
+❯ GH_TOKEN=$TMP_GH_TOKEN gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  -i repos/korosuke613/playground-private/pulls/1
+HTTP/2.0 200 OK
+<省略>
+X-Accepted-Github-Permissions: pull_requests=read; contents=read
+<省略>
+{
+  "url": "https://api.github.com/repos/korosuke613/playground-private/pulls/1",
+<省略>
+```
+
+`Contents: Read-only` のみを付与。
+
+```
+❯ GH_TOKEN=$TMP_GH_TOKEN gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  -i repos/korosuke613/playground-private/pulls/1
+HTTP/2.0 403 Forbidden
+<省略>
+X-Accepted-Github-Permissions: pull_requests=read; contents=read
+<省略>
+{
+  "message": "Resource not accessible by personal access token",
+  "documentation_url": "https://docs.github.com/rest/pulls/pulls#get-a-pull-request"
+}
+```
+
 これは覚えておくとデバッグが捗りそう。特に今後は PAT を発行する際に fine-grained トークンを使いたいし、GitHub Actions でも permissions を設定する機会が今後増えるのは間違いないし。
+
 
 ## HashiCorp adopts Business Source License
 https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
