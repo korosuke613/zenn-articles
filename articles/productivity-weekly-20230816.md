@@ -43,10 +43,16 @@ API を呼び出すと成否に関わらず、`x-accepted-github-permissions: re
 
 OAuth アプリや古い PAT（Classic）にある `x-accepted-oauth-scopes` ヘッダでも必要なスコープを出してくれていましたが、それと似たような機能になります。
 
-実際に僕が持つプライベートリポジトリに対して、プルリクエストを GET する API を叩いて検証しました。今回は fine-grained PAT を使っています。
+実際に触ってみました。
+僕が持つプライベートリポジトリに対して、プルリクエストを GET する API を叩いて検証しました。今回は fine-grained PAT を使っています。
 
-`X-Accepted-Github-Permissions: pull_requests=read; contents=read`
+無事 `X-Accepted-Github-Permissions: pull_requests=read; contents=read` がヘッダに含まれていましたね。
 
+この場合、`pull_requests=read` と `contents=read` のどちらかが必要であるという意味になりますが、実際に `contents=read` だけを付与した fine-grained PAT で API を叩いてみると 403 が返ってきました。逆に `pull_requests=read` だけを付与した fine-grained PAT で API を叩いてみると想定通りのレスポンスが返ってきました。
+
+自分の解釈が間違っているのか、他の条件を満たせていなかったのかはちょっとよくわかりませんが、今後も色々な API で触って検証してみようと思います。
+
+:::details コマンドの詳細
 `Pull requests: Read-only` のみを付与。
 
 ```
@@ -80,8 +86,11 @@ X-Accepted-Github-Permissions: pull_requests=read; contents=read
 }
 ```
 
-これは覚えておくとデバッグが捗りそう。特に今後は PAT を発行する際に fine-grained トークンを使いたいし、GitHub Actions でも permissions を設定する機会が今後増えるのは間違いないし。
+:::
 
+なかなか便利ですね！GitHub Apps、fine-grained PAT が使いやすくなりました。GitHub Actions を使う上でも permissions 設定をやりやすくなりますね。覚えておきたいです。
+
+**本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)**
 
 ## HashiCorp adopts Business Source License
 https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
