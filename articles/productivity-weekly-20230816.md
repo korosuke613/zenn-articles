@@ -90,7 +90,7 @@ X-Accepted-Github-Permissions: pull_requests=read; contents=read
 
 なかなか便利ですね！GitHub Apps、fine-grained PAT が使いやすくなりました。GitHub Actions を使う上でも permissions 設定をやりやすくなりますね。覚えておきたいです。
 
-**本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)**
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## HashiCorp adopts Business Source License
 https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
