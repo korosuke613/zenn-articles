@@ -55,7 +55,7 @@ https://www.hashicorp.com/blog/hashicorp-adopts-business-source-license
 https://cloud.google.com/blog/products/serverless/announcing-direct-vpc-egress-for-cloud-run/
 
 Google Cloud の Cloud Run にて Direct VPC egress が Preview になりました。
-Cloud Run から VPC 内のリソースにアクセスするための機能で、これまでは VPC Access Connector という別のリソースを作成剃る必要がありましたが、これが不要になります。
+Cloud Run から VPC 内のリソースにアクセスするための機能で、これまでは VPC Access Connector という別のリソースを作成する必要がありましたが、これが不要になります。
 Direct VPC egress を用いると VPC Access Connector のインスタンス代がかからなくなります。
 また、Cloud Run から VPC 内のリソースにアクセスするためのネットワークのレイテンシーが軽減され、パフォーマンスが向上するとのことです。
 
@@ -112,7 +112,7 @@ GitHub Actions の GitHub hosted ランナーにプリインストールされ�
 
 若干ハック的な方法ではありますが、GitHub Actions のランナーのストレージ容量が足りなくなった時には参考になりそうです。さらにストレージ容量が欲しい場合は素直に [Larger runner](https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners) を使うのがいいと思います。
 
-余談ですが、[ドキュメント](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)では Linux の GitHub hosted ランナー の SSD の容量は 14GB と書かれているのですが、検証記事によるとデフォルト起動時には 27GB 空いているとのことです。
+余談ですが、[ドキュメント](https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources)では Linux の GitHub hosted ランナー の SSD の容量は 14GB と書かれています。しかし、検証記事によるとデフォルト起動時には 27GB 空いているとのことです。
 気になったため、自分のリポジトリで確認してみたところ、22GB 空いていました。
 
 ```
