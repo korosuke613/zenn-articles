@@ -117,11 +117,16 @@ https://aws.amazon.com/jp/about-aws/whats-new/2023/08/network-load-balancer-supp
 - [[アップデート] 遂に Network Load Balancer でセキュリティグループがサポートされました | DevelopersIO](https://dev.classmethod.jp/articles/nlb-security-group/)
 - [Network Load Balancer (NLB) がセキュリティグループをサポートして何が嬉しいのか整理してみた | DevelopersIO](https://dev.classmethod.jp/articles/benefits-of-network-load-balancer-supports-security-groups/)
 
-## actions/runner に Node.js v20 が搭載、v12 は削除 | Release v2.308.0 · actions/runner
+## Release v2.308.0 · actions/runner
 https://github.com/actions/runner/releases/tag/v2.308.0
 
-前回取り上げたランナー内蔵の Node.js のバージョン問題でついに v20 が搭載された。代りに昔 Deprecated 済みの v12 はいよいよ削除された。
-あとほとんどの人に関係はないですが、公式の runner コンテナイメージに linux/arm64 が追加されました。actions-runner-controller とかを使っている人は arm のランナーを簡単に建てられるようになるのかも？
+[以前](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230802)に GitHub Actions のランナーに内蔵されている Node.js のバージョンが v16 からついに v20 にアップデートされそうな件を紹介しましたがそれに進展がありました。新たに公開された[actions/runner@v2.308.0](https://github.com/actions/runner/releases/tag/v2.308.0)にて v20 が内蔵されるようになり、代わりに以前から Deprecated だった v12 が削除されました。
+
+ただ、action がどの Node.js のバージョンを使用するかは[aciton側で指定する仕組み](https://docs.github.com/en/actions/creating-actions/metadata-syntax-for-github-actions#runsusing-for-javascript-actions)のため、すぐに v20 が使用されるわけではないのでユーザーが気にする必要はありません。おそらく近いうちに GitHub から v16 -> v20 へのマイグレーションパスについて何らかのアナウンスがあるのではないかと思うのでそれを期待しましょう。
+
+また、actions/runner@v2.308.0 から公式に提供されているランナーが動くコンテナイメージの[actions-runner](https://github.com/actions/runner/pkgs/container/actions-runner)に linux/arm64 版が追加されました。k8s などの環境でセルフホストランナーを構築していて、Arm 版のランナーも構築したい場合にはこのイメージをそのまま使用するか、これをベースにして自前の Dockerfile で拡張するということが可能になるかと思います。
+
+*本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)*
 
 ## Rancher Desktop が Rosetta 2 に対応 | Release Rancher Desktop 1.9 · rancher-sandbox/rancher-desktop
 https://github.com/rancher-sandbox/rancher-desktop/releases/tag/v1.9.0
