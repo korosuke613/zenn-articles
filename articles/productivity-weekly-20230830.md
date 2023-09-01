@@ -57,6 +57,13 @@ https://www.hashicorp.com/blog/terraform-ephemeral-workspaces-public-beta-now-av
 Terraform cloud にて ephemeral workspaces とやらがパブリックベータ。
 TTL を設定して ephemeral な環境を作成できるらしい。
 
+## Google Cloud のマネージド Terraform、 Infrastructure Manager 登場！
+https://zenn.dev/cloud_ace/articles/introduce-infra-manager
+
+Google Cloud がマネージドな Terraform の実行基盤的なものを提供したらしい（という理解で合ってるかなこれ？）中身の実行基盤としては Cloud Build と書かれているので良い感じにガワをラップした感じなのだろうか。
+
+余談ですが、Google はこの手の IaC を k8s のリソースとして扱って管理できるようにする https://cloud.google.com/config-connector/docs/overview というものを以前から提供していたのでこっちに全力で振り切ってくるかと思いきや Terraform に歩み寄ってきたのが意外でした。
+
 ## GPT-3.5 Turbo fine-tuning and API updates
 https://openai.com/blog/gpt-3-5-turbo-fine-tuning-and-api-updates
 
@@ -81,7 +88,44 @@ https://aws.amazon.com/jp/about-aws/whats-new/2023/08/amazon-detective-visualiza
 
 視覚化系がまた増えて便利になった話。
 
+## Fig has joined AWS!
+https://fig.io/blog/post/fig-joins-aws
+
+みんな大好き Fig さんがどうなっていくのか？注目ですね。
+
+## Google Cloud Domains、生き残るっぽい。レジストラは Squarespace Domains になるけど。
+前はこんなこと言ってなかったよな？
+
+> Cloud Domains will continue to be available before and after the closing of the transaction. Google will continue to offer customer support and will be responsible for billing your account. Cloud Domains UI, API and gcloud CLI will continue to be supported.
+
+> クラウド ドメインは、取引の完了前も完了後も引き続きご利用いただけます。Googleは、引き続きカスタマーサポートを提供し、お客様のアカウントの請求に責任を負います。Cloud DomainsのUI、API、gcloud CLIは引き続きサポートされます。
+
+令和最新版: https://support.google.com/domains/answer/13689670?hl=en
+
+7/2 時点: https://web.archive.org/web/20230702090734/https://support.google.com/domains/answer/13689670
+
+## OpenAI、企業向け「ChatGPT Enterprise」提供開始　高速GPT-4でプライバシーも安全
+
+https://www.itmedia.co.jp/news/articles/2308/29/news095.html
+
+## ## ［速報］Google Cloudの開発や問題解決をAIが支援してくれる「Duet AI in Google Cloud」がVSCodeなどで利用可能に。Google Cloud Next '23 － Publickey
+https://www.publickey1.jp/blog/23/google_cloudaiduet_ai_in_google_cloudvscodegoogle_cloud_next_23.html
+
 # know-how 🎓
+
+## AWSコスト削減とリソース管理 | 外道父の匠
+https://blog.father.gedow.net/2023/08/24/aws-cost-saving/
+
+長文記事ですが、昔から AWS のインフラ周りを取り組まれていた方が AWS で節約するためのテクニックを公開してくれているので勉強になりました。
+
+## iOS開発におけるGitHub Actions self-hosted runnerを利用したオンプレ CI/CD のすゝめ | CyberAgent Developers Blog
+https://developers.cyberagent.co.jp/blog/archives/43705/
+
+6 月末に開催された CyberAgent Developer Conference2023 で発表されたセッションの書き起こし記事。GitHub Actions のセルフホストランナーのインフラ基盤をプライベートクラウドを利用して構築している話と、さらに今回 macOS のランナーも自前で用意して提供を始められたようです。
+
+普通に mac をセルフホストランナーとして利用するとジョブごとに環境がクリーンにされないので認証情報が残ってしまうなどの問題が発生するのですが、macOS の VM を活用することでそのあたりの問題を解消し、macOS を提供している CI/CD サービスと同等の使い勝手を実現されたようです。
+結果として今まで利用していた CI/CD サービスと比較してビルド時間が 1/3 にまで短縮できたとのことです。
+
 
 ## ZOZO TECH BLOGを支える技術 #2 執筆をサポートするCI/CD - ZOZO TECH BLOG
 https://techblog.zozo.com/entry/techblog-writing-support-by-ci-cd
@@ -91,6 +135,10 @@ https://techblog.zozo.com/entry/techblog-writing-support-by-ci-cd
 ## GitHub Copilot Patterns & Exercises 🤖をリリースしました！🎉
 https://twitter.com/yuhattor/status/1692005132362494191
 
+## 「Datadog入れてみたらAWSの料金が爆発した話」@ゆるSRE勉強会 #1 - Speaker Deck https://speakerdeck.com/rynsuke/datadogru-retemitaraawsnoliao-jin-gabao-fa-sitahua-at-yurusremian-qiang-hui-number-1
+
+やっぱどこも NAT ゲートウェイに悩まされるのだなぁ、と思った。
+
 # tool 🔨
 
 ## dnakov/little-rat: 🐀 Small chrome extension to monitor (and optionally block) other extensions' network calls
@@ -99,12 +147,8 @@ https://github.com/dnakov/little-rat
 chrome extension モニタできるのかー、というのが気になっている。
 ソース見てから試してみたい。
 
-## ブラウザ拡張機能 Old TweetDeck
-https://github.com/dimdenGD/OldTweetDeck
-
-この拡張機能入れて TweetDeck にアクセスすると昔の TweetDeck が使える。中の API とかはまだ生きてるんですね。
-
-
+## OrbStack で k8s クラスタを簡単に作れるように
+https://twitter.com/OrbStack/status/1696431454434062745
 
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
