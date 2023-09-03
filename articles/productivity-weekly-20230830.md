@@ -138,7 +138,10 @@ Google Domains が終了することで、Google Domains に依存している G
 Cloud Domains の利点の 1 つは Google Cloud 利用者にとってドメイン管理を Google Cloud と同じアカウントで行えることでしたが、これは今後も継続されるようです。
 Google Cloud の顧客からいろいろフィードバックが来たのかは知りませんが、Google を経由して支払いも可能であるようなので、Cloudflare などの他のサービスに移行したい理由は減ったかもしれません。
 
+:::message
 ちなみに僕はすでに Cloudflare へ .dev ドメインを移管しました。Cloud Domains 続くなら移管しなくてよかったんだけどなー...
+いまさら戻れと言ってももう遅い（追放系なろう）
+:::
 
 :::details 付録: 7/2 時点と 9/3 時点での「What does this mean for Cloud Domains customers?」の差分。
 
