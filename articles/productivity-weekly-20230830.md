@@ -91,18 +91,79 @@ https://aws.amazon.com/jp/about-aws/whats-new/2023/08/amazon-detective-visualiza
 ## Fig has joined AWS!
 https://fig.io/blog/post/fig-joins-aws
 
-みんな大好き Fig さんがどうなっていくのか？注目ですね。
+[結構前に紹介した Fig というターミナルの補完を強化するツール](https://zenn.dev/korosuke613/articles/productivity-weekly-20211124#fig-%7C-%F0%9F%8E%89-launching-fig)が AWS に買収されました。
+
+Fig は macOS 向けのターミナルアプリ上でコマンドを打つ際に自動補完を IDE チックにしてくれるツールです。Team plan や Enterprise plan で収益化を計っていましたが、基本的な機能は無料で使うことができていました。
+
+今回の AWS による買収で、有料の Fig Team 相当機能が現在無料で提供されています（今後も無料かは不明）。
+
+例えばちょっと前に自然言語から Bash のコマンドを生成する [`fig ai`](https://fig.io/user-manual/ai) 機能が有料ユーザ向けにベータリリースされましたが、こちらも無料ユーザでも使えるようになっています。
+
+個人的にはとてもお世話になっているツールで、コマンド補完に関して何度かコントリビューションもしてきました。AWS がバックに付くことで、さらなる機能強化やサービスの安定化が期待できそうです。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Google Cloud Domains、生き残るっぽい。レジストラは Squarespace Domains になるけど。
-前はこんなこと言ってなかったよな？
+
+https://twitter.com/Shitimi_613/status/1696458677614731327
+
+（自分のツイートで恐縮ですが）
+
+これまで何度か Google Domains が Squarespace に売却される話をしてきました[^domains_1][^domains_2]。
+
+[^domains_1]: [Squarespace への Google Domains のドメイン登録の譲渡について - Google Domains ヘルプ](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230628#squarespace-%E3%81%B8%E3%81%AE-google-domains-%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E7%99%BB%E9%8C%B2%E3%81%AE%E8%AD%B2%E6%B8%A1%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6---google-domains-%E3%83%98%E3%83%AB%E3%83%97)
+[^domains_2]: [Shhh… 🤫 @Cloudflare Registrar just quietly rolled out support for the following TLDs:](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230802#shhh%E2%80%A6-%F0%9F%A4%AB-%40cloudflare-registrar-just-quietly-rolled-out-support-for-the-following-tlds%3A)
+
+Google Domains が終了することで、Google Domains に依存している Google Cloud Domains も終了するとされていました。
+
+しかし、最近ヘルプページの「What does this mean for Cloud Domains customers?」の項目が更新され、Cloud Domains は Google Domains の Squarespace への売却後も継続して提供されることが明記されました。
 
 > Cloud Domains will continue to be available before and after the closing of the transaction. Google will continue to offer customer support and will be responsible for billing your account. Cloud Domains UI, API and gcloud CLI will continue to be supported.
+> 
+> (DeepL Pro による翻訳) クラウド ドメインは、取引の完了前も完了後も引き続きご利用いただけます。Googleは、引き続きカスタマーサポートを提供し、お客様のアカウントの請求に責任を負います。Cloud DomainsのUI、API、gcloud CLIは引き続きサポートされます。
+>
+> *現在のヘルプページ: https://support.google.com/domains/answer/13689670?hl=en*
 
-> クラウド ドメインは、取引の完了前も完了後も引き続きご利用いただけます。Googleは、引き続きカスタマーサポートを提供し、お客様のアカウントの請求に責任を負います。Cloud DomainsのUI、API、gcloud CLIは引き続きサポートされます。
+少なくとも 7/2 時点では明言されていませんでした。
 
-令和最新版: https://support.google.com/domains/answer/13689670?hl=en
+> We are anticipating that the migrations of domains and data (registrant, WHOIS info, and in some cases DNS delegation) to Squarespace will take place in 2024. You can continue to use Cloud Domains until your domain is migrated. We will work with Squarespace to make the migration as seamless as possible.
+> 
+> (DeepL Pro による翻訳) ドメインとデータ（登録者、WHOIS情報、場合によってはDNS委任）のSquarespaceへの移行は2024年に行われる予定です。ドメインが移行されるまで、Cloud Domainsを引き続きご利用いただけます。Squarespaceと協力し、可能な限りシームレスな移行を実現します。
+>
+> 7/2 時点のヘルプページ: https://web.archive.org/web/20230702090734/https://support.google.com/domains/answer/13689670
 
-7/2 時点: https://web.archive.org/web/20230702090734/https://support.google.com/domains/answer/13689670
+ただ、あくまで Cloud Domains はドメイン管理、販売のためのサービスが続くだけで、レジストラは Squarespace になります。
+（もともと Cloud Domains で販売していたドメインもレジストラは Google Domains であったため（という認識）、そこが変わるだけとも言えそうです。）
+
+Cloud Domains の利点の 1 つは Google Cloud 利用者にとってドメイン管理を Google Cloud と同じアカウントで行えることでしたが、これは今後も継続されるようです。
+Google Cloud の顧客からいろいろフィードバックが来たのかは知りませんが、Google を経由して支払いも可能であるようなので、Cloudflare などの他のサービスに移行したい理由は減ったかもしれません。
+
+ちなみに僕はすでに Cloudflare へ .dev ドメインを移管しました。Cloud Domains 続くなら移管しなくてよかったんだけどなー...
+
+:::details 付録: 7/2 時点と 9/3 時点での「What does this mean for Cloud Domains customers?」の差分。
+
+```diff txt:7/2 時点と 9/3 時点での「What does this mean for Cloud Domains customers?」の差分
+--- 0702.txt	2023-09-03 17:48:35
++++ 0903.txt	2023-09-03 17:49:08
+@@ -1,6 +1,11 @@
+ What does this mean for Cloud Domains customers?
+
+-Google Cloud Domains had a strong dependency on Google Domains, so customers using Cloud Domains will be migrated to Squarespace. Google Cloud will issue a product MSA (Mandatory Service Announcement) to all impacted customers with more details about what to expect during the migration period.
++We wanted to assure you that we will continue to provide and support Cloud Domains. Since Google Domains is the underlying domains registrar for Cloud Domains, there are some important changes that will need to be made.
+
+-We are anticipating that the migrations of domains and data (registrant, WHOIS info, and in some cases DNS delegation) to Squarespace will take place in 2024. You can continue to use Cloud Domains until your domain is migrated. We will work with Squarespace to make the migration as seamless as possible.
++Upon closing of the Squarespace-Google Domains transaction, Squarespace Domains will become the registrar for your domains managed by Cloud Domains. Squarespace Domains is an independent domain registrar service provided by Squarespace. Your domain registrations will be migrated to Squarespace Domains after a transition period which we anticipate will be no sooner than January 2024. We will work with Squarespace to make the migration as seamless as possible.
+
++In connection with this migration, the information associated with your domain registrations including domain configuration, WHOIS data (which includes customer contact info, and DNS delegation) will be migrated to Squarespace Domains. Once migrated, this data will be governed by Squarespace’s Privacy Policy, and the Squarespace Terms of Service will apply to your registrations. No Google Cloud Customer Data is transferred or exchanged with Squarespace.
++
++Cloud Domains will continue to be available before and after the closing of the transaction. Google will continue to offer customer support and will be responsible for billing your account. Cloud Domains UI, API and gcloud CLI will continue to be supported.
++
++On August 15, 2023, Google Cloud sent an MSA to our Cloud Domains customers with details on what to expect during the migration period.
+```
+
+:::
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## OpenAI、企業向け「ChatGPT Enterprise」提供開始　高速GPT-4でプライバシーも安全
 
