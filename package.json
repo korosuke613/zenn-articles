@@ -7,7 +7,7 @@
     "start": "zenn preview",
     "lint:renovate-config-validator": "renovate-config-validator"
   },
-  "packageManager": "npm@9.8.1",
+  "packageManager": "npm@10.0.0",
   "engines": {
     "node": "18.x"
   },
@@ -15,7 +15,7 @@
     "@proofdict/textlint-rule-proofdict": "3.1.2",
     "@slidev/cli": "0.42.11",
     "prh": "5.4.4",
-    "renovate": "36.67.1",
+    "renovate": "36.78.8",
     "textlint": "13.3.3",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.3.0",
