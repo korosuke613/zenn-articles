@@ -37,7 +37,11 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## Repository Actions Runners List - The GitHub Blog
 https://github.blog/changelog/2023-08-21-repository-actions-runners-list/
 
-Write 権限があれば登録ランナー一覧が Actions ページから見られるようになったらしい。
+`repo:write` の権限を持っているリポジトリにおいて、上部タブの Actions -> Runners ページからそのリポジトリで使用可能なランナー確認することが可能になりました。今まで利用可能なランナー確認するためには、リポジトリか Organization の Settings -> Actions -> Runners のページを見る必要があったため、必然的にリポジトリか Organization の admin 権限が必要でした。
+
+特にセルフホストランナーを利用する場合はワークフローの yaml に利用するセルフホストランナーを指定するラベルを事前に知っておく必要があるのですが、admin 権限を持たないユーザーは GitHub 上でそのラベルを確認できないのが少々面倒でした。今回のアップデートにより admin 権限がないユーザーでもランナーの状態とラベルを確認することが可能になったため、セルフホストランナーの管理者に問い合わせたり社内のドキュメントを調べるなど、GitHub 以外の手段で確認する手間が省けるようになるはずです。
+
+*本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)*
 
 ## Secret scanning detects secrets in issues for free public repositories - The GitHub Blog
 https://github.blog/changelog/2023-08-16-secret-scanning-detects-secrets-in-issues-for-free-public-repositories/
