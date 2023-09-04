@@ -189,10 +189,16 @@ https://blog.father.gedow.net/2023/08/24/aws-cost-saving/
 ## iOS開発におけるGitHub Actions self-hosted runnerを利用したオンプレ CI/CD のすゝめ | CyberAgent Developers Blog
 https://developers.cyberagent.co.jp/blog/archives/43705/
 
-6 月末に開催された CyberAgent Developer Conference2023 で発表されたセッションの書き起こし記事。GitHub Actions のセルフホストランナーのインフラ基盤をプライベートクラウドを利用して構築している話と、さらに今回 macOS のランナーも自前で用意して提供を始められたようです。
+サイバーエージェントでは以前からオートスケール可能なセルフホストランナーを特定のプラットフォームに依存せず構築可能な [myshoes](https://github.com/whywaita/myshoes) という OSS を開発しており、従来はプライベートクラウドと LXD の組み合わせで GitHub Actions のジョブごとに毎回クリーンな環境のランナーを提供されていました。
 
-普通に mac をセルフホストランナーとして利用するとジョブごとに環境がクリーンにされないので認証情報が残ってしまうなどの問題が発生するのですが、macOS の VM を活用することでそのあたりの問題を解消し、macOS を提供している CI/CD サービスと同等の使い勝手を実現されたようです。
-結果として今まで利用していた CI/CD サービスと比較してビルド時間が 1/3 にまで短縮できたとのことです。
+今回、自社 DC に新たに M2 Mac Mini を追加し、myshoes で管理することで Linux 同様に macOS のセルフホストランナーも提供可能になったようです。さらに macOS でも VM を活用することで毎回クリーンな環境のランナーを提供できるようです。
+
+後半は実際にこの macOS のセルフホストランナーを活用して従来の CI サービスから乗り換えた事例の紹介で、最終的にはビルド時間の平均が従来の約 1/3 に短縮されるという大きな効果があったそうです。
+
+最近では OSS、あるいは内製でオートスケール可能な Linux のセルフホストランナーを提供する事例は増えてきていますが、macOS のセルフホストランナーを同様に提供している事例はほとんど無いので驚きました。自分の知る限りでは他には MIXI も同様の取り組みをされてるぐらいだと思います（[スライド](https://speakerdeck.com/bbqallstars/cd-conference-2023-by-cloudnative-days-qian-ye-ji)、[動画](https://youtu.be/2Y2PpCUu9os?si=k8UH2XF5HDsYCJx_)）。macOS の CI 基盤を独自運用する場合には両社の事例はかなり参考になると思います。
+
+
+*本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)*
 
 
 ## ZOZO TECH BLOGを支える技術 #2 執筆をサポートするCI/CD - ZOZO TECH BLOG
