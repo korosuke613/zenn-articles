@@ -64,17 +64,36 @@ TTL を設定して ephemeral な環境を作成できるらしい。
 ## Google Cloud のマネージド Terraform、 Infrastructure Manager 登場！
 https://zenn.dev/cloud_ace/articles/introduce-infra-manager
 
-Google Cloud がマネージドな Terraform の実行基盤的なものを提供したらしい（という理解で合ってるかなこれ？）中身の実行基盤としては Cloud Build と書かれているので良い感じにガワをラップした感じなのだろうか。
+Google Cloud において、マネージドな Terraform 実行基盤 Infrastructure Manager の一般提供が始まっていました[^next]。
+内部的には Cloud Build が使われているようです。
 
-余談ですが、Google はこの手の IaC を k8s のリソースとして扱って管理できるようにする https://cloud.google.com/config-connector/docs/overview というものを以前から提供していたのでこっちに全力で振り切ってくるかと思いきや Terraform に歩み寄ってきたのが意外でした。
+上記記事では、特徴、利用可能リージョン、料金、実行方法などがわかりやすく書かれています。
+制約事項や著者が気になったことも載っており、利用前で落とし穴に気づけそうです。
 
-## GPT-3.5 Turbo fine-tuning and API updates
-https://openai.com/blog/gpt-3-5-turbo-fine-tuning-and-api-updates
+[最近 HashiCorp は製品ライセンスに BUSL を採用することを発表しました](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230816#hashicorp-adopts-business-source-license)。ざっくり言うと、もし競合製品の提供に利用する場合は制限がかかるライセンスです。僕の見解では Infrastructure Manager は Terraform Cloud の競合になりうるので利用に制限がかかりそうなのですが、当事者間で何かしらの取り決めをしているのかもしれません。
+実際 HashiCorp のブログ記事で Infrastructure Manager が紹介されているため、権利的にはクリアとなっているのでしょう。安心ですね。
 
-GPT-3.5 Turbo のファインチューニングが可能になり、ユーザー側でモデルをカスタマイズできるようになったよ。
-GPT-4 のファインチューニングは今秋対応予定とのこと。
-ファインチューニング API に送受信されるデータは OpenAI や他組織のモデルをトレーニングするために使われることはない。
-トレーニングにはお金がかかるし、トレーニング後のモデルの利用による入出力でかかる料金はベースモデルの数倍になるっぽい。
+- [HashiCorp at Google Cloud Next: Seamless infrastructure deployment and management](https://www.hashicorp.com/blog/hashicorp-at-google-cloud-next-seamless-infrastructure-deployment-and-management)
+
+僕は今回初めて Infrastructure Manager を知りました。一般提供される前はどんな状態だったのでしょうね。
+
+もちろん Cloud Build を使えば同じことはできましたが、マネージドサービスとなって Cloud Build の知識がそこまで無くても使えるようになったことやワークフローを管理しなくて良くなるのは良いです。
+今後 Google Cloud を Terraform 管理する場合の CD パイプラインの選択肢として検討したいですね。~~AWS も作ってくれ~~
+
+:::message
+余談ですが、Weekly では [Google Cloud の Config Connector](https://cloud.google.com/config-connector/docs/overview) の話題が出てきました。
+Config Connector は Google Cloud リソースを k8s のリソースとして扱って管理できるようにするサービスです。
+
+Terraform に歩み寄ってきたのが意外という意見が出てきました。
+
+さらに余談ですが、Google Cloud CLI には既存のリソースを Terraform ファイルにエクスポートする機能があります。気になる方はこちらもご覧ください。
+
+- [Google Cloud CLI で既存のリソースを Terraform ファイルにエクスポートするのを試す](https://zenn.dev/korosuke613/scraps/f91dedf3890a65)
+:::
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
+
+[^next]: Google Cloud Next '23 のタイミングっぽい。
 
 ## Upgrade with an Enterprise Account - The GitHub Blog
 https://github.blog/changelog/2023-08-22-upgrade-with-an-enterprise-account/
@@ -91,21 +110,6 @@ https://github.blog/2023-04-05-bring-your-enterprise-together-with-enterprise-ac
 https://aws.amazon.com/jp/about-aws/whats-new/2023/08/amazon-detective-visualizations-security-investigations/
 
 視覚化系がまた増えて便利になった話。
-
-## Fig has joined AWS!
-https://fig.io/blog/post/fig-joins-aws
-
-[結構前に紹介した Fig というターミナルの補完を強化するツール](https://zenn.dev/korosuke613/articles/productivity-weekly-20211124#fig-%7C-%F0%9F%8E%89-launching-fig)が AWS に買収されました。
-
-Fig は macOS 向けのターミナルアプリ上でコマンドを打つ際に自動補完を IDE チックにしてくれるツールです。Team plan や Enterprise plan で収益化を計っていましたが、基本的な機能は無料で使うことができていました。
-
-今回の AWS による買収で、有料の Fig Team 相当機能が現在無料で提供されています（今後も無料かは不明）。
-
-例えばちょっと前に自然言語から Bash のコマンドを生成する [`fig ai`](https://fig.io/user-manual/ai) 機能が有料ユーザ向けにベータリリースされましたが、こちらも無料ユーザでも使えるようになっています。
-
-個人的にはとてもお世話になっているツールで、コマンド補完に関して何度かコントリビューションもしてきました。AWS がバックに付くことで、さらなる機能強化やサービスの安定化が期待できそうです。
-
-*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## Google Cloud Domains、生き残るっぽい。レジストラは Squarespace Domains になるけど。
 
@@ -172,11 +176,34 @@ Google Cloud の顧客からいろいろフィードバックが来たのかは�
 
 *本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
+## Fig has joined AWS!
+https://fig.io/blog/post/fig-joins-aws
+
+[結構前に紹介した Fig というターミナルの補完を強化するツール](https://zenn.dev/korosuke613/articles/productivity-weekly-20211124#fig-%7C-%F0%9F%8E%89-launching-fig)が AWS に買収されました。
+
+Fig は macOS 向けのターミナルアプリ上でコマンドを打つ際に自動補完を IDE チックにしてくれるツールです。Team plan や Enterprise plan で収益化を計っていましたが、基本的な機能は無料で使うことができていました。
+
+今回の AWS による買収で、有料の Fig Team 相当機能が現在無料で提供されています（今後も無料かは不明）。
+
+例えばちょっと前に自然言語から Bash のコマンドを生成する [`fig ai`](https://fig.io/user-manual/ai) 機能が有料ユーザ向けにベータリリースされましたが、こちらも無料ユーザでも使えるようになっています。
+
+個人的にはとてもお世話になっているツールで、コマンド補完に関して何度かコントリビューションもしてきました。AWS がバックに付くことで、さらなる機能強化やサービスの安定化が期待できそうです。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
+
 ## OpenAI、企業向け「ChatGPT Enterprise」提供開始　高速GPT-4でプライバシーも安全
 
 https://www.itmedia.co.jp/news/articles/2308/29/news095.html
 
-## ## ［速報］Google Cloudの開発や問題解決をAIが支援してくれる「Duet AI in Google Cloud」がVSCodeなどで利用可能に。Google Cloud Next '23 － Publickey
+## GPT-3.5 Turbo fine-tuning and API updates
+https://openai.com/blog/gpt-3-5-turbo-fine-tuning-and-api-updates
+
+GPT-3.5 Turbo のファインチューニングが可能になり、ユーザー側でモデルをカスタマイズできるようになったよ。
+GPT-4 のファインチューニングは今秋対応予定とのこと。
+ファインチューニング API に送受信されるデータは OpenAI や他組織のモデルをトレーニングするために使われることはない。
+トレーニングにはお金がかかるし、トレーニング後のモデルの利用による入出力でかかる料金はベースモデルの数倍になるっぽい。
+
+## ［速報］Google Cloudの開発や問題解決をAIが支援してくれる「Duet AI in Google Cloud」がVSCodeなどで利用可能に。Google Cloud Next '23 － Publickey
 https://www.publickey1.jp/blog/23/google_cloudaiduet_ai_in_google_cloudvscodegoogle_cloud_next_23.html
 
 # know-how 🎓
@@ -209,7 +236,8 @@ https://techblog.zozo.com/entry/techblog-writing-support-by-ci-cd
 ## GitHub Copilot Patterns & Exercises 🤖をリリースしました！🎉
 https://twitter.com/yuhattor/status/1692005132362494191
 
-## 「Datadog入れてみたらAWSの料金が爆発した話」@ゆるSRE勉強会 #1 - Speaker Deck https://speakerdeck.com/rynsuke/datadogru-retemitaraawsnoliao-jin-gabao-fa-sitahua-at-yurusremian-qiang-hui-number-1
+## 「Datadog入れてみたらAWSの料金が爆発した話」@ゆるSRE勉強会 #1 - Speaker Deck 
+https://speakerdeck.com/rynsuke/datadogru-retemitaraawsnoliao-jin-gabao-fa-sitahua-at-yurusremian-qiang-hui-number-1
 
 やっぱどこも NAT ゲートウェイに悩まされるのだなぁ、と思った。
 
