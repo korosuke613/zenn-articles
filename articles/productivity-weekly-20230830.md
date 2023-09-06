@@ -123,7 +123,24 @@ GitHub Enterprise で　Enterprise Account が順次ロールアウトされる�
 ## Amazon Detective でセキュリティ調査を改善するために視覚化を強化
 https://aws.amazon.com/jp/about-aws/whats-new/2023/08/amazon-detective-visualizations-security-investigations/
 
-視覚化系がまた増えて便利になった話。
+AWS 上の各種ログを自動で分析、視覚化して、潜在的なセキュリティの問題を指摘してくれるツールとして Amazon Detective があります。
+今回は分析結果をグラフでよりわかりやすく表示してくれる機能が追加されました。
+
+AWS での視覚化と言えば、AWS Resource Explorer があります。最近は VPC のリソースマップが記憶に新しいですね。
+今回はセキュリティ関係のリソースを可視化してくれるようです。
+
+ブログ内のリンク先を見ると、どのようなグラフを見ることができるかが分かります。
+https://docs.aws.amazon.com/detective/latest/userguide/groups-about.html#group-visual-finding-group
+IAM ロールなどセキュリティ関係のリソースと、各種 AWS リソースとの繋がりが一目瞭然です。
+またそれぞれのリソースの分析結果がグラフ上に表示されるようで、とても分かりやすそうに思います。
+
+:::message
+試しにプライベートのアカウントで試そうとしましたが、Amazon GuardDuty の有効化が必須で、かつ GuardDuty を有効化してから48時間経たないと Amazon Detective は使えないとのことでした...
+GuardDuty を有効化したので、数日後に再度 Amazon Detective の有効化を試してみる予定です。
+![](/images/productivity-weekly-20230830/guardduty_requirement.png)
+:::
+
+*本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)*
 
 ## Google Cloud Domains、生き残るっぽい。レジストラは Squarespace Domains になるけど。
 
