@@ -51,9 +51,17 @@ https://github.blog/changelog/2023-08-16-secret-scanning-detects-secrets-in-issu
 ## Announcing Python in Excel
 https://techcommunity.microsoft.com/t5/excel-blog/announcing-python-in-excel-combining-the-power-of-python-and-the/ba-p/3893439
 
-Excel の中で Python コードが書けるようになりました。
-現在はベータチャンネルのみの提供。
-Python コードは Microsoft クラウド上の隔離されたコンテナ内で実行されるとのことなので、クライアントサイド実行による脆弱性はなさそう。
+Excel の中で Python コードが書ける機能、 Python in Excel が Windows 向けパブリックプレビューになりました。
+現在は Microsoft 365 Insiders プログラムの参加者への提供とのことです。
+
+Python in Excel ではセルに PY 関数を入力すると、セルに直接 Python コードを書くことができます。
+Python コードは Microsoft Cloud 上の隔離されたコンテナ内で実行され、プロットや可視化といった実行結果がシートに返されます。
+そのため、クライアントサイドで Python の環境は必要なくクライアントサイド実行による脆弱性はなさそうです。
+matplotlib や seaborn などのライブラリも利用可能なため、Python のリッチな可視化を Excel 上で行うことができます。
+
+Excel 上のデータを Python で加工・可視化できるということで、はデータ分析の効率化に役立ちそうな機能です。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Terraform ephemeral workspaces public beta now available
 https://www.hashicorp.com/blog/terraform-ephemeral-workspaces-public-beta-now-available
@@ -98,13 +106,19 @@ Terraform に歩み寄ってきたのが意外という意見が出てきまし�
 ## Upgrade with an Enterprise Account - The GitHub Blog
 https://github.blog/changelog/2023-08-22-upgrade-with-an-enterprise-account/
 
-github で　enterprise account が順次ロールアウト。enterprise account って何？
+GitHub Enterprise で　Enterprise Account が順次ロールアウトされるようです。
 
-An enterprise account is coming to all Enterprise customers - The GitHub Blog
-https://github.blog/2022-12-01-an-enterprise-account-is-coming-to-all-enterprise-customers/
+そもそも Enterprise Account とは何かは[こちらのドキュメント](https://docs.github.com/en/enterprise-cloud@latest/admin/overview/about-enterprise-accounts)に記載があります。ユースケースや詳細があまり書かれていないため、どのようなアカウント(機能)なのかは分かりませんが、Enterprise 内の組織をまたいで管理できるアカウントということでしょうか。
 
-Bring your enterprise together with enterprise accounts for all - The GitHub Blog
-https://github.blog/2023-04-05-bring-your-enterprise-together-with-enterprise-accounts-for-all/
+新たに Enterprise を契約した場合や Free または Teams プランから Enterprise プランにアップグレードした場合、Enterprise Account が利用できるようで、既存の Enterprise プランの契約者は今後順次利用できるようになるようです。
+
+自分の組織では利用できないため検証できませんでした。また、現時点では情報が少ないので今後の展開に期待したいと思います。
+
+参考：
+- [An enterprise account is coming to all Enterprise customers - The GitHub Blog](https://github.blog/2022-12-01-an-enterprise-account-is-coming-to-all-enterprise-customers/)
+- [Bring your enterprise together with enterprise accounts for all - The GitHub Blog](https://github.blog/2023-04-05-bring-your-enterprise-together-with-enterprise-accounts-for-all/)
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Amazon Detective でセキュリティ調査を改善するために視覚化を強化
 https://aws.amazon.com/jp/about-aws/whats-new/2023/08/amazon-detective-visualizations-security-investigations/
@@ -235,6 +249,14 @@ https://techblog.zozo.com/entry/techblog-writing-support-by-ci-cd
 
 ## GitHub Copilot Patterns & Exercises 🤖をリリースしました！🎉
 https://twitter.com/yuhattor/status/1692005132362494191
+
+GitHub のカスタマーサクセスアーキテクトの方が、GitHub Copilot のパターン&エクササイズを公開されています。
+現在は日本語と英語が対応されており、どのようにすれば、より良い提案をしてもらえるかをエクササイズを通して学ぶことができます。
+自分は一通り目を通して、ChatGPT で有効性が示されていたクイックチャット技法が GitHub Copilot でも有効ということや、ショートカットについてを新たに学ぶことができました。
+
+公式の見解ではなくコミュニティドキュメントですが、コミュニティという分ユーザー達の感覚と経験で培われたノウハウが詰まっているので、ぜひ参考にしてみてください。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## 「Datadog入れてみたらAWSの料金が爆発した話」@ゆるSRE勉強会 #1 - Speaker Deck 
 https://speakerdeck.com/rynsuke/datadogru-retemitaraawsnoliao-jin-gabao-fa-sitahua-at-yurusremian-qiang-hui-number-1
