@@ -106,11 +106,11 @@ Terraform に歩み寄ってきたのが意外という意見が出てきまし�
 ## Upgrade with an Enterprise Account - The GitHub Blog
 https://github.blog/changelog/2023-08-22-upgrade-with-an-enterprise-account/
 
-GItHub Enterprise で　Enterprise Account が順次ロールアウトされるようです。
+GitHub Enterprise で　Enterprise Account が順次ロールアウトされるようです。
 
 そもそも Enterprise Account とは何かは[こちらのドキュメント](https://docs.github.com/en/enterprise-cloud@latest/admin/overview/about-enterprise-accounts)に記載があります。ユースケースや詳細があまり書かれていないため、どのようなアカウント(機能)なのかは分かりませんが、Enterprise 内の組織をまたいで管理できるアカウントということでしょうか。
 
-新たに Enterprise を契約した場合や Free または Teams プラン から Enterprise プランにアップグレードした場合、Enterprise Account が利用できるようで、既存の Enterprise プランの契約者は今後順次利用できるようになるようです。
+新たに Enterprise を契約した場合や Free または Teams プランから Enterprise プランにアップグレードした場合、Enterprise Account が利用できるようで、既存の Enterprise プランの契約者は今後順次利用できるようになるようです。
 
 自分の組織では利用できないため検証できませんでした。また、現時点では情報が少ないので今後の展開に期待したいと思います。
 
@@ -250,7 +250,7 @@ https://techblog.zozo.com/entry/techblog-writing-support-by-ci-cd
 ## GitHub Copilot Patterns & Exercises 🤖をリリースしました！🎉
 https://twitter.com/yuhattor/status/1692005132362494191
 
-GitHub のカスタマーサクセスアーキテクトの方が、GitHub Copilot の パターン&エクササイズを公開されています。
+GitHub のカスタマーサクセスアーキテクトの方が、GitHub Copilot のパターン&エクササイズを公開されています。
 現在は日本語と英語が対応されており、どのようにすれば、より良い提案をしてもらえるかをエクササイズを通して学ぶことができます。
 自分は一通り目を通して、ChatGPT で有効性が示されていたクイックチャット技法が GitHub Copilot でも有効ということや、ショートカットについてを新たに学ぶことができました。
 
