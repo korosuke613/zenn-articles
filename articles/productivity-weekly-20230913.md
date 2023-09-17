@@ -86,9 +86,25 @@ OpenTF Registry ができしだい、OpenTF がリリースされそうですね
 ## actions/create-github-app-token: GitHub Action for creating a GitHub App Installation Access Token
 https://github.com/actions/create-github-app-token
 
-GitHub 公式で GitHub Apps のトークンを払い出すアクションが出た。
+GitHub 公式で GitHub Apps のトークンを払い出すアクション actions/create-github-app-token がリリースされました。
 
-cybozu/octoken-action お役御免説...？
+これまで GitHub Apps のトークンを払い出すアクションは公式に存在していなかったため、さまざまな 3rd party アクションが存在していました。
+
+<!-- textlint-disable ja-technical-writing/no-doubled-joshi -->
+GitHub Apps の private key を渡さなければならない関係上、3rd party アクションの利用は特に慎重になる必要があったかと思います。
+今回登場したアクションは GitHub 公式であるため、セキュリティ的にもメンテナンス的にも比較的安心して利用できそうです。
+<!-- textlint-enable ja-technical-writing/no-doubled-joshi -->
+
+ただ、v1.2.1 時点だと、[アクションを実行しているリポジトリのオーナーに関する権限しか取れない](https://github.com/actions/create-github-app-token/issues/4)ようです。トークンを取得したいオーナーが異なる場合は、機能追加されるまで 3rd party アクションを利用するのが良さそうです。
+
+実は Cybozu でも [cybozu/octoken-action](https://github.com/cybozu/octoken-action) という似たようなことをするアクションを OSS として出しています。こちらは `target_account` で別のオーナーを指定し、そのオーナーにインストールされた App の権限を取得できます。
+しかし、今後は公式のアクションの利用を推奨していくことになりそうです。
+
+（ちなみに、actions/create-github-app-token は [Post run で払い出したトークンを revoke してくれます](https://github.com/actions/create-github-app-token/blob/10f155294b06f68ed6719f3a7da057c8a34b21be/lib/post.js#L15-L19)。セキュアでいいですねー）
+
+皆さんも GitHub Apps のトークンを払い出すアクションを利用する際は、actions/create-github-app-token の利用を検討してみてください。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## マイクロソフト、お客様向けの Copilot Copyright Commitment を発表 - News Center Japan
 https://news.microsoft.com/ja-jp/2023/09/12/230912-copilot-copyright-commitment-ai-legal-concerns/
