@@ -59,12 +59,29 @@ Bun 1.0 リリース🎉
 ## The OpenTF fork is now available!
 https://opentf.org/fork
 
-MLP 2 の Terraform の fork、opentffoundation/opentf 爆誕。
-Terraform Registry が Terraform 以外で使えなくなったため、独自のレジストリを準備中。
-そういうのもあってアルファリリースはまだ。
+[先日、HashiCorp が OSS 製品のライセンスを BUSL に変更する発表を受け、Terraform を OSS として継続するための団体、OpenTF Foundation が爆誕しました](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230816?redirected=1#opentf-foundation-%E7%88%86%E8%AA%95)。OpenTF Foundation は生まれましたが、Terraform を fork したリポジトリはまだ公開されていませんでした。
 
-個人的には生まれ出てほしくなかった。
-一度生まれたものは、そう簡単には死なない、覚えておけ。
+しかし、先日、OpenTF Foundation が Terraform の fork を公開しました。[opentffoundation/opentf](https://github.com/opentffoundation/opentf) です。ライセンスは変わらず MPL-2.0 です。
+
+いまいちどこから fork したのかわかりませんが、opentf による最初のコミットは https://github.com/opentffoundation/opentf/commit/b9573d438bd539da85a72641330d4d600e926f1b のようです。
+
+> **What will be the first release of OpenTF?**
+>
+> The first release will be 1.6.0-alpha, forked from the most recent commit that was still MPL-licensed.
+
+FAQ によると、Terraform 1.6.0-alpha までは MPL ライセンスであるため、OpenTF の最初のリリースは 1.6.0-alpha までの変更が含まれていそうです。（ちなみに [1.6.0-beta からは BUSL となっています。](https://github.com/hashicorp/terraform/commit/b145fbcaadf0fa7d0e7040eac641d9aef2a26433)）
+
+リポジトリは公開されましたが、OpenTF はまだリリースされていません。どうやら、Terraform Registry が Terraform 以外で使えなくなったため、独自のレジストリを準備中とのことです。
+
+> Create initial OpenTF Registry. HashiCorp recently made some (unannounced) changes to the terms of the Terraform Registry, saying it may only be used with Terraform. To unblock the alpha release, we are launching an initial OpenTF Registry. We'll develop the official OpenTF Registry solution via an official RFC process later.
+
+OpenTF Registry ができしだい、OpenTF がリリースされそうですね。
+
+正直な話、個人的には Terraform の実装が分かれることでこれからの混沌は避けられないと思うので、あんまり歓迎はしていません。しかし、今まで Terraform で商売をしていた人たちにとっては死活問題なのでしょうがないのかなという気持ちです。
+
+今後もウォッチしていきたいですね。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
 
 ## actions/create-github-app-token: GitHub Action for creating a GitHub App Installation Access Token
 https://github.com/actions/create-github-app-token
