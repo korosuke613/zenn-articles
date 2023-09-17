@@ -37,6 +37,14 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## ⚠️ Node.js 16 is now end of life, please upgrade to Node.js 18.
 https://twitter.com/nodejs/status/1701309614263001569
 
+[前々からアナウンスされていた](https://zenn.dev/korosuke613/articles/productivity-weekly-20220615#bringing-forward-the-end-of-life-date-for-node.js-16-%7C-node.js)通り、Node.js 16 が 9/11 に EOL となりました。
+
+Node.js の LTS 後のサポートは LTS から数えて通常 2 年半続くのですが、Node.js 16 は依存してるソフトウェアのサポート終了に合わせて 7 ヶ月近く早い EOL となりました。
+
+多くの方が現在の LTS である Node.js 18 へ移行済みかと思いますが、まだ移行していない方は早めに移行しましょう。
+
+*本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)*
+
 ## Node v20.6.0 (Current) | Node.js
 https://nodejs.org/ja/blog/release/v20.6.0
 
