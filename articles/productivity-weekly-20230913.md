@@ -170,9 +170,48 @@ Actions Runner Controller の解説記事。しかも最新の scale sets を使
 ## octocovで任意のメトリクスを記録できるようにした（カスタムメトリクス） - Copy/Cut/Paste/Hatena
 https://k1low.hatenablog.com/entry/2023/09/06/083000
 
-GitHub Actions のみでカバレッジを表示できる octocov がカバレッジ以外に任意のデータも集計できるようになったようです。
-go test -bench の結果を octocov が集計して pull-req に表示させる例が紹介されています。
-工夫次第で色々使えそう。
+外部サービスを使わずに GitHub Actions 単独でカバレッジを表示できる octocov がカバレッジ以外に任意のデータも集計できる機能が追加されました。
+こちらの記事ではサンプルとして `go test -bench` の結果を octocov が集計して pull-req に表示させる例が紹介されています。
+
+自分も octocov にはお世話になっているので早速試してみました。pull-req の差分でバイナリサイズがどれだけ変化するかを見られると便利そうだと考えたので、バイナリではないのですが似たようなものとして GitHub Actions のリポジトリにコミットする.js のコードサイズ[^1]を octocov で集計してみました。
+
+[^1]: JavaScript の GitHub Actions は `node_modules` の依存ライブラリも含めて 1 つの.js にバンドルする必要があるため、コードサイズが大きくなりがちです。
+
+記事や [octocov](https://github.com/k1LoW/octocov) の README に詳しい説明はありますが簡単に紹介すると、カスタムメトリクスとして送りたいデータを[JSONスキーマ](https://github.com/k1LoW/octocov/blob/main/report/custom_metrics_schema.json)に従った JSON として生成し、`k1LoW/octocov-action@v0` の action の環境変数で json のパスを指定するだけです。
+
+今回は自分の[actionsのリポジトリ](https://github.com/Kesin11/actions-timeline)の `dist/` ディレクトリ以下の.js のファイルサイズを集計したかったので、 `find` と `jq` で JSON を生成してみました[^2]。
+
+[^2]: jq による JSON の生成コマンドについて当初は `--arg` や `--argjson` を使用する拙いものだったのですが、社内の分報にて Professional of jq である[@itchyny](https://github.com/itchyny)さんにアドバイスを頂き、`capture` を使ったワンライナーに改善できました。ありがとうございました！
+
+```bash
+find ./dist -type f -printf '%s %f\n' \
+  | jq -n -R '{name: "dist_size", key: "dist_size", metrics: [inputs | capture("(?<value>\\S+)\\s+(?<key>.+)") + {unit: "byte"} | .value |= tonumber | .name = .key ]}' \
+  > dist_js_sizes.json
+
+# 以下のようなJSONが生成される
+{
+  "name": "dist_size",
+  "key": "dist_size",
+  "metrics": [
+    {
+      "value": 1306559,
+      "key": "post.js",
+      "unit": "byte",
+      "name": "post.js"
+    },
+    {
+      "value": 55,
+      "key": "main.js",
+      "unit": "byte",
+      "name": "main.js"
+    }
+  ]
+}
+```
+
+[実際にjsのサイズに差分が生じるようなpull-reqを試してみた結果がこちら](https://github.com/Kesin11/actions-timeline/pull/13#issuecomment-1725944909)です。TypeScript 側の修正に合わせて js のサイズも増えたことが分かりやすいですね。
+
+*本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)*
 
 
 ## セキュリティ SaaS を「プログラマブル」に再設計した話 ― Shisho Cloud の正式リリースによせて - Flatt Security Blog
