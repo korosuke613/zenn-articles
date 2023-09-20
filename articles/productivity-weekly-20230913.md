@@ -109,7 +109,8 @@ GitHub Apps の private key を渡さなければならない関係上、3rd par
 ## マイクロソフト、お客様向けの Copilot Copyright Commitment を発表 - News Center Japan
 https://news.microsoft.com/ja-jp/2023/09/12/230912-copilot-copyright-commitment-ai-legal-concerns/
 
-Microsoft の生成 AI サービスを使用した際、第三者に著作権侵害による訴訟の結果生じた不利な判決や和解の金額は Microsoft が負担するという保証を発表しました。
+Microsoft が Copilot Copyright Commitment という生成 AI の利用における保証を発表しました。
+Microsoft の生成 AI サービスを使用した際、第三者に著作権侵害による訴訟の結果生じた不利な判決や和解の金額は Microsoft が負担するというものです。
 対象には、Word、Excel、PowerPoint などに生成 AI を導入し、データの推論や、文書のプレゼンテーションへの変換をする Microsoft 365 Copilot や Bing Chat Enterprise、GitHub Copilot などが含まれます。
 利用者は Copilot 製品のガードレールとコンテンツフィルター機能を有効にしている必要があり、意図して著作権侵害をするようなコンテンツを生成してはならないとのことです。
 
