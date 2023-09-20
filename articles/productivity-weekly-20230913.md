@@ -109,27 +109,45 @@ GitHub Apps の private key を渡さなければならない関係上、3rd par
 ## マイクロソフト、お客様向けの Copilot Copyright Commitment を発表 - News Center Japan
 https://news.microsoft.com/ja-jp/2023/09/12/230912-copilot-copyright-commitment-ai-legal-concerns/
 
-Microsoft が Copilot Copyright Commitment を発表。
-Copilot の出力を使用して第三者から著作権侵害で訴えられた場合、マイクロソフトは顧客を弁護し、訴訟の結果生じた不利な判決や和解の金額を支払うとのこと。
-対象は、有償版の Microsoft の Copilot サービス（Word, Excel, PowerPoint の AI 支援機能も含む）、Bing Chat Enterprise、GitHub Copilot など。
-利用者は Copilot 製品のガードレールとコンテンツフィルター機能を有効にしている必要がある。
+Microsoft の生成 AI サービスを使用した際、第三者に著作権侵害による訴訟の結果生じた不利な判決や和解の金額は Microsoft が負担するという保証を発表しました。
+対象には、Word、Excel、PowerPoint などに生成 AI を導入し、データの推論や、文書のプレゼンテーションへの変換をする Microsoft 365 Copilot や Bing Chat Enterprise、GitHub Copilot などが含まれます。
+利用者は Copilot 製品のガードレールとコンテンツフィルター機能を有効にしている必要があり、意図して著作権侵害をするようなコンテンツを生成してはならないとのことです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Dual Static IP ranges for GitHub-hosted Larger runners - The GitHub Blog
 https://github.blog/changelog/2023-09-06-dual-static-ip-ranges-for-github-hosted-larger-runners/
 
-Larger runner で IP 固定化を有効にした場合の IP レンジが 2 つに拡張されて今までの 500 並列制限を突破できるようになりました。
-一方で既に IP 固定化を利用している場合でも IP レンジが拡張されるとのことなので、固定化された IP を通すような FW の設定をしていた場合はそちらも忘れずに修正する必要がありそう。
+GitHub Actions の Larger runner で Static IP を有効にした場合の IP レンジが 2 つに拡張されました。
+これにより、ランナーは従来の 500 並列制限を超えることができるようになりました。
+2 つの IP レンジは地理的に異なる場所に作成されるため、地域的な障害に対する冗長性を提供しているとのことです。
+Static IP 機能を使用して新しく作成された Larger runner では、今後デフォルトで 2 つの IP 範囲が割り当てられるため、追加の操作は必要ありません。
+既に Static IP を利用している場合でも IP レンジが拡張されるとのことなので、固定化された IP を通すファイアーウォールの設定をしていた場合は、新しい IP レンジを追加する必要があるので注意です。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Organization Archiving general availability - The GitHub Blog
 https://github.blog/changelog/2023-09-06-organization-archiving-general-availability/
 
-Organization をまるごとアーカイブする機能が GA。OSS みたいにコミュニティベースの org を閉じるときに便利なのかな？
-Enterprise ならチームがまるごと解散した際にその Organization をまるごとアーカイブするとう使い道もあるかもしれない。
+GitHun の Organization をまるごとアーカイブする機能が GA になりました。
+Organization アーカイブを実行すると以下のようなことが行われます。
+
+- Organization 内のすべてのリポジトリをアーカイブ
+- 新しいリポジトリの作成など、その Organization での活動を制限
+- Organization のプロフィールにアーカイブされたことを示すバナーを表示
+- Organization のオーナーにアーカイブされたことをメールで知らせる
+
+コミュニティベースの Organization を閉じる際や Enterprise ならチームが解散した際にその Organization をまるごとアーカイブするという使い道がありそうです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Change your theme | Confluence Cloud | Atlassian Support
 https://support.atlassian.com/confluence-cloud/docs/change-your-theme/
 
-Confluence にダークテーマがきたよ．ダークテーマ大好き民のみんなは今すぐ変更だ！
+Confluence にダークテーマがきたようです。選択したテーマはアカウントに保存されるため他デバイスから Confluence を使用する場合にも適用されます。
+ダークテーマにしてトップナビゲーションバーが正しく表示されない場合、ダークテーマと相性の悪いカスタムカラーを設定している可能性があるので、カスタムカラーを変更する必要があるとのことです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Built-in port forwarding | Visual Studio Code August 2023
 https://code.visualstudio.com/updates/v1_82
@@ -194,7 +212,12 @@ https://www.jetbrains.com/ja-jp/qodana/buy/
 ## Release v4.5.0 · suzuki-shunsuke/tfcmt
 https://github.com/suzuki-shunsuke/tfcmt/releases/tag/v4.5.0
 
-terraform の新しめの機能である import と moved についても表示できるようになった、ということだと思われます。
+Terraform の CI 体験を向上させる CLI ツールである tfcmt が v4.5.0 をリリースしました。
+terraform v1.5.0 で追加された import ブロックと moved ブロックについても表示できるようになった、ということだと思われます。
+
+新しい機能に追従してアップデートしてくれていて、とてもありがたいです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Oktaが無料のパスワードマネージャ「Okta Personal」を公開 － Publickey
 https://www.publickey1.jp/blog/23/oktaokta_personal.html
