@@ -4,6 +4,10 @@ import matter from "npm:gray-matter";
 import { TocBuilder } from "./Toc.ts";
 
 const main = async () => {
+  if (Deno.args[0] === undefined) {
+    throw new Error("引数にマークダウンのパスを指定してください");
+  }
+
   // 引数でマークダウンのパスを受け取る
   const markdown = await Deno.readTextFile(Deno.args[0]);
   const content = matter(markdown).content;
