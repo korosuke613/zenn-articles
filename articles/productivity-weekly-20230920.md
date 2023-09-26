@@ -37,7 +37,11 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## Introducing auto-triage rules for Dependabot - The GitHub Blog
 https://github.blog/2023-09-14-introducing-auto-triage-rules-for-dependabot/
 
-public リポジトリで Dependabot の脆弱性アラートを出す条件を独自にコントロール可能にする機能が追加された。記事の例を見ると修正パッチが来るまではアラートとして出さない、みたいなルールが可能っぽい。
+GitHub の Dependabot Alert において、脆弱性アラートの条件をコントロール可能にする機能 alert rules が追加されました（パブリックベータ）。
+
+
+
+Dependabot の脆弱性アラートを出す条件を独自にコントロール可能にする機能が追加された。記事の例を見ると修正パッチが来るまではアラートとして出さない、みたいなルールが可能っぽい。
 
 ## Increased Concurrency Limit for GitHub-Hosted Runners - The GitHub Blog 
 https://github.blog/changelog/2023-09-18-increased-concurrency-limit-for-github-hosted-runners/
