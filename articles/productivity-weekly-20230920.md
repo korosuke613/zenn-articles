@@ -56,8 +56,19 @@ https://aws.amazon.com/jp/about-aws/whats-new/2023/09/amazon-ec2-block-public-ac
 
 ## New – Amazon EC2 M2 Pro Mac Instances Built on Apple Silicon M2 Pro Mac Mini Computers | AWS News Blog
 https://aws.amazon.com/jp/blogs/aws/new-amazon-ec2-m2-pro-mac-instances-built-on-apple-silicon-m2-pro-mac-mini-computers/
+（日本語記事は[こちら](https://aws.amazon.com/jp/blogs/news/new-amazon-ec2-m2-pro-mac-instances-built-on-apple-silicon-m2-pro-mac-mini-computers/)）
 
-Amazon EC2 インスタンスに M2 Pro Mac がきたよ ( Mac Mini )
+Amazon EC2 に新たに M2 Pro Mac(`mac2-m2pro.metal`)インスタンスが提供されました。今までの EC2 Mac インスタンスよりもさらに高速な Mac マシンが欲しかった方には朗報ですね。
+
+余談ですが、現在までにリリースされている EC2 Mac インスタンスの名前と CPU の対応は以下のようになっています。
+
+- `mac1.metal` = Core i7
+- `mac2.metal` = M1
+- `mac2-m2pro.metal` = M2 Pro
+
+`mac1.metal` が Intel 時代にリリースされ、さらにその後の Apple Silicon が M1, M2 という名前のためインスタンス名との対応が非常に紛らわしくなっています。利用する際には[インスタンス一覧のページ](https://aws.amazon.com/ec2/instance-types/)でインスタンス名と CPU の対応関係を確認することをおすすめします。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## Windows Subsystem for Linux（WSL）に新機能。使用メモリや仮想ディスクの自動縮退、LAN経由でWSLへ直接アクセス可能など － Publickey
 https://www.publickey1.jp/blog/23/windows_subsystem_for_linuxwsllanwsl.html
