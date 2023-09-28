@@ -1,6 +1,6 @@
 // BEGIN: 9f5d5d7d6d4d
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { TocBuilder } from "../Toc.ts";
+import { TocBuilder } from "../libs/Toc.ts";
 import { Token } from "npm:marked";
 
 Deno.test("TocBuilder", async (t) => {

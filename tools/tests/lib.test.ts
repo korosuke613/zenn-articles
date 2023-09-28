@@ -1,5 +1,5 @@
 import { assertEquals } from "https://deno.land/std/testing/asserts.ts";
-import { getGitDiffWeeklyFiles, grepEmoji } from "../lib.ts";
+import { getGitDiffWeeklyFiles, grepEmoji } from "../libs/lib.ts";
 
 Deno.test("getGitDiffWeeklyFiles should return an array of weekly files", async () => {
   // deno-lint-ignore require-await

@@ -1,7 +1,7 @@
 // deno run --allow-read ./tools/createToc.ts ./articles/productivity-weekly-20230726.md
 import { marked } from "npm:marked";
 import matter from "npm:gray-matter";
-import { TocBuilder } from "./Toc.ts";
+import { TocBuilder } from "./libs/Toc.ts";
 
 const main = async () => {
   if (Deno.args[0] === undefined) {

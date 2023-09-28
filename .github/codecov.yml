@@ -1,0 +1,17 @@
+coverage:
+  status:
+    project:
+      default: 
+        threshold: 100%
+      libs:
+        threshold: 20%
+        paths:
+          - tools/libs
+    patch:
+      default: 
+        threshold: 100%
+      libs:
+        threshold: 20%
+        paths:
+          - tools/libs
+
