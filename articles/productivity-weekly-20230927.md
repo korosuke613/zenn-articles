@@ -46,20 +46,26 @@ https://x.com/shitimi_613/status/1704891867593339194
 ## partial checkout (--filter) オプション追加 - Release v4.1.0 · actions/checkout
 https://github.com/actions/checkout/releases/tag/v4.1.0
 
-actions/checkout に partial checkout（--filter）のオプション追加。大規模なリポジトリではこのオプションを使いたいケースがあったのでかなり嬉しい。Partial が今までの方法と何が異なるのかの説明は日本語記事だと多分これが一番わかりやすい。 https://swet.dena.com/entry/2021/07/12/120000
-より詳しい内容は GitHub 公式の解説記事が一番詳しいです。https://github.blog/jp/2021-01-13-get-up-to-speed-with-partial-clone-and-shallow-clone/
+actions/checkout に partial clone (`git clone --filter`) のオプションが追加されました。partial clone を設定すると大規模なリポジトリにおいて clone や fetch を高速化できるケースがあります。
 
-基本的には毎回環境が作り直される CI においては depth=1 が最速なので filter オプションを使う必要がある場面はほぼ無いです。
-有効なケースの例としては、全てを clone すると時間がかかる巨大なリポジトリにおいて過去の歴史を git log で見たいだけという場合に filter=blob:none を指定すると clone を高速化可能です。
+partial clone 自体の説明は GitHub 公式の解説記事（[英語](https://github.blog/2020-12-21-get-up-to-speed-with-partial-clone-and-shallow-clone/)、[日本語](https://github.blog/jp/2021-01-13-get-up-to-speed-with-partial-clone-and-shallow-clone/)）が詳しいです。
+ちなみに [v3.5.3](https://github.com/actions/checkout/releases/tag/v3.5.3) でリリースされた sparse checkout と partial clone との違いなどについてはこちらの記事も図解入りで分かりやすいのでおすすめです。
 
-どちらかというと CI よりはローカルマシンで巨大なリポジトリを clone する場合に覚えておくと重宝するオプションです。
+https://swet.dena.com/entry/2021/07/12/120000
+
+最近は git 自体に大規模リポジトリをうまく扱うための機能が色々追加されているのですが、sparse checkout や partial clone など主要なものは actions/checkout からでもかなり使えるようになってきました。基本的には actions/checkout のデフォルトの挙動は CI 向きになっているため新しいオプションの指定は必ずしも必要ありませんが、大規模なリポジトリを扱っている場合には一度調べてみると良いかもしれません。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## GitHub Actions: Transitioning from Node 16 to Node 20 - The GitHub Blog 
 https://github.blog/changelog/2023-09-22-github-actions-transitioning-from-node-16-to-node-20/
 
-actions/runner の方では既にリリース済みでしたが、js の action を実行するための Node.js のバージョンが 16 から 2024 年春を目処に 20 へ移行されることが正式にアナウンスされました。
-action 作者の方は Node.js 16 から 20 へのアップデート対応をしましょう。
-（そのアップデートの際には公式 actions のように major バージョンを上げてリリースしてくれるとユーザー的には非常に助かります）
+[actions/runner の方では既にリリース済み](https://github.com/actions/runner/releases/tag/v2.308.0)でしたが、JavaScript の action を実行するための Node.js のバージョンが 16 から 2024 年春を目処に 20 へ移行されることが正式にアナウンスされました。
+action 作者の方は Node.js 16 から 20 へのアップデート対応をしていきましょう。
+
+_アップデートの際には公式の各種 actions のように major バージョンを上げてリリースしてもらえると今しばらく Node.js 16 を使わざるを得ない GHES ユーザーは助かります_
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## GitHub Actions - Force cancel workflows - The GitHub Blog 
 https://github.blog/changelog/2023-09-21-github-actions-force-cancel-workflows/
