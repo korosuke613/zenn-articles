@@ -70,26 +70,46 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 ## GitHub Actions - Force cancel workflows - The GitHub Blog 
 https://github.blog/changelog/2023-09-21-github-actions-force-cancel-workflows/
 
-GitHub Actions のワークフローをキャンセルしても反応がなかった場合に force-cancel するための API が追加。
+GitHub Actions のワークフローを force-cancel するための API が追加されました。REST API ドキュメントは[こちら](https://docs.github.com/ja/rest/actions/workflow-runs?apiVersion=2022-11-28#force-cancel-a-workflow-run)です。
+これまで、ワークフローをキャンセルしても応答がないことがありました。その場合、他のワークフローの実行がブロックされてしまうという問題がありましたが、この API を使うことで強制的にキャンセルすることができるようになりました。
 
 > Customers should still only use force-cancel if the workflow fails to respond to POST /repos/{owner}/{repo}/actions/runs/{run_id}/cancel.
 
-とも書かれているので、基本的には最終手段として考えた方がよさそう。
+と書かれているので、最終手段として使う API といった感じです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
+
 
 ## Passkeys are generally available - The GitHub Blog 
 https://github.blog/2023-09-21-passkeys-are-generally-available/
 
-github.com で passkey が GA。
+GitHub.com で Passkeys が GA になり、のすべてのユーザーが Passkeys 認証を行えるようになりました。
+7月のパブリックベータから2ヶ月ほどで GA になったので、早いですね。
+以前 GitHub が宣言していた [securing all contributors with 2FA by the end of 2023](https://github.blog/2022-05-04-software-security-starts-with-the-developer-securing-developer-accounts-with-2fa/) に精力的に取り組んでいることが伺えます。
+
+Linux や Firefox のような、まだPasskeysに完全対応していないプラットフォームでも使えるように、クロスデバイスの登録が可能になっています。
+また、既存のセキュリティキーを Passkeys にアップグレードするオプションも提供されているため導入も簡単です。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## Amazon Corretto 21 is now generally available
 https://aws.amazon.com/jp/about-aws/whats-new/2023/09/amazon-corretto-21-generally-available/
 
-はやい。
+AWS が提供する OpenJDK21 ディストリビューションである Amazon Corretto 21 が GA になりました。
+Amazon Corretto 21 は LTS であり、Linux、Windows、macOSで利用可能とのことです。
+
+OpenJDK21 は パターンマッチングや仮想スレッドが正式に導入されたことや、main メソッドに `public static void` を書かなくてもよいプレビュー機能が追加されたことで話題でしたが、早速 Amazon Corretto が対応してくれているのは嬉しいですね。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 ## GitHub Copilot Chat beta now available for all individuals - The GitHub Blog
 https://github.blog/2023-09-20-github-copilot-chat-beta-now-available-for-all-individuals/
 
-個人ユーザにも GitHub Copilot Chat が来たそうです．俺は使ったことないけど，使ったことある人の感想求ム．
+Visual Studio と VS Code のすべての GitHub Copilot 個人ユーザー向けに GitHub Copilot Chat のベータ版がリリースされました。
+これまで、エディタ内に ChatGPT のプロンプトを組み込んだりするサードパーティ製の拡張機能などがありましたが、公式の GitHub Copilot Chat リリースにより、より簡単に AI の恩恵を受けることができるようなったと思います。
+プロンプトでのやりとりだけでなく、直接ファイル内のコードを選択して、AI とやりとりできるのでとても便利そうです。
+
+*本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
 # know-how 🎓
 
