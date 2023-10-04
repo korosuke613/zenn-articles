@@ -37,11 +37,29 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## OrbStack 1.0: Fast, light, easy way to run Docker containers and Linux
 https://orbstack.dev/blog/orbstack-1.0
 
-OrbStack 1.0 リリース。とうとう商用利用は有償に。
+Docker Desktop 代替である OrbStack のベータ期間が終わり、v1.0 がリリースされました。これまでは商用非商用関わらず無料でしたが、ベータ期間が終わったことでとうとう商用利用が有償となりました。現在商用利用している方は、30 日以内（10/21 くらいまでに？）に有償ライセンスを購入する必要があります。
 
-> The app is free for personal, non-commercial use. A Pro or Enterprise license is required for freelance, business, and other commercial use, but you can start with a 14-day trial.
+> The app is free for personal, non-commercial use. You must purchase a Pro or Enterprise license for freelance, business, and other commercial use within 30 days. Contact us if you have questions.
 
-https://x.com/shitimi_613/status/1704891867593339194
+Plan は Free、Pro、Enterprise の 3 種類があります。
+
+- Free
+  - 価格: $0
+  - 個人で非商用利用のみ
+- Pro
+  - 価格: $8/user/month (yearly) or $10/user/month (monthly)
+  - 商用利用可能
+  - 優先サポート付き
+  - Organization で一括購入可能
+- Enterprise
+  - 価格: お問い合わせ
+  - SAML SSO 利用可能
+
+- [Pricing · OrbStack](https://orbstack.dev/pricing)
+- [Licensing · OrbStack Docs](https://docs.orbstack.dev/licensing)
+- [平木場が色々調べたやつ](https://x.com/shitimi_613/status/1704891867593339194)
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 
 ## partial checkout (--filter) オプション追加 - Release v4.1.0 · actions/checkout
 https://github.com/actions/checkout/releases/tag/v4.1.0
