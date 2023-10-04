@@ -37,7 +37,7 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## OrbStack 1.0: Fast, light, easy way to run Docker containers and Linux
 https://orbstack.dev/blog/orbstack-1.0
 
-Docker Desktop 代替である OrbStack のベータ期間が終わり、v1.0 がリリースされました。これまでは商用非商用関わらず無料でしたが、ベータ期間が終わったことでとうとう商用利用が有償となりました。現在商用利用している方は、30 日以内（10/21 くらいまでに？）に有償ライセンスを購入する必要があります。
+[Docker Desktop 代替である OrbStack](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230830#orbstack-%E3%81%A7-k8s-%E3%82%AF%E3%83%A9%E3%82%B9%E3%82%BF%E3%82%92%E7%B0%A1%E5%8D%98%E3%81%AB%E4%BD%9C%E3%82%8C%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB) のベータ期間が終わり、v1.0 がリリースされました。これまでは商用非商用関わらず無料でしたが、ベータ期間が終わったことでとうとう商用利用が有償となりました。現在商用利用している方は、30 日以内（10/21 くらいまでに？）に有償ライセンスを購入する必要があります。
 
 > The app is free for personal, non-commercial use. You must purchase a Pro or Enterprise license for freelance, business, and other commercial use within 30 days. Contact us if you have questions.
 
@@ -55,9 +55,21 @@ Plan は Free、Pro、Enterprise の 3 種類があります。
   - 価格: お問い合わせ
   - SAML SSO 利用可能
 
+Individual と Organization の概念があり、Individual（個人）で Pro プランを契約できます。
+もし組織として購入を一括で行いたい場合は Organization を作成し、各アカウントを紐づけて行きましょう。
+
+とうとう OrbStack が商用利用有償化しましたが、個人的には OrbStack はとても軽快で使いやすい Docker Desktop 代替なので、お金を払ってでも使って行きたいですね。
+
+各種リンク:
 - [Pricing · OrbStack](https://orbstack.dev/pricing)
 - [Licensing · OrbStack Docs](https://docs.orbstack.dev/licensing)
 - [平木場が色々調べたやつ](https://x.com/shitimi_613/status/1704891867593339194)
+
+:::message
+ちなみに、[これが発表された段階](https://x.com/OrbStack/status/1704883390569443558)では、Licensing ページもなければ、Beta 期間中に使ってたユーザの契約までの猶予期間も設定されてなく、めちゃくちゃてんやわんやしました。その後 `within 30 days` の文言が追加されたり Licensing ページが追加されたりしましたが、最初から用意していてほしかったです。
+残念ながら Docker Desktop 方式（商用利用ならライセンス買え）スタイルなので、組織としては対応がまあまあめんどいです。
+それでも Docker Business よりよっぽど安いので、個人的には嬉しいですね。
+:::
 
 _本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 
