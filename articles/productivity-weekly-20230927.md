@@ -101,7 +101,8 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 https://github.blog/changelog/2023-09-21-github-actions-force-cancel-workflows/
 
 GitHub Actions のワークフローを force-cancel するための API が追加されました。REST API ドキュメントは[こちら](https://docs.github.com/ja/rest/actions/workflow-runs?apiVersion=2022-11-28#force-cancel-a-workflow-run)です。
-これまで、ワークフローをキャンセルしても応答がないことがありました。その際に この force-cancel API を使うことでワークフローを強制的にキャンセルし、他のワークフローの実行がブロックされてしまうという問題を回避することができるようになりました。
+これまでワークフローをキャンセルしても応答がないことがありました。
+その際、force-cancel API を使用することでワークフローを強制的にキャンセルし、他のワークフローの実行がブロックされる問題を回避できるようになりました。
 
 > Customers should still only use force-cancel if the workflow fails to respond to POST /repos/{owner}/{repo}/actions/runs/{run_id}/cancel.
 
@@ -128,7 +129,7 @@ https://aws.amazon.com/jp/about-aws/whats-new/2023/09/amazon-corretto-21-general
 AWS が提供する OpenJDK21 ディストリビューションである Amazon Corretto 21 が GA になりました。
 Amazon Corretto 21 は LTS であり、Linux、Windows、macOS で利用可能とのことです。
 
-OpenJDK21 は パターンマッチングや仮想スレッドが正式に導入されたことや、main メソッドに `public static void` を書かなくてもよいプレビュー機能が追加されたことで話題でした。早速 Amazon Corretto が対応してくれているのは嬉しいですね。
+OpenJDK21 はパターンマッチングや仮想スレッドが正式に導入されたことや、main メソッドに `public static void` を書かなくてもよいプレビュー機能が追加されたことで話題でした。早速 Amazon Corretto が対応してくれているのは嬉しいですね。
 
 *本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)*
 
