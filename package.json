@@ -13,7 +13,7 @@
   },
   "devDependencies": {
     "@proofdict/textlint-rule-proofdict": "3.1.2",
-    "@slidev/cli": "0.43.6",
+    "@slidev/cli": "0.43.7",
     "prh": "5.4.4",
     "renovate": "37.1.6",
     "textlint": "13.3.3",
