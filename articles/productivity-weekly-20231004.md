@@ -53,10 +53,22 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 ## How GitHub uses GitHub Actions and Actions larger runners to build and test GitHub.com - The GitHub Blog
 https://github.blog/2023-09-26-how-github-uses-github-actions-and-actions-larger-runners-to-build-and-test-github-com/
 
-GitHub 社自身の CI に Larger Runner を活用するためにどのような機能を追加していったかの記事。VM のカスタムイメージ、前ビルドの結果を使ってスキップ、OIDC でプライベートネットワークに接続。
-ほとんど初出の話のはずなので今後一般向けにも開放されるかもしれない？
+GitHub 社自身の CI に Larger Runner を活用するためにどのような機能を追加していったかの記事です。その中で GitHub 社の CI の要件に合うようにいくつかの機能を追加したという内容ですが、自分の知る限りでは一般向けには初出の機能がいくつか存在したので面白い記事でした。
 
-カスタムイメージだけは https://github.com/github/roadmap/issues/826 がそれっぽい。
+#### VMのカスタムイメージ
+ランナーには元々様々なツールがプリインストールされていますが、足りないツールを追加でインストールする必要がある場合は CI の時間を消費してしまいます。そこで GitHub の CI に必要なツールや、ソースコードやビルドアーティファクトをキャッシュとして初めから追加済みのカスタム VM イメージを用意しておくことで今まで 50 分かかっていたワークフローを 12 分まで短縮できたようです。
+
+このカスタム VM イメージに関しては、公開ロードマップの issue として一般向けにも公開されていました。
+https://github.com/github/roadmap/issues/826
+
+#### 前ビルドの結果を使ってスキップ
+前回のビルドからファイルの中身が変わっていない場合、再度ビルドしても同じ結果になるはずであることから前回ビルドで生成された内容を再利用することで実際の CI 実行をスキップさせたようです。これにより 1 日あたり 300 から 500 のワークフロー実行が節約されたとのことです。
+
+これについて自分の感想としては、最近のビルドツールに搭載されている[ファイルのハッシュ値などを見て変化がなければ自動でスキップする機能](https://monorepo.tools/#local-computation-caching)と同様だと思いました。今でもこれらのビルドツールを利用すれば同様のことは可能ですが、もしも GitHub Actions 自体にこういった機能が組み込まれたら相当に便利だと思います。自分の記憶では今回が初出の機能ですが、ぜひ一般向けにも公開されることを期待したいです。
+
+#### OIDCでプライベートネットワークに接続
+Larger runner は GitHub 社の社内ネットワークとは隔離されたところで動いているため、社内ネットワークへ疎通させるために GitHub Actions 内で生成した OIDC トークンを使って社内ネットワークへのゲートウェイ認証しているとのことです。これを実現するための[サンプルリポジトリ](https://github.com/github/actions-oidc-gateway-example)も公開されてます。
+
 
 _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
