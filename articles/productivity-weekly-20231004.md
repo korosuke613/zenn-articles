@@ -37,22 +37,18 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## GitHub Actions: Apple silicon (M1) macOS runners are now available in public beta! - The GitHub Blog
 https://github.blog/changelog/2023-10-02-github-actions-apple-silicon-m1-macos-runners-are-now-available-in-public-beta/
 
-GitHub Actions でやっと Apple Silicon（M1）のランナーが利用可能に。Larger runner なので無料枠無し。今までの Intel 12core の Larger runner よりも若干高いが、同時に Intel 12 core が値下がりしたため結果として従来の Intel 12 core と比べると半額。
-値段の詳細の diff: https://github.com/github/docs/commit/76f7e40122db0ba541ce6729596287ab08b22d0a
+GitHub Actions でやっと Apple Silicon（M1）のランナーが利用可能になりました。ただし Larger runner なので通常の macOS ランナーとは異なり無料枠はありません。[値段](https://docs.github.com/en/billing/managing-billing-for-github-actions/about-billing-for-github-actions#per-minute-rates)を見ると従来の macOS の Larger runner であった Intel 12 コアより割高な値段設定に見えるのですが、実はこのタイミングで Intel 12 コアの値段が下がっているので[^mac_price_diff]新しい M1 は Intel 12 コアの従来の価格設定と比べると半額の$0.16/分になっています。
 
-https://github.blog/2023-10-02-introducing-the-new-apple-silicon-powered-m1-macos-larger-runner-for-github-actions/#how-to-use-the-runner
-ブログの方でも紹介されているのですが、利用するためのラベル名が Intel と M1 で入れ替わっていて、ユーザーから見ると実は BREAKING CHANGES なのでは？
+[^mac_price_diff]: 値段変化の diff: https://github.com/github/docs/commit/76f7e40122db0ba541ce6729596287ab08b22d0a
 
-> "The 12-core macOS larger runner is moving from xlarge to large, and is still available by updating the runs-on: key to macos-latest-large, macos-12-large, or macos-13-large."
+通常の macOS ランナーと比べると割高ではありますが、Apple Silicon のアーキテクチャになったことで Xcode ビルドなどにかかる時間が短縮されれば課金される時間も短くなるため、実際に使ってみてコスト検証してみると良いでしょう。
 
-もともとの intel 12 core の　macOS ランナーですが、macos-latest-xl というラベルで使えたはずなので、ラベル的には多分 BRAKING CHANGES になっていないです。
-（動かしてないので推測ですが...）
+ちなみに細かい注意点として新しい Larger runner が Apple Silicon アーキテクチャであることに由来してコミュニティ製の action が動く保証はなかったり、ネストされた仮想化は不可能といった制限があるようです。
+https://docs.github.com/en/actions/using-github-hosted-runners/about-larger-runners/about-larger-runners#limitations-for-macos-larger-runners
 
-GitHub Actions: Introducing faster GitHub-hosted x64 macOS runners - The GitHub Blog
-https://github.blog/2023-03-01-github-actions-introducing-faster-github-hosted-x64-macos-runners/
+弊チームの [@miyajan](https://zenn.dev/miyajan) が Arm アーキテクチャの docker が使えることを期待して試したのですが、残念ながら使えなかったことを[discussionにて報告](https://github.com/orgs/community/discussions/69211#discussioncomment-7197681)したところ返信の中で仮想化の制約について言及されていました。
 
-GitHub Actions でハイスペックな Larger runners を試す | 豆蔵デベロッパーサイト
-https://developer.mamezou-tech.com/blogs/2023/06/09/github-actions-larger-runners/
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## How GitHub uses GitHub Actions and Actions larger runners to build and test GitHub.com - The GitHub Blog
 https://github.blog/2023-09-26-how-github-uses-github-actions-and-actions-larger-runners-to-build-and-test-github-com/
@@ -61,6 +57,8 @@ GitHub 社自身の CI に Larger Runner を活用するためにどのような
 ほとんど初出の話のはずなので今後一般向けにも開放されるかもしれない？
 
 カスタムイメージだけは https://github.com/github/roadmap/issues/826 がそれっぽい。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## Release 6.0.0: Introducing Renovate Community Edition and Renovate Enterprise Edition · mend/renovate-ce-ee
 https://github.com/mend/renovate-ce-ee/releases/tag/6.0.0
