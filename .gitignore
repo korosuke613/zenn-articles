@@ -4,3 +4,4 @@ node_modules
 *.pdf
 cov_profile.lcov
 cov_profile/
+bun.lockb
