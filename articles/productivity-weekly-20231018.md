@@ -52,21 +52,85 @@ Repository rules を JSON で import/export 可能になり、修正履歴の di
 ## CloudWatch launches out-of-the-box alarm recommendations for AWS services 
 https://aws.amazon.com/jp/about-aws/whats-new/2023/10/cloudwatch-out-of-the-box-alarm-recommendations-aws-services/
 
-各種 AWS のサービスで推奨される CloudWatch のアラートを提供してくれるようになったらしい。
+Amazon CloudWatch において、AWS サービスのメトリクスに対して推奨されるアラームを提示してくれる機能が追加されました。公式ドキュメントは[こらち](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Best-Practice-Alarms.html)です。
 
-日本語記事: 様々な AWS サービスで作成を推奨している CloudWatch アラームを、簡単に作れるようになったようです。 - サーバーワークスエンジニアブログ https://blog.serverworks.co.jp/2023/10/18/131241
+CloudWatch コンソール -> すべてのメトリクスを開くと「アラームに関する推奨事項」というスイッチボタンがあります。これをオンにすると、推奨するアラームが存在するサービスの一覧が表示され、推奨アラームを確認することができます。
+![](/images/productivity-weekly-20231018/cloudwatch_console.png)
+
+アラームに関する推奨事項では、アラームの内容と、しきい値やパラメータの正当性の理由が表示されます。
+
+![](/images/productivity-weekly-20231018/alerm_suggestion.png)
+
+さらに、CloudFormation や AWS CLI, Terraform のリソース定義を提示してくれます。以下は Lambda に対する推奨アラームを Terraform で出力した例です。
+ユーザーはアクションをどうするかだけを考えれば良いようなテンプレートとなっているので非常に助かります。
+
+```hcl
+resource "aws_cloudwatch_metric_alarm" "cloudwatch_alarm" {
+  # Missing fields    : "Threshold"
+  # Intent            : "このアラームは、関数の同時実行数がアカウントのリージョンレベルの同時実行クォータに近づいていないかどうかをプロアクティブに検出し、それに基づいて対応できるようにします。アカウントのリージョンレベルの同時実行クォータに達すると、関数はスロットリングされます。"
+  # Threshold Justification : "リージョンのアカウント用に設定されている同時実行クォータの約 90% になるようにしきい値を設定します。デフォルトでは、あるリージョンにおいて、アカウントの同時実行クォータは、すべての機能で 1,000 です。ただし、アカウントのクォータを確認し、AWS サポートに問い合わせて引き上げを依頼できます。"
+
+  alarm_name          = "AWS/Lambda ConcurrentExecutions FunctionName=sample"
+  alarm_description   = "このアラームは、関数の同時実行数が、アカウントのリージョンレベルの同時実行制限に近づいているかどうかをモニタリングするのに役立ちます。同時実行数の上限に達すると、関数のスロットリングが開始されます。次のアクションを実行してスロットリングを回避できます。1) このリージョンの AWS サポートに同時実行数の引き上げをリクエストする。2) 関数におけるパフォーマンスの問題を特定し、処理速度を上げて、スループットを改善する。3) 関数の各呼び出しによってより多くのメッセージが処理されるように、関数のバッチサイズを大きくする。"
+  actions_enabled     = false
+  ok_actions          = []
+  alarm_actions       = []
+  insufficient_data_actions = []
+  metric_name         = "ConcurrentExecutions"
+  namespace           = "AWS/Lambda"
+  statistic           = "Maximum"
+  period              = 60
+  dimensions = {
+    FunctionName = "sample"
+  }                  
+  evaluation_periods  = 10
+  datapoints_to_alarm = 10
+  threshold           = REPLACE_ME
+  comparison_operator = "GreaterThanThreshold"
+  treat_missing_data  = "missing"
+}
+```
+
+アラームの推奨設定を調べる手間とリソース作成の手間を大幅に削減できる便利アップデートかと思います。
+
+_本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_
 
 
 ## Announcing AWS Lambda’s support for Internet Protocol Version 6 (IPv6) for outbound connections in VPC
 https://aws.amazon.com/jp/about-aws/whats-new/2023/10/aws-lambda-ipv6-outbound-connections-vpc/
 
-Lambda が VPC 内のリソースに対して IPv6 でアクセスできるようになった。
-VPC にアタッチされた Lambda を大量並列起動すると VPC 内の IP アドレス（v4）が枯渇する問題あったけど、あれを回避しやすくなったぞ。
+VPC を利用する AWS Lambda が IPv6 のアウトバウンド通信をサポートしました。
+この機能により、Lambda 関数は VPC 内のリソースに対して IPv6 を使ってアウトバウンド接続が可能になります。
+これは、VPC 内で利用可能な IPv4 アドレスが限られている場合にも、スケールできるようになるという利点があります。
+また、トランスレーションメカニズム（例：NAT）の必要性が減少し、それによりコストも削減できるとされています。
+
+クラスメソッドさんの[こちらの記事](https://dev.classmethod.jp/articles/vpc-lambda-ipv6-outbound/)では動作検証をしているので、興味がある方は参考にしてみてください。
+
+_本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_
 
 ## Amazon EC2 now supports setting AMIs to a disabled state
 https://aws.amazon.com/jp/about-aws/whats-new/2023/10/amazon-ec2-amis-disabled-state/
 
-EC2 の Amazon Machine Images (AMIs) で AMI を disable（無効）設定可能になった。以前パブリックに公開した AMI であっても、disable するとそこから EC2 は起動できなくなる。
+Amazon EC2 の Amazon Machine Images (AMIs) で AMI を disable（無効）設定可能になりました。
+
+AMI を無効にすると以下のような挙動になります。
+- AMI の状態が「disabled」に変更される
+  - 削除されるわけではない
+- disabled にされた AMI は共有できない
+- AMI が公開されていたり以前に共有されていた場合、その AMI はプライベートにされる
+- EC2 コンソール内でインスタンスを起動する際に、disabled にされた AMI は選択できない
+  - インスタンスを起動するウィザードや、起動テンプレートを作成する際には表示されない
+- 起動テンプレートや Auto Scaling Group などの起動サービスは、disabled にされた AMI を参照し続けることができる
+  - しかし、そのような AMI からのインスタンス起動は失敗するため、利用可能な AMI を参照するように更新することを推奨
+- AMI が disabled される前に起動された EC2 インスタンスには影響がなく、停止、起動、再起動が可能
+
+AMI は re-enable にすると、再び利用できるようになります。
+
+脆弱性の見つかった AMI やパブリックに公開していたが、利用を停止したい AMI などに利用できそうですね。
+
+ちなみにこのポストでは AMI を「アーミィ」と発音すると書かれていました。AWS の人でも「アミ」と「エーエムアイ」派が居そうです。
+
+_本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_
 
 ## Docker、ビルドを40倍高速にする次世代のDocker Buildを開発中。DockerCon 23 － Publickey 
 https://www.publickey1.jp/blog/23/docker40docker_builddockercon_23.html
@@ -95,10 +159,22 @@ https://blog.cybozu.io/entry/2023/10/17/134138
 _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 
-## AWS Lambdaの高速なコンテナロードの仕組み | CyberAgent Developers Blog 
+## AWS Lambdaの高速なコンテナロードの仕組み | CyberAgent Developers Blog
 https://developers.cyberagent.co.jp/blog/archives/44067/
 
-Lambda のコンテナの内部実装の解説。自分の Lambda 運用に活かせるわけではないけど面白かった。
+AWS Lambda の内部実装や裏側で行われている最適化の話を解説している記事で、[On-demand Container Loading in AWS Lambda](https://www.usenix.org/conference/atc23/presentation/brooker) という論文の解説をしています。
+
+いかにして高速に無駄なくコンテナロードを行うかという課題に対して、以下の主要技術に沿った解決案の解説が行われています。
+
+- オンデマンドな読み込み、Copy-on-Write (CoW)
+- 収束暗号化
+- イレイジャーコーディング
+
+キャッシュの話というより分散ストレージの実装やアルゴリズムに近い話でした。自分は上記の技術については知らなかったので、解説を読んで勉強になりました。
+
+直接的に Lambda の運用に活かせるわけではないですが、クラウドサービスの裏側でどのようなことが行われているのかを知るのは面白いですね。
+
+_本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_
 
 ## Measuring Git performance with OpenTelemetry - The GitHub Blog 
 https://github.blog/2023-10-16-measuring-git-performance-with-opentelemetry/
