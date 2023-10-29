@@ -9,13 +9,13 @@
   },
   "packageManager": "npm@10.2.1",
   "engines": {
-    "node": "18.x"
+    "node": "20.x"
   },
   "devDependencies": {
     "@proofdict/textlint-rule-proofdict": "3.1.2",
-    "@slidev/cli": "0.43.7",
+    "@slidev/cli": "0.43.12",
     "prh": "5.4.4",
-    "renovate": "37.31.1",
+    "renovate": "37.35.2",
     "textlint": "13.3.3",
     "textlint-filter-rule-comments": "1.2.2",
     "textlint-rule-preset-ja-spacing": "2.3.0",
