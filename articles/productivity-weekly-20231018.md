@@ -52,7 +52,7 @@ Repository rules を JSON で import/export 可能になり、修正履歴の di
 ## CloudWatch launches out-of-the-box alarm recommendations for AWS services 
 https://aws.amazon.com/jp/about-aws/whats-new/2023/10/cloudwatch-out-of-the-box-alarm-recommendations-aws-services/
 
-Amazon CloudWatch において、AWS サービスのメトリクスに対して推奨されるアラームを提示してくれる機能が追加されました。公式ドキュメントは[こらち](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Best-Practice-Alarms.html)です。
+Amazon CloudWatch において、AWS サービスのメトリクスに対して推奨されるアラームを提示してくれる機能が追加されました。公式ドキュメントは[こちら](https://docs.aws.amazon.com/AmazonCloudWatch/latest/monitoring/Best-Practice-Alarms.html)です。
 
 CloudWatch コンソール -> すべてのメトリクスを開くと「アラームに関する推奨事項」というスイッチボタンがあります。これをオンにすると、推奨するアラームが存在するサービスの一覧が表示され、推奨アラームを確認できます。
 ![](/images/productivity-weekly-20231018/cloudwatch_console.png)
