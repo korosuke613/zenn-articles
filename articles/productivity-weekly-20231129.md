@@ -35,9 +35,24 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 
 # news 📺
 
+## Amazon ECR pull through cache now supports additional upstream registries
+https://aws.amazon.com/jp/about-aws/whats-new/2023/11/amazon-ecr-pull-through-cache-additional-upstream-registries/
+
+## Node.js 20.x runtime now available in AWS Lambda | AWS Compute Blog
+https://aws.amazon.com/jp/blogs/compute/node-js-20-x-runtime-now-available-in-aws-lambda/
+
+## Custom Organization Roles are now GA - The GitHub Blog
+https://github.blog/changelog/2023-11-16-custom-organization-roles-are-now-ga/
+
 # know-how 🎓
 
+## Security best practices for authors of GitHub Actions - The GitHub Blog
+https://github.blog/2023-11-16-security-best-practices-for-authors-of-github-actions/
+
 # tool 🔨
+
+## ysk8hori/delta-typescript-graph-action: This GitHub Action uses Mermaid to visualize in a diagram the files that were changed in a Pull Request and their related dependency files.
+https://github.com/ysk8hori/delta-typescript-graph-action
 
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
@@ -51,8 +66,3 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
 
 サイボウズの生産性向上チームでは社内エンジニアの開発生産性を上げるための活動を行なっています。そんな生産性向上チームが気になる方は下のリンクをクリック！
 https://note.com/cybozu_dev/n/n1c1b44bf72f6
-
-<!-- :::message すみません、今週もおまけはお休みです...:::-->
-
-## omake 🃏: 
-今週のおまけです。
