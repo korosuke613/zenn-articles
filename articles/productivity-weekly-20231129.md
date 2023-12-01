@@ -38,6 +38,23 @@ user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivi
 ## Amazon ECR pull through cache now supports additional upstream registries
 https://aws.amazon.com/jp/about-aws/whats-new/2023/11/amazon-ecr-pull-through-cache-additional-upstream-registries/
 
+外部のコンテナレジストリから直接 pull する代わりに ECR から pull を行い、ECR に存在しなかった場合は自動的に外部からの pull を裏で行ってくれるプルスルーキャッシュ機能の対象として可能なレジストリとして、新たに Docker Hub, Azure Container Registry, GitHub Container Registry が加わったようです。
+
+以前から ECR Public、Kubernetes container registry, Quay に対応していたので主要なレジストリはほぼ網羅されたのではないでしょうか。
+
+自分も以前から ECR にこのような機能があるのは知っていたのですが、どのような場合に便利なのか分かっていなかったので改めて調べてみました。
+
+https://dev.classmethod.jp/articles/deploy-ecs-from-docker-official-container-ecr-pull-through-cache/
+https://dev.classmethod.jp/articles/ecr-pull-through-cache-repositories/
+
+上記 2 つの記事より、コンテナを実行する環境をプライベートサブネットに配置している場合はなるべく通信をインターネットに出したくないため、VPC エンドポイントでアクセス可能な ECR からの pull に限定しつつもパブリックなイメージを利用するのに便利であるということが分かりました。
+
+インターネットに通信を出したくない要件がある場合は当然ながら、NAT Gateway 経由でインターネットへの通信を大量に行うとコストがそれなりにかかってしまうため文字通り ECR をキャッシュとして利用することでコストを抑える効果も期待できそうです。
+
+新たに追加された 3 つのコンテナレジストリから pull するイメージをお使いの場合は、ECR プルスルーキャッシュを利用してみてはいかがでしょうか。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+
 ## Node.js 20.x runtime now available in AWS Lambda | AWS Compute Blog
 https://aws.amazon.com/jp/blogs/compute/node-js-20-x-runtime-now-available-in-aws-lambda/
 
