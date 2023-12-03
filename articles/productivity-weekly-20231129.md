@@ -55,8 +55,35 @@ https://dev.classmethod.jp/articles/ecr-pull-through-cache-repositories/
 
 _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
-## Node.js 20.x runtime now available in AWS Lambda | AWS Compute Blog
-https://aws.amazon.com/jp/blogs/compute/node-js-20-x-runtime-now-available-in-aws-lambda/
+## AWS Lambda が Node.js 20 のサポートを追加
+https://aws.amazon.com/jp/about-aws/whats-new/2023/11/aws-lambda-support-node-js-20/
+
+[先日 Node.js 20.x が LTS となりました](https://nodejs.org/en/blog/release/v20.9.0)が、さっそく AWS Lambda で Node.js 20.x ランタイムが使えるようになりました。
+
+ランタイム自体のその他の変更点は以下です。
+
+- Amazon Linux 2023 がベースイメージになった
+- 追加のルート証明書のロードを自動で行わなくなった[^load_ca]
+  - 平木場）よくわかってないけど、コールドスタートが速くなった...ってコト！？
+- オープンソースの AWS Lambda NodeJS Runtime Interface Client (RIC) を利用するようになった
+  - 平木場）Lambda Container で Node.js を使う際に Node.js 20 ランタイムと同じ RIC が使えるようになったってことっぽい
+- Node.js のヒープメモリサイズを `NODE_OPTIONS` 環境変数で設定可能に
+
+その他以前のランタイムからの意向についてや細かい部分がブログのほうに載っているので参照ください。
+
+- [Node.js 20.x runtime now available in AWS Lambda | AWS Compute Blog](https://aws.amazon.com/jp/blogs/compute/node-js-20-x-runtime-now-available-in-aws-lambda/)
+
+なお、Node.js 20 自体の変更点については、次のブログがわかりやすいので、合わせて参照ください。
+
+- [Node.js v20 の主な変更点 - 別にしんどくないブログ](https://shisama.hatenablog.com/entry/2023/04/24/083000)
+
+<!-- textlint-disable ja-technical-writing/ja-no-successive-word -->
+
+まだまだ他のランタイムは使えるので急いで更新する必要はありませんが、早め早めで最新版に追従しておきたいですね。
+
+<!-- textlint-enable ja-technical-writing/ja-no-successive-word -->
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 
 ## Custom Organization Roles are now GA - The GitHub Blog
 https://github.blog/changelog/2023-11-16-custom-organization-roles-are-now-ga/
