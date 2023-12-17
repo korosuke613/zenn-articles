@@ -44,6 +44,25 @@ https://dev.classmethod.jp/articles/aggregate-multiple-function-logs-aws-lambda/
 ## GitHub Copilot – November 30th Update - The GitHub Blog
 https://github.blog/changelog/2023-11-30-github-copilot-november-30th-update/
 
+GitHub Copilot の 11 月のアップデートまとめです。
+大まかに箇条書きで紹介します。
+
+- Copilot Chat の使うモデルが GPT-4 となった
+- VSCode でのコード参照がパブリックベータ化
+  - コード参照は、Copilot の提案に近しいコードを OSS から検索して提示する機能。近しいコードのライセンスやリポジトリを参照できる
+- エージェント機能を導入
+  - `@workspace` でワークスペース内に詳しいエージェントを利用。`@vscode` で VSCode 自体に詳しいエージェントを利用
+- VSCode でのコミット時にコミットメッセージを補完する機能を追加
+- JetBrains IDE において Copilot の提案を部分的に受け入れ可能に
+  - macOS の場合、`Command` + `→` で部分的に提案を受け入れられる。VSCode では以前から対応されていた機能
+- その他様々な改善
+
+GitHub Copilot にはやはりだいぶ力を入れているようで、どんどん便利な機能が入っていきますね。個人的には IntelliJ IDEA をよく使っているので、JetBrains IDE での Copilot の提案が部分的に受け入れられるようになったのが特に嬉しいです。
+
+GitHub Copilot 使いの方は頭に入れておくと良いですね。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
 ## Amazon CloudWatch Logsの異常検出をCloudFormationで設定してみた #AWSreInvent | DevelopersIO
 https://dev.classmethod.jp/articles/create-cloudwatch-logs-anomaly-detector-with-cloudformation/
 
