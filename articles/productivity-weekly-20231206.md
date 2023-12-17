@@ -70,6 +70,22 @@ https://zenn.dev/mizutani/articles/start-de-ubie
 ## Terraform職人のためのOpenTofu入門 #Terraform - Qiita
 https://qiita.com/minamijoyo/items/16d1b5b15a60d17e350a
 
+[tfmigrate](https://github.com/minamijoyo/tfmigrate) や [tfupdate](https://github.com/minamijoyo/tfupdate) といった Terraform の補助ツールを開発していることで有名な [@minamijoyo](https://github.com/minamijoyo) さんによる、OpenTofu[^opentofu]入門記事です。（タイトルにもあるとおり Terraform をすでに使っている人向けです。）
+
+Terraform と OpenTofu を取り巻く事情や歴史的背景や OpenTofu と Terraform の技術面・文化面での違い、OpenTofu の今後の展望(CNCF への参加についても)などが詳細に書かれており、大ボリュームな内容となっています。
+
+Terraform との違いについては、レジストリ、プロバイダ、tfstate や test フレームワークなど、大きな機能ごとに比較しており、OpenTofu を試したことがない人でも Terraform との違いをある程度把握できます。
+
+Terraform の Go パッケージがほとんど `internal/` 以下に移動していたり、コミュニティからは設計レベルの変更を最近受け付けてなかったりといった、Terraform の OSS としての事情は正直なところ全然知らなかったため、大変勉強になりました。
+OpenTofu ではコア機能をライブラリ化したり、RFC により設計変更を提案できるようにする方針であったりと、コミュニティでソフトウェアを育てていく思想であるようなので、個人的にはとても良いなと思っています。
+最初登場した時は混沌となるからあまり歓迎していなかったのですが、この記事を読んで考えが大きく変わりました。今後が楽しみです。
+
+OpenTofu に興味が湧いてきた方はぜひこの記事をお読みください。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
+[^opentofu]: OpenTofu 自体は[これまでもちょいちょい紹介してきました](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20230913?redirected=1#the-opentf-fork-is-now-available!)ね。
+
 ## Amazon Linux 2023を触ってみて質問がありそうなことをまとめてみました。 | ソフトウェア開発のギークフィード
 https://www.geekfeed.co.jp/geekblog/amazonlinux2023-al2023/
 
