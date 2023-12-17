@@ -79,8 +79,34 @@ https://ohbarye.hatenablog.jp/entry/2021/05/01/desktop-notification-on-ci-finish
 ## そのテスト、最後まで実行されていますか？　jestとnpm-run-allの恐るべき罠
 https://zenn.dev/babel/articles/jest-npm-run-all-for-babel
 
+最初は CI が不安定な原因の調査したところ、Jest がメモリ不足で完走できていなかったことが原因だと判明したので対処した話。で終わるかと思いきや、実は隠れていた npm-run-all の問題によって今まで実はテストが最後まで走っていなかったことが判明したという二重に恐ろしい話でした。
+
+`npm-run-all` は自分も Node.js のプロジェクトで利用していたのですが、新しいバージョンがもう長いことリリースされていなかったことは知りませんでした。この機会に他の方法を検討しようと思います。
+
+それと記事中では前半の Jest のメモリ不足の内容で軽く紹介されていただけですが、`catchpoint/workflow-telemetry-action` で GitHub Actions のジョブのメトリクスを簡単に見られるのは便利そうだと思いました。CI のマシンは以外と低スペックだったりするので、開発マシンと比較して動作が謎に不安定な場合は CPU やメモリが不足していないかを確認することを覚えておきたいです。
+
+https://github.com/catchpoint/workflow-telemetry-action
+
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+
 ## GitHub Enterprise Server 3.11 is now generally available - The GitHub Blog
 https://github.blog/2023-12-05-github-enterprise-server-3-11-is-now-generally-available/
+
+GitHub Enterprise Server 3.11 が GA になりました 🎉
+
+追加された機能はたくさんありますが、個人的に便利そうな機能をいくつか紹介します。
+
+- [Repository rules (Ruleset とも呼ばれることがある)](https://docs.github.com/en/enterprise-server@3.11/repositories/configuring-branches-and-merges-in-your-repository/managing-rulesets/about-rulesets)
+- [リポジトリ横断のセキュリティアラートのダッシュボード](https://docs.github.com/en/enterprise-server@3.11/code-security/security-overview/assessing-code-security-risk)
+- [fine-grained token や GitHub Apps が API を呼び出す際に不足している権限の情報をサーバーが返すようになった](https://docs.github.com/en/enterprise-server@3.11/rest/using-the-rest-api/troubleshooting-the-rest-api?apiVersion=2022-11-28#resource-not-accessible)
+
+リリースノート全体はこちら。
+
+https://docs.github.com/en/enterprise-server@3.11/admin/release-notes
+
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 # tool 🔨
 
