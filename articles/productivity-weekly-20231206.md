@@ -66,6 +66,16 @@ _本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 ## Amazon CloudWatch Logsの異常検出をCloudFormationで設定してみた #AWSreInvent | DevelopersIO
 https://dev.classmethod.jp/articles/create-cloudwatch-logs-anomaly-detector-with-cloudformation/
 
+Amazon CloudWatch Logs に異常検出機能が追加されました。この記事は、クラメソさんによる異常検出機能の紹介と試してみた内容になります。
+異常検出機能（[log anomaly detection](https://docs.aws.amazon.com/AmazonCloudWatch/latest/logs/LogsAnomalyDetection.html)）はロググループに新たなパターンのログイベントがあると異常だと検出する機能のようです。
+
+記事では、実験用 Lambda の作成から始まり、異常検出機能の CloudFormation による設定、トレーニング完了後に Lambda で ERROR ログを発生させて異常検出が発生するか確認するという流れになっています。
+実際の画面を貼ってくれているためどんなものかイメージが湧きやすいです。
+
+異常検出機能自体は無料とのことなので、CloudWatch Logs を使っている方はぜひ試してみてください。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
 ## Trigger pipelines from anywhere: inbound webhooks now in preview - Announcements - CircleCI Discuss
 https://discuss.circleci.com/t/trigger-pipelines-from-anywhere-inbound-webhooks-now-in-preview/49864
 
