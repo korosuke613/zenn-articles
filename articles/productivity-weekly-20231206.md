@@ -179,8 +179,14 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 ## GitHub-hostedライクにAmazon ECSとAWS Lambdaでself-hosted runnerを管理するツールを作った | なぜにぶろぐ
 https://blog.whywrite.it/2023/12/04/release-myshoes-serverless-aws/
 
-whywaita/myshoes-serverless-aws のコードを読んでみる
+以前から GitHub Actions のセルフホストランナーをオートスケールさせるための [whywaita/myshoes](https://github.com/whywaita/myshoes) を作られている whywaita さんがそのノウハウを活かして ECS で手軽にオートスケール可能なセルフホストランナーの基盤を構築するための [whywaita/myshoes-serverless-aws](https://github.com/whywaita/myshoes-serverless-aws) を公開されました。
+
+
+生産性向上チームの [@uta8a](https://zenn.dev/uta8a) が早速詳しい解説記事も公開してくれたので、詳しい仕組みが気になる方は whywaita さんの記事とあわせて uta8a さんの記事も参考になると思います。
+
 https://blog.uta8a.net/post/2023-12-06-reading-myshoes-serverless-aws
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## 特に個人開発者向け！CodeRabbit(自動レビューツール)を使えばコードの健康まで得られることに気づいた話 
 https://zenn.dev/binnmti/articles/7e3690ebe80951
