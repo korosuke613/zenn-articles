@@ -85,6 +85,27 @@ https://aws.amazon.com/jp/blogs/aws/iam-access-analyzer-updates-find-unused-acce
 ## Announcing Deno Cron 
 https://deno.com/blog/cron
 
+Deno に cron 機能が追加され、Deno がホスティングしている Deno Deploy の環境で簡単にスケジュール実行ができるようになりました。
+
+```ts
+// ブログのサンプルコードより
+Deno.cron("Sample cron job", "*/10 * * * *", () => {
+  console.log("This will run every 10 minutes");
+});
+```
+
+デプロイする.ts にこのようなコードを書くと、 `Deno.cron()` のブロック内のコードをスケジュールで実行してくれるようになります。非常にシンプルですね。
+
+Deno は既に Deno KV や Deno Queues などちょっとした DB 的な機能も既に提供しており[^deno_kv_beta]、Deno Deploy の環境では自分で DB を用意しなくてもこれらの機能を使うことで永続化やキューイングなどが可能です。そこに今回の cron が追加されたことで、ちょっとした自動化のスクリプトなどを動かすのに便利な環境になりそうだなと思いました。
+
+[^deno_kv_beta]: 2023/12/18 時点ではまだ beta ではあります。
+
+自分も早速以前に作成した bluesky へ自動ポストする bot を Deno Deploy + Deno KV で動かそうと試しています。
+
+https://zenn.dev/kesin11/articles/20230623_hatenab_to_bsky
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+
 # know-how 🎓
 
 ## CIを高速化する技術⚡️ - 10X Product Blog
