@@ -46,8 +46,28 @@ https://coliss.com/articles/build-websites/operation/css/css-4-features-for-i18n
 ## RustでTestcontainers入門: テストコードから依存サービスを起動してテスト環境を作成する - kymmt
 https://blog.kymmt.com/entry/testcontainers-rs
 
+[Testcontainers](https://testcontainers.com/) というテストコードから依存するサービスのコンテナを立ち上げるのに便利なライブラリを Rust で使う方法の紹介記事です。
+
+Rust で MySQL を利用するインテーグレーションテストを例に、Testcontainers を利用して MySQL のコンテナの立ち上げも Rust のテストコード内から行い、テスト終了時にコンテナも自動的に破棄される挙動を紹介されています。
+
+自分は今まで Testcontainers 自体を知らなかったのですが、調べてみたら Rust 以外の[メジャーな言語にも対応](https://testcontainers.com/getting-started/#supported-languages-and-prerequisites)していますし、MySQL 以外にも[有名なサービスのコンテナはサポート](https://testcontainers.com/modules/)されていたり任意のコンテナを立ち上げることも可能なので結構幅広く使えそうだなという印象でした。
+
+次号の Productivity Weekly を少し先取りしてしまいますが、Testcontainers 開発元の AtomicJar がつい先日 Docker 社に買収されたというニュースがありましたので Testcontainers は今後さらに発展するかもしれませんね。
+
+https://www.docker.com/blog/docker-whale-comes-atomicjar-maker-of-testcontainers/
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+
 ## cache を最適化して RuboCop の CI 実行時間を劇的に改善した話 - JMDC TECH BLOG
 https://techblog.jmdc.co.jp/entry/20231211
+
+GitHub Actions 上で RuboCop を実行する際に cache を活用して実行時間を短縮する取り組みですが、cache が正しく使えなかった原因を 1 つ 1 つ調査して修正した過程を紹介されています。
+
+最近、Productivity Weekly で CI 上での Lint やテストの実行時間を cache を活用して短縮された記事を紹介する機会が多かったのですが、逆に単にオプションを有効にするだけでは上手く動作しなかったケースの記事はあまり見かけないので面白かったです。
+
+GitHub Actions での cache とブランチの仕様による制限の話から始まり、RuboCop のソースコードまで調べて cache が有効ではないと判定されてしまう理由を調査されていく過程が面白かったです。RuboCop をお使いで cache を利用しているはずなのに実行時間があまり改善できていないという場合は、原因を調査するのに参考になると思います。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## DevFest Tokyo 2023: Google Cloudでチームで安全にデプロイをする - Speaker Deck
 https://speakerdeck.com/sakajunquality/devfest-tokyo-2023-introduction-to-cloud-deploy
