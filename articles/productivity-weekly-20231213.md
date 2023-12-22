@@ -72,6 +72,14 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 ## DevFest Tokyo 2023: Google Cloudでチームで安全にデプロイをする - Speaker Deck
 https://speakerdeck.com/sakajunquality/devfest-tokyo-2023-introduction-to-cloud-deploy
 
+Google Cloud で GKE や Cloud Run への CD を実現する Cloud Deploy の色々な機能や使い方を紹介されている発表資料です。
+
+Cloud Deploy を利用して stg -> prod へのデプロイの流れを作成したり、承認ステップを追加するといったデプロイパイプラインの機能や、トラフィックを段階的に新しい環境に流すカナリアデプロイ機能など Cloud Deploy の様々な機能についてスライドで分かりやすく紹介されています。
+
+Cloud Deploy は登場当初は GKE しか対応していなかったので利用する機会がなくて個人的にはあまり注目していなかったのですが、最近では Cloud Run でも使えるようになったので利用する機会が増えてくるかもしれない感じています。CI ではなくてデプロイなどの CD 方面の機能も GitHub Actions などで独自に作り込むことは可能ですが、ある程度複雑なデプロイフローを実現する必要がある場合は Cloud Deploy のような CD に特化したツールを使うのも良いかもしれませんね。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+
 ## AWS の組織移行をしました - freee Developers Hub
 https://developers.freee.co.jp/entry/aws-multi-account-mng
 
