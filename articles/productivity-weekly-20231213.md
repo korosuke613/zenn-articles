@@ -41,6 +41,31 @@ https://github.blog/changelog/2023-12-06-new-organization-repositories-list-feat
 ## CSSで句読点括弧のカーニングができるようになるぞ！ 日本語が読みやすくなる最近サポートされた・近日サポートされるCSSの機能のまとめ | コリス
 https://coliss.com/articles/build-websites/operation/css/css-4-features-for-i18n.html
 
+CSS の話なので、生産性向上とかけ離れた話に見えるかもしれません。本記事を取り上げた理由は後述します。
+
+生産性向上チームとして気になったのは「文字間のスペーシングに関するプロパティの追加」です。
+特に日本語の文章はひらがな、カタカナ、漢字、英字、数字が混在するのが常で、英字、数字が混在する場合にスペースを入れた方が読みやすいというのがあります。
+Google Chrome は今後、**デフォルトで** 英字、数字の前後にスペースを挿入することを計画しているようです。
+
+※この挙動がデフォルトなのは、CSSWG によって定められているようで、Google Chrome の一存ではないことを添えておきます。
+https://drafts.csswg.org/css-text-4/#text-autospace-property
+
+2023 年 12 月現在はフラグを有効化しなければスペースは入りません。次のフラグを有効にするとスペースが入るようになります。
+`chrome://flags/#enable-experimental-web-platform-features`
+
+![](/images/productivity-weekly-20231213/compare_text_autospace.png)
+*Wikipedia の Google のページを開いた図*
+
+左がフラグを有効にしたウィンドウ、右がフラグを無効にしたウィンドウです。左の文章ではひらがな・カタカナ・漢字と英単語・数値の間にスペースが空いていることがわかります。
+
+実は生産性向上チームメンバーの多くには日本語中の英単語・数値の左右に半角スペースを入れる習慣があります。
+この Google Chrome の変更によって半角スペースを入れなくても良くなるかもしれない、ということで今後も半角スペースを入れ続けるかが問われています。
+
+とはいえ、現状 Google Chrome だけで Firefox や Safari(WebKit) には来ていないですし、サービス提供者側次第では空白を入れない選択をとるかもしれないので、ますます空白を入れる入れないの溝が深まるだけかもしれません...
+ちなみに私は半角スペースを入れる派です。
+
+_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
+
 # know-how 🎓
 
 ## RustでTestcontainers入門: テストコードから依存サービスを起動してテスト環境を作成する - kymmt
@@ -54,6 +79,23 @@ https://speakerdeck.com/sakajunquality/devfest-tokyo-2023-introduction-to-cloud-
 
 ## AWS の組織移行をしました - freee Developers Hub
 https://developers.freee.co.jp/entry/aws-multi-account-mng
+
+freee さんが既存の AWS Organizations 下のアカウントを新しい Organizations に全て移行したとのことで、意思決定の過程や移行でやることが書かれています。
+
+AWS でのクラウド基盤構築におけるケイパビリティやその依存関係については私はよく理解していなかったので、勉強になりました。
+私もきちんと読み込んで、基盤整備をやっていきたいと強く思いました。
+https://docs.aws.amazon.com/whitepapers/latest/establishing-your-cloud-foundation-on-aws/working-with-the-capabilities.html
+
+また生産性向上チームでも IaC は主に Terraform を使っていますが、Access Control Tower の Terraform 管理について公式でドキュメントがあるのは知りませんでした...！
+https://docs.aws.amazon.com/controltower/latest/userguide/aft-getting-started.html
+
+移行がブロックされる原因として「管理アカウント上に多くのワークロードがある」はわかるなぁという感じです。
+Organizations を閉じて、新しい Organizations のメンバーに入れるのが現実的なのも納得です。
+
+生産性向上チームとして、今後の Organizations のあり方を考えているところ、ちょうどこの記事を見つけることができました。
+参考にさせていていだきます🙏
+
+_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
 
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
