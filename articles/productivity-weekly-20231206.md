@@ -6,6 +6,7 @@ topics: ["ProductivityWeekly", "生産性向上"]
 published: true
 publication_name: "cybozu_ept"
 user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/productivity-weekly-20231206"}
+published_at: "2023-12-27 10:00"
 ---
 
 :::message
