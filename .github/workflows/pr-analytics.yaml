@@ -20,7 +20,7 @@ jobs:
           echo "issue_title=Pull requests report($(date -d "last month" +%Y/%m))" >> "$GITHUB_OUTPUT"
 
       - name: "Run script for analytics"
-        uses: AlexSim93/pull-request-analytics-action@v1.12.5
+        uses: AlexSim93/pull-request-analytics-action@9049819859296dd312e33f11fbba6db8bff583cf # v1.12.5
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_OWNERS_REPOS: ${{ github.repository }}
