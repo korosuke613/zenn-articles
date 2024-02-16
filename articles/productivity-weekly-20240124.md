@@ -1,12 +1,21 @@
 ---
-title: "公開repoでのActionsスペック増強、tfのテストにモックが追加など｜Productivity Weekly(2024-01-24号)"
-emoji: "🎾"
-type: "idea"
-topics: ["ProductivityWeekly", "生産性向上"]
+title: 公開repoでのActionsスペック増強、tfのテストにモックが追加など｜Productivity Weekly(2024-01-24号)
+emoji: 🎾
+type: idea
+topics:
+  - ProductivityWeekly
+  - 生産性向上
 published: true
-publication_name: "cybozu_ept"
-user_defined: {"publish_link": "https://zenn.dev/cybozu_ept/articles/productivity-weekly-20240124", "note": "_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_\n_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_\n_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_\n_本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_\n_本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_\n"}
-published_at: "2024-02-12 10:00"
+publication_name: cybozu_ept
+user_defined:
+  publish_link: https://zenn.dev/cybozu_ept/articles/productivity-weekly-20240124
+  note: |
+    _本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+    _本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
+    _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+    _本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_
+    _本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
+published_at: 2024-02-12 10:00
 ---
 
 こんにちは。サイボウズ株式会社 [生産性向上チーム](https://note.com/cybozu_dev/n/n1c1b44bf72f6)の平木場です。
