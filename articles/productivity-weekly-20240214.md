@@ -57,6 +57,28 @@ https://go.dev/blog/go1.22
 ## Dockerの設定を大きく省力化する「Docker Init」コマンドが正式リリース。DockerfileやCompose設定ファイルなど自動生成 － Publickey
 https://www.publickey1.jp/blog/24/dockerdocker_initdockerfilecompose.html
 
+Docker Desktop 4.18 から、`docker init` がベータで入っていましたが、それが Docker Desktop 4.27 で GA となりました。
+`docker init` は実行して訊かれる質問に答えると Dockerfile や compose.yaml などを自動で生成してくれる Docker のサブコマンドです。
+
+ちなみに私は OrbStack 1.4.3 を使っており、`docker init` は使えません...
+今回は私物のマシンで `docker init` を試してみました。
+
+Docker のサブコマンドはプラグイン形式になっているらしく、init のバージョンは次のものが入っていました。
+
+```
+$ docker init --version
+Version:    v1.0.0
+Git commit: ######
+```
+
+使いたい言語、そのバージョン、使用するパッケージマネージャー、使用するポートなどを訊かれ、答え終わると .dockerignore, Dockerfile, compose.yaml, README.Docker.md を生成してくれました。
+
+なお、対応している言語には限りがあり、もしリストに無い場合は「Don't see something you need? Let us know!」を選択すると Google Form にリクエストを送信するようお願いが表示されます。
+
+サクッと Docker まわりのテンプレートを引っ張ってくることができるので、プロジェクトの初動で少し楽になりますね。
+
+_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
+
 # know-how 🎓
 
 ## GitHubのMerge Queueとは何か？それと、認識しておきたいこと - Mitsuyuki.Shiiba
@@ -64,6 +86,35 @@ https://bufferings.hatenablog.com/entry/2024/02/10/173552
 
 ## Testing HashiCorp Terraform
 https://www.hashicorp.com/blog/testing-hashicorp-terraform
+
+Terraform plan や validate は問題無く実行できたのに、terraform apply で失敗したことはありませんか？私は何度もあります...
+
+この記事では、テストピラミッドを示しながら、ユニットテストから順に Terraform でのテストの書き方を教えてくれています。
+次のように例を示しながら、説明がされています。
+
+- ユニットテスト
+  - 例えば local を使った変数で関数を使って処理したものを渡すものがあった際に、期待したものになっているかをテストする
+  - run ブロックと assert を使ってテストできる
+  - `command = plan` で plan 時だけに走らせる
+- コントラクトテスト
+  - 例えば resource で期待していない変数が来ないかをテストする
+  - variable ブロックと validation を使ってテストできる
+  - plan で実行される
+- インテグレーションテスト
+  - 例えば apply 時にローカルにファイルが生成されるとして、それがきちんと存在するかテストする
+  - run ブロックと assert を使ってテストできる
+  - apply 時に実行される
+- エンドツーエンドテスト
+  - 例えば apply 後にリソースが正常に動作していることを確かめる
+  - check ブロックを使ってテストできる
+  - apply 時に実行される
+
+またユニットテストとコントラクトテストは plan 時に実行されるので、こちらを重点的に書いておくことで apply まで行く前にテストで落とすことができ、時間の節約にもなる旨が書かれています。
+
+私は check ブロックの存在をよく理解していなかったので、この記事でその有用性をよく知りました。
+また Terraform のテストでテストピラミッドを意識するということもなかったので、今後はこの記事を参考にテストを書いてみようかと思います。
+
+_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
 
 ## デプロイ頻度やリードタイムの正確な計測にこだわらなくていい（前提はあるが） - mtx2s’s blog
 https://mtx2s.hatenablog.com/entry/2024/02/12/210309
