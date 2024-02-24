@@ -46,11 +46,13 @@ user_defined:
 https://github.blog/changelog/2024-02-13-deprecation-notice-v1-and-v2-of-the-artifact-actions/
 
 GitHub Actions の `actions/upload-artifact` および `actions/download-artifact` の v1 と v2 が 2024/06/30 に Deprecate となることが発表されました。
-v4 では[パフォーマンスが大幅に向上](https://github.blog/changelog/2023-12-14-github-actions-artifacts-v4-is-now-generally-available/)しているので、これを機にアップグレードを検討してみてはいかがでしょうか。
+v4 では[パフォーマンスが大幅に向上](https://github.blog/changelog/2023-12-14-github-actions-artifacts-v4-is-now-generally-available/)しているので、これを機にアップグレードを検討してみてはいかがでしょうか[^ref]。
 
 なお、GitHub Enterprise Server では該当せず、対応は不要だそうです。
 
 _本項の執筆者: [@r4mimu](https://zenn.dev/r4mimu)_
+
+[^ref]: 平木場注）なお、upload-artifact@v4 および download-artifact@v4 については、以前の Productivity Weekly 内で @Kesin11 さんが紹介してくれています。そちらもご参照ください -> [actions/artifacts@v4アツい、CIの話題多め、おまけあり｜Productivity Weekly(2023-12-20号)](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20231220#github-actions---artifacts-v4-is-now-generally-available---the-github-blog)
 
 ## Copilot in GitHub Support is now available! - The GitHub Blog
 https://github.blog/2024-02-09-copilot-in-github-support-is-now-available/
