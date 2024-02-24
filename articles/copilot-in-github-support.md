@@ -6,6 +6,7 @@ topics:
   - github
   - githubcopilot
 published: true
+published_at: 2024-02-26 10:00
 ---
 
 2024 年 2 月 9 日、GitHub Support において、GitHub 公式ドキュメントを学習した GitHub Copilot とやりとりできるようになりました[^beta]。
