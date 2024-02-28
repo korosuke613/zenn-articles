@@ -77,6 +77,28 @@ https://dev.classmethod.jp/articles/aws-ecs-task-definition-supports-track-lates
 ## Renovateを使ってフロントエンドのバージョンアップを改善した話 | PR TIMES 開発者ブログ
 https://developers.prtimes.jp/2024/02/16/renovate-frontend/
 
+Renovate でパッケージの自動アップデートを実現された事例で、Renovate の設定や運用方法をかなり詳細に紹介されています。
+
+Renovate の設定ファイル（renovate.json）で設定できるオプションは豊富[^renovate-config]でかなり細かい挙動まで変更できるのですが、もはやどういうオプションが存在するのかを把握するのも難しいため、実践されている方の設定ファイルを見るだけでもきっと発見があると思います。それぞれのオプションについてコメントも書かれていて分かりやすいです。
+
+[^renovate-config]: 利用可能な設定の一覧ページはかなりすごいことになっています。[Configuration Options | Renovate Docs](https://docs.renovatebot.com/configuration-options/)
+
+個人的には記事中でも紹介されているこちらの偶数バージョンのみをアップデートするという `allowedVersions` の例が目からウロコでした。Node.js のようにバージョンの奇数偶数で安定版と開発版を分けているプロジェクトだと Renovate が採用したくないバージョンも自動で pull-request を作ってしまうので毎回手動でクローズする手間が面倒なこともあったのですが、この設定を参考にすればそのような場合も柔軟に対応できそうです。
+
+```json
+{
+    {
+      "matchPackageNames": ["node"],
+      "matchManagers": ["dockerfile"],
+      // Node.jsは偶数バージョンのみアップデートする
+      "allowedVersions": "/^[0-9]*[02468]([.-].*)?$/"
+    },
+}
+```
+
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
+
 ## フロントエンドのGitHub Actions実行時間を削減するために取り組んだこと | PR TIMES 開発者ブログ
 https://developers.prtimes.jp/2024/02/16/github-actions-frontend/
 
