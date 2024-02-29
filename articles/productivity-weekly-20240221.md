@@ -36,7 +36,7 @@ user_defined:
 今週の共同著者は次の方です。
 - [@korosuke613](https://zenn.dev/korosuke613)
 <!-- - [@defaultcf](https://zenn.dev/defaultcf) -->
-<!-- - [@Kesin11](https://zenn.dev/kesin11) -->
+- [@Kesin11](https://zenn.dev/kesin11)
 <!-- - [@r4mimu](https://zenn.dev/r4mimu) -->
 <!-- - [@uta8a](https://zenn.dev/uta8a) -->
 
@@ -49,6 +49,19 @@ https://aws.amazon.com/jp/blogs/developer/announcing-end-of-support-for-aws-sdk-
 
 ## Scaling Docker Compose Up | Docker
 https://www.docker.com/blog/scaling-docker-compose-up/
+[日本語版記事](https://www.docker.com/ja-jp/blog/scaling-docker-compose-up/)
+
+Docker Compose v2.22 から利用可能になった `docker compose watch` の紹介とバックエンド、フロントエンド開発における具体例が Docker の公式ブログから紹介されています。
+
+compose.yml に `watch` を追加することで、ファイルの変更を検知して自動でコンテナの再ビルド（rebuild）やコンテナへのファイル同期（sync）が可能になりました。記事中ではフロントエンドは package.json が更新されたときには `rebuild` で `RUN npm install` をやり直し、 `src/` 次のファイルが更新されたときは `sync` でファイルの同期だけを行っていました。
+
+このように `rebuild` と `sync` を使い分ける理由は、パッケージの再インストールが必要になった場合はコンテナ内で行うことが望ましいので `rebuild` でパッケージの再インストールを含めコンテナを作り直し、`src/` ファイルの更新であれば `sync` でコンテナ内に同期だけを行うことで、フロントエンド開発において主流となっている Hot Module Reload（HMR）による開発体験を損なわないようにするためだそうです。
+
+従来では開発環境に Docker Compose を利用する際にはローカルでのファイル修正をコンテナ側に反映させるためにバインドマウントを利用することが一般的でしたが、watch コマンドはマウントではなく変更があったファイルをコンテナ内にコピーする手法のようです。[Docker Composeのドキュメント](https://docs.docker.com/compose/file-watch/)にはこのあたりの違いの説明も書かれていたので、気になる方はそちらも参照してみてください。
+
+ちなみに、[Docker Compose v2.22.0](https://github.com/docker/compose/releases/tag/v2.22.0)は 2023/09/22 リリースと比較的新しいため、コマンドが使えなかった場合は手元で `docker compose version` を実行してバージョンを確認してみましょう。
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## Repository Custom Properties GA and Ruleset Improvements - The GitHub Blog
 https://github.blog/changelog/2024-02-14-repository-custom-properties-ga-and-ruleset-improvements/
@@ -63,6 +76,28 @@ https://dev.classmethod.jp/articles/aws-ecs-task-definition-supports-track-lates
 
 ## Renovateを使ってフロントエンドのバージョンアップを改善した話 | PR TIMES 開発者ブログ
 https://developers.prtimes.jp/2024/02/16/renovate-frontend/
+
+Renovate でパッケージの自動アップデートを実現された事例で、Renovate の設定や運用方法をかなり詳細に紹介されています。
+
+Renovate の設定ファイル（renovate.json）で設定できるオプションは豊富[^renovate-config]でかなり細かい挙動まで変更できるのですが、もはやどういうオプションが存在するのかを把握するのも難しいため、実践されている方の設定ファイルを見るだけでもきっと発見があると思います。それぞれのオプションについてコメントも書かれていて分かりやすいです。
+
+[^renovate-config]: 利用可能な設定の一覧ページはかなりすごいことになっています。[Configuration Options | Renovate Docs](https://docs.renovatebot.com/configuration-options/)
+
+個人的には記事中でも紹介されているこちらの偶数バージョンのみをアップデートするという `allowedVersions` の例が目からウロコでした。Node.js のようにバージョンの奇数偶数で安定版と開発版を分けているプロジェクトだと Renovate が採用したくないバージョンも自動で pull-request を作ってしまうので毎回手動でクローズする手間が面倒なこともあったのですが、この設定を参考にすればそのような場合も柔軟に対応できそうです。
+
+```json
+{
+    {
+      "matchPackageNames": ["node"],
+      "matchManagers": ["dockerfile"],
+      // Node.jsは偶数バージョンのみアップデートする
+      "allowedVersions": "/^[0-9]*[02468]([.-].*)?$/"
+    },
+}
+```
+
+
+_本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 
 ## フロントエンドのGitHub Actions実行時間を削減するために取り組んだこと | PR TIMES 開発者ブログ
 https://developers.prtimes.jp/2024/02/16/github-actions-frontend/
