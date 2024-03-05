@@ -35,7 +35,7 @@ user_defined:
 
 今週の共同著者は次の方です。
 - [@korosuke613](https://zenn.dev/korosuke613)
-<!-- - [@defaultcf](https://zenn.dev/defaultcf) -->
+- [@defaultcf](https://zenn.dev/defaultcf)
 - [@Kesin11](https://zenn.dev/kesin11)
 <!-- - [@r4mimu](https://zenn.dev/r4mimu) -->
 <!-- - [@uta8a](https://zenn.dev/uta8a) -->
@@ -78,8 +78,27 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 ## AWS Control Tower introduces APIs to register Organizational Units
 https://aws.amazon.com/jp/about-aws/whats-new/2024/02/aws-control-tower-apis-register-organizational-units/
 
+AWS の Control Tower で OU まわりの API のエンドポイントが増えました。
+今まで AWS コンソールからしかできなかった OU のベースライン有効化などが API 経由で可能となり、IaC で管理できる範囲が増えたと言えるでしょう。
+
+Terraform の AWS プロバイダーである terraform-provider-aws v5.39.0 では、執筆時点でこの API に対応するリソースはまだ無いようです。
+今後対応リソースが増えると管理がより楽になるかもしれません。
+
+_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
+
 ## aws_ecs_task_definition に CI/CD との競合を防ぐ track_latest 引数がリリースされました | DevelopersIO
 https://dev.classmethod.jp/articles/aws-ecs-task-definition-supports-track-latest-args/
+
+Terraform で ECS を管理していて、別途 CI/CD などでタスク定義のリビジョンを追加、過去のリビジョンを削除するとします。その後、`terraform apply` を叩くと、リビジョン追加ではなく新しくタスク定義自体を作り直そうとする挙動がありました。
+Terraform の state が古いものを参照していて、その実態が削除されると Terraform としては新たに作るしかなくなるからですね。
+
+今回追加された `track_latest` を有効化することで、Terraform は常に最新のタスク定義を見るようになります。
+これによりタスク定義を作り直すことなく、リビジョンを追加するだけになります。
+
+...個人的にはタスク定義は常に Terraform で更新するようにしたいかな、と思っています。今回の `track_latest` が入ったところで、結局 Terraform 側の定義も更新する必要があるからです。
+Renovate を上手く設定すると Terraform の定義中のイメージを更新できるので、CI/CD で `terraform apply` まで実行すればよりスムーズに運用できるんじゃないか、と思います。
+
+_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
 
 # know-how 🎓
 
