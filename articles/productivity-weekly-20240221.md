@@ -47,6 +47,18 @@ user_defined:
 ## Announcing end-of-support for AWS SDK for Go (v1) effective July 31, 2025 | AWS Developer Tools Blog
 https://aws.amazon.com/jp/blogs/developer/announcing-end-of-support-for-aws-sdk-for-go-v1-on-july-31-2025/
 
+AWS SDK for Go の v1 が 2024 年 7 月 31 日にからメンテナンスモードに入り、一年後の 2025 年 7 月 31 日にサポートが終了することが発表されました。
+
+メンテナンスモードでは、重大なバグ修正とセキュリティ対応のみが行われるようになり、サポート終了後は全くアップデートされなくなります。
+
+移行先としては、SDK v2 があります。移行ガイドもちゃんと用意されています。
+
+- [Migrating to the AWS SDK for Go V2 | AWS SDK for Go V2](https://aws.github.io/aws-sdk-go-v2/docs/migrating/)
+
+サポート終了まではまだ期間がありますが、移行は決して簡単ではないかもしれないので、早めに v2 へ移行していきましょう。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
 ## Scaling Docker Compose Up | Docker
 https://www.docker.com/blog/scaling-docker-compose-up/
 [日本語版記事](https://www.docker.com/ja-jp/blog/scaling-docker-compose-up/)
@@ -62,9 +74,6 @@ compose.yml に `watch` を追加することで、ファイルの変更を検�
 ちなみに、[Docker Compose v2.22.0](https://github.com/docker/compose/releases/tag/v2.22.0)は 2023/09/22 リリースと比較的新しいため、コマンドが使えなかった場合は手元で `docker compose version` を実行してバージョンを確認してみましょう。
 
 _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
-
-## Repository Custom Properties GA and Ruleset Improvements - The GitHub Blog
-https://github.blog/changelog/2024-02-14-repository-custom-properties-ga-and-ruleset-improvements/
 
 ## AWS Control Tower introduces APIs to register Organizational Units
 https://aws.amazon.com/jp/about-aws/whats-new/2024/02/aws-control-tower-apis-register-organizational-units/
@@ -121,20 +130,23 @@ GitHub Actions の各種調査から始まり、調査結果を元にいくつ�
 
 _本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 
-## Goのテスト安定性向上のためにFlakyなテストを再試行する機能を導入する提案 - tomato3713’s blog
-https://tomato3713.hatenablog.com/entry/go-proposal-62244-flakytest
-
-# tool 🔨
-
-## GitHub、脆弱性のあるコードを実際にデバッグして学べる「Secure Code Game」シーズン2がスタート
-https://www.publickey1.jp/blog/24/githubsecure_code_game2.html
-
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
+  - [Repository Custom Properties GA and Ruleset Improvements - The GitHub Blog](https://github.blog/changelog/2024-02-14-repository-custom-properties-ga-and-ruleset-improvements/)
+    - GitHub において、repository custom properties が GA になりました
+    - repository custom properties に関しては以前の記事も参照ください（[1](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20231018#github-repository-custom-properties-beta---the-github-blog), [2](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20231213#new-organization-repositories-list-feature-preview---the-github-blog)）
 - **know-how 🎓**
+  - [Goのテスト安定性向上のためにFlakyなテストを再試行する機能を導入する提案 - tomato3713’s blog](https://tomato3713.hatenablog.com/entry/go-proposal-62244-flakytest)
+    - Go で flaky なテストを再施行する機能を導入する提案を紹介した記事です
+      - 2023/11/15 に accepted になったので、今後導入される予定だとか
+    - 提案が accept されるまでの議論や提案のまとめがわかりやすく書かれており、読み応えがあります
 - **tool 🔨**
+  - [GitHub、脆弱性のあるコードを実際にデバッグして学べる「Secure Code Game」シーズン2がスタート － Publickey](https://www.publickey1.jp/blog/24/githubsecure_code_game2.html)
+    - GitHub が公開している、脆弱性のあるコードをデバッグして学べる「Secure Code Game」のシーズン 2 がスタートしたとのことです
+    - GitHub Codespaces で手軽に開始できるのが良いですね
+
 
 # あとがき
 
