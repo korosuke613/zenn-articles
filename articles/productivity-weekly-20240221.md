@@ -102,6 +102,25 @@ _本項の執筆者: [@Kesin11](https://zenn.dev/kesin11)_
 ## フロントエンドのGitHub Actions実行時間を削減するために取り組んだこと | PR TIMES 開発者ブログ
 https://developers.prtimes.jp/2024/02/16/github-actions-frontend/
 
+PR TIMES さんによる、フロントエンドの GitHub Actions 実行時間削減事例です。
+
+今回は、実行時間は実行時間でも、billable time という GitHub Actions の課金単位を削減することが目的となっています。billable time は、純粋な実行時間と異なります（例えば、平均 45 秒で終わるジョブを平均 15 秒で終わるようにしても、課金時間はどちらも 1 分となる。）。
+
+GitHub Actions の各種調査から始まり、調査結果を元にいくつかの対応を行なっています。
+
+- 調査: billable time が長いワークフロー洗い出し、削減可能かどうかを調査、不要なワークフローを調査、など
+- 対応: 並列実行ジョブを直列化、lint や test を差分のみに行う、キャッシュの無駄な保存を減らす、Renovate 見直し、concurrency 設定、など
+
+その結果、全体として 25,000 分の billable time 削減ができたとのことです。なかなか劇的に効果が表れていてすごいです。
+
+純粋な実行時間を減らしたければ、1 つのジョブを並列化する例をよく見ますが、今回は billable time 削減に着目しているため、むしろ直列化しています。ワークフロー/ジョブの純粋な実行時間を減らすことを主題に置いた記事は多いですが、billable time を削減することを主題にした記事はあまり見かけないので、面白かったです。
+
+また、ジョブで時間がかかっている箇所の調査には、我が生産性向上チームの kesin11 さんが作った [Kesin11/actions-timeline](https://github.com/Kesin11/actions-timeline) が使われています。便利ですので、Actions の実行時間に関する調査の際は使ってみてください。
+
+- [GitHub Actionsのワークフローを可視化するactions-timelineを作った](https://zenn.dev/cybozu_ept/articles/20231002_actions_timeline)
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
 ## Goのテスト安定性向上のためにFlakyなテストを再試行する機能を導入する提案 - tomato3713’s blog
 https://tomato3713.hatenablog.com/entry/go-proposal-62244-flakytest
 
