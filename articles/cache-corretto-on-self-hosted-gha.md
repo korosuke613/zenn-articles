@@ -6,7 +6,7 @@ topics:
   - githubactions
 published: true
 published_at: 2024-08-17 11:00
-publication_name: "cybozu_ept"
+publication_name: cybozu_ept
 ---
 
 
