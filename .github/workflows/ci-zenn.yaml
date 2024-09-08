@@ -89,7 +89,7 @@ jobs:
         run: npm ci
 
       - if: steps.changed-files-yaml.outputs.md_any_changed == 'true'
-        uses: tsuyoshicho/action-textlint@d35da75bb8f79e4a33b13d18e397083cb6146ecc # v3.9.0
+        uses: tsuyoshicho/action-textlint@f59453ea4a0f3785c6d75823cdfc086f6c5a650c # v3.9.3
         with:
           github_token: ${{ secrets.github_token }}
           textlint_flags: ${{ steps.changed-files-yaml.outputs.md_all_changed_files }}
