@@ -54,6 +54,20 @@ https://github.blog/changelog/2024-09-16-notice-of-upcoming-deprecations-and-cha
 ## 【Terraform】aws_iam_role リソースの inline_policy ブロックが非推奨になった
 https://zenn.dev/terraform_jp/articles/tf-aws-iam-role-inline-policy-deprecation
 
+Terraform AWS Provider v5.68.0 より `aws_iam_role` の `inline_policy` ブロックが deprecated となったようです。
+
+この記事では、deprecated となった `inline_policy` ブロック置き換えの選択肢（`aws_iam_role_policy` リソース、`aws_iam_role_policies_exclusive`）、および、それらの違いについて説明してくれています。
+
+僕は IAM Role のインラインポリシーを定義するときに毎回 `inline_policy` ブロックを使っており、インラインポリシー用のリソースがあることを知らなかったため、大変助かる内容の記事でした。2 つのリソースの違いについてもわかりやすくてよかったです。
+
+<!-- textlint-disable ja-technical-writing/ja-no-successive-word -->
+
+`inline_policy` ブロック自体はまだ残るようですが早め早めの移行をしていきたいですね。
+
+<!-- textlint-enable ja-technical-writing/ja-no-successive-word -->
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
 ## Now available for free on all public repositories: Copilot Autofix for CodeQL code scanning alerts - GitHub Changelog
 https://github.blog/changelog/2024-09-18-now-available-for-free-on-all-public-repositories-copilot-autofix-for-codeql-code-scanning-alerts/
 
