@@ -60,6 +60,16 @@ https://github.blog/changelog/2024-09-18-now-available-for-free-on-all-public-re
 ## Copilot Chat in GitHub.com is now aware of common support scenarios and GitHub’s documentation - GitHub Changelog
 https://github.blog/changelog/2024-09-10-copilot-chat-in-github-com-is-now-aware-of-common-support-scenarios-and-githubs-documentation/
 
+GitHub Copilot Chat in GitHub.com が GitHub のドキュメントやサポートシナリオを基にトレーニングされるようになりました。これにより、GitHub の機能に関する質問やトラブルシューティングへの回答精度の向上が見込めます。
+
+お知らせには、「Copilot Individual で Copilot ナレッジベースを使用できるか？」、「SSH の設定方法」、「ジョブがビルド後のクリーンアップでスタックしキャンセルやタイムアウトを拒否する。どうすれば停止できるか」という質問が例で挙げられています。これらの質問はドキュメントを読めばわかることですが、Copilot へ問い合わせることですばやく知ることができるのは嬉しいですね。
+
+似たような機能として、サポート問い合わせ時に先に Copilot へ問い合わせられる Copilot in GitHub Support という機能もあります[^copilot_support]。適材適所で使っていきましょう。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
+[^copilot_support]: [Copilot in GitHub SupportがGA！GitHubの仕様に関するわからないことをすばやく解決できやすくなったよ](https://zenn.dev/korosuke613/articles/copilot-in-github-support)
+
 ## Announcing the Public Beta of GitHub Copilot Extensions 🎉 - GitHub Changelog
 https://github.blog/changelog/2024-09-17-announcing-the-public-beta-of-github-copilot-extensions-%F0%9F%8E%89/
 
