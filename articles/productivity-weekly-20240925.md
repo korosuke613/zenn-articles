@@ -48,6 +48,42 @@ user_defined:
 ## アップグレードされたDockerプランの発表: よりシンプルに、より価値を、より優れた開発と生産性を実現  | Docker
 https://www.docker.com/ja-jp/blog/november-2024-updated-plans-announcement/
 
+2024/11/15 より、Docker Subscription の各プランの価格・付加価値が変わります。
+
+プランの価格の変更については次のとおりです。
+
+|プラン名|価格の変更内容|
+|---|---|
+|Docker Business|変更なし - $24/user/month (年払)|
+|Docker Team|$9/user/month -> $15/user/month (年払) <br/> $11/user/month -> $16/user/month (月払)|
+|Docker Pro|$5/month -> $9/month（年払）<br/> $7/month -> $11/month（月払）|
+|Docker Personal|変更なし - 無料|
+
+また、次のサービスについて変更があります。
+
+- Docker Hub
+  - pull rate limit が廃止あるいは変更。また、プル数に応じて従量課金が発生するように
+  - Docker Business: 1M pull/month の無料枠が含まれる
+  - Docker Team: 100K pull/month の無料枠が含まれる
+  - Docker Pro: 25K pull/month の無料枠が含まれる
+  - Docker Personal: 40 pull/user/hour の pull rate limit（もともとは 200 pull/user/6 hour）
+  - 非認証ユーザ: 10 pull/ip address/hour の pull rate limit（もともとは 100 pull/ip address/6 hour）
+- Docker Build Cloud
+  - 一部プランでシートごとに追加の課金が廃止され、プラン内のすべてのユーザが利用できるように
+  - Docker Business: 無料枠が 1500 minute/month へ増加（もともとは 800 minutes/month）
+  - Docker Team: 無料枠が 500 minute/month へ増加（もともとは 400 minutes/month）
+  - Docker Pro: 無料枠が 200 minute/month へ増加（もともとは 100 minutes/month）
+  - Docker Personal: 変更なし - 無料枠なし
+- Docker Scout
+  - 一部プランでリポジトリ上限が廃止
+  - Docker Business: リポジトリ無制限へ変更（もともとは）
+  - Docker Team: リポジトリ無制限へ変更（もともとは）
+  - Docker Pro: 変更なし - 2 リポジトリ
+  - Docker Personal: 変更なし - 1 リポジトリ
+- Testcontainers Cloud
+  - 一部リポジトリで無料枠の追加
+
+
 ## Notice of upcoming deprecations and changes in GitHub Actions services - GitHub Changelog
 https://github.blog/changelog/2024-09-16-notice-of-upcoming-deprecations-and-changes-in-github-actions-services/
 
