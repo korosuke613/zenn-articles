@@ -39,7 +39,7 @@ user_defined:
 <!-- - [@Kesin11](https://zenn.dev/kesin11) -->
 <!-- - [@r4mimu](https://zenn.dev/r4mimu) -->
 <!-- - [@uta8a](https://zenn.dev/uta8a) -->
-<!-- - [@ajfAfg](https://zenn.dev/arjef) -->
+- [@ajfAfg](https://zenn.dev/arjef)
 
 :::
 
@@ -83,6 +83,20 @@ https://speakerdeck.com/tmknom/github-cicd-book
 ## terrraformを使ったGoのLambdaの管理 - カンムテックブログ
 https://tech.kanmu.co.jp/entry/2024/09/17/130305
 
+Terraform だけで AWS Lambda のビルド・デプロイを完結させる方法として、自作 Terraform プロバイダーを用いるアプローチが紹介されています。話のコンテキストがやや大きいので、このアプローチを説明する前に参考記事で取り組まれている課題を軽く説明します。AWS Lambda のリソースをデプロイする際、その Lambda 上で動作するプログラムは実行可能な形式で ZIP ファイルに詰める必要があります。実行可能な形式であればよいので、プログラムがスクリプト（e.g. Python）の場合はそのまま ZIP ファイルに詰めればよいのですが、例えば Go の場合はビルド結果を詰める必要があります。しかし、Terraform で AWS Lambda をデプロイするためのリソース [`aws_lambda_function`](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lambda_function) はビルドを行わないので、一連のインフラのデプロイにそのビルドを組み込むには工夫が必要です。命令セットアーキテクチャの差異により、ローカルのビルド結果は必ずしも Lambda 上では動かない点にも気を配る必要があります。リソース [`null_resource`](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) を用いれば任意のシェルコマンドを Terraform 内で実行できますが、この方法による問題点として参考記事では以下が挙げられています:
+
+> - archive_fileがデータソースであるため、terraformを実行するたびにzipファイルが作成される *1
+> - 特にCIやAtlantis*2でterraformを実行する場合、意図しないタイミングでLambdaの更新が実行される
+> - npm installやpip installなどzipファイル作成前の処理の定義が複雑になる
+
+この辺りの問題は開発者の頭を長年悩ませていて、様々なアプローチで解決が試みられています。例えば、[Terraform 外でビルドを除く Lambda の管理を行うツール lambroll を用いる方法](https://tech.toreta.in/entry/2020/12/05/000000)や、[Lambda（とそれに依存するリソース）を AWS SAM で定義する方法](https://zenn.dev/cybozu_ept/articles/migrate-from-serverless-framework)があります。参考記事の新しさは何と言っても自作プロバイダーを用いる点です。自作プロバイダーならリソースを作り直すタイミングをプロバイダーで制御できるため、必要なときだけ ZIP ファイルを作り直すことも容易に実現できます。使用技術が Terraform だけな点も嬉しいです。
+
+ちょうど僕もこの問題に取り組んでいて、自作プロバイダーの道も考えていたので、先を越された悔しさと仲間を見つけた嬉しさの両方があります。このアプローチで気になった点としては、ZIP ファイル作成の前処理の定義方法の複雑さは変わっていないのではという点と、ビルドが必要かどうかの判断はビルドツールの責務ではという点です。自作プロバイダーの強みはリソースを作り直すタイミングをプロバイダーで制御できる点だと考えているので、既存のビルドツールといい感じに組み合わせられるとこの辺りを綺麗に解決可能なんじゃないかと感じています。
+
+個人的にはまだ物足りなさを感じるものの、こういうのは手を動かして形にすることが一番尊くてえらいので、成果物を OSS や記事として公開していただけてめちゃくちゃ嬉しいです。僕の取り組みの中でもし今後自作プロバイダーの方向に進んだら真っ先に参考になる記事でした。僕も負けじとこの問題の解決を狙っていきたいです💪
+
+_本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
+
 ## GitHub Actions の実行履歴に基づいて自動で timeout-minutes を設定
 https://zenn.dev/shunsuke_suzuki/articles/ghatm-auto-timeout-minutes
 
@@ -96,6 +110,26 @@ https://www.meti.go.jp/press/2024/08/20240829001/20240829001.html
 
 ## Nushell - 型付きシェルの基本とコマンド定義
 https://zenn.dev/estra/articles/nu-typed-shell
+
+誰もが夢見る型付きシェルスクリプトの紹介記事です。言語仕様の解説だけでなく、利便性向上のために必要な環境構築法も紹介されています。Nushell の型システムには、File-sizes 型（値は `64mb` など）や Durations 型（値は `2min + 12sec` など）のような特徴的な型が存在するとのことです。TypeScript のような Any 型も存在しており、プログラム実行前に型検査できない部分は実行時に型検査します。また、部分的型付けが導入されているとのことで、例えば `{x: int}` というレコード型の値を引数として受け取る関数に `{x: 1, y: 1}` を与えられます。
+
+型付きシェルスクリプトといえば [Cotowali](https://zenn.dev/zakuro9715/articles/mitou-2021-cotowali) とかもありますが、Nushell はインタラクティブシェルとしても使えるのが利点そうです。一方で、POSIX に準拠していない点は少し気になりました。
+
+僕はプログラミング言語オタクなので Nushell の型システムが壊れていないか少し試してみたのですが、嬉しいことに壊れている箇所は見つけられませんでした。部分型付けと Mutable 変数どちらもサポートしている点で悪さができそう（Java では次のプログラムのように、型検査は通るが型の不整合起因のランタイムエラーが出る場合があります）だと思ったんですが、少し変なことをしようとすると Any 型に丸められて実行時に型検査されるので、この壁を突破するのはなかなか難しかったです。しっかり型安全そうなので、安心して Nushell プログラムが書けますね。
+
+```java
+class A { int x; A(int x){this.x = x;} }
+class B extends A { int y; B(int x, int y){super(x); this.y = y;} }
+
+B[] foo = {new B(1,1)};
+A[] bar = foo;
+bar[0] = new A(1);
+System.out.println(foo[0].y); // ArrayStoreException
+```
+
+型システムの表現力がまだあまり高くなかったり、エコシステムも発展途上そうなので仕事で使うのは難しいかもしれませんが、プライベートで使い込んでいきたいプログラミング言語でした。
+
+_本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
