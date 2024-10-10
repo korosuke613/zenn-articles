@@ -75,14 +75,25 @@ https://www.docker.com/ja-jp/blog/november-2024-updated-plans-announcement/
   - Docker Pro: 無料枠が 200 minute/month へ増加（もともとは 100 minutes/month）
   - Docker Personal: 変更なし - 無料枠なし
 - Docker Scout
-  - 一部プランでリポジトリ上限が廃止
-  - Docker Business: リポジトリ無制限へ変更（もともとは）
-  - Docker Team: リポジトリ無制限へ変更（もともとは）
+  - 一部プランでリモートイメージスキャンのリポジトリ上限が廃止。一部プランで上限が縮小。
+  - Docker Business: リポジトリ無制限へ変更（もともとは無料枠が 3 リポジトリ）
+  - Docker Team: リポジトリ無制限へ変更（もともとは無料枠が 3 リポジトリ）
+  - Docker Pro: 変更なし - 2 リポジトリ（もともとは無料枠が 3 リポジトリ）
+  - Docker Personal: 変更なし - 1 リポジトリ（もともとは無料枠が 3 リポジトリ）
+- Testcontainers Cloud
+  - 一部プランでシートごとに追加の課金が廃止され、プラン全体として無料枠が追加されました（元々どうだったのかいまいちわからなく、自信がない）
+  - Docker Business: 無料枠が 1500 runtime minutes へ増加
+  - Docker Team: リポジトリ無制限へ変更
   - Docker Pro: 変更なし - 2 リポジトリ
   - Docker Personal: 変更なし - 1 リポジトリ
-- Testcontainers Cloud
-  - 一部リポジトリで無料枠の追加
 
+:::message
+Docker Scoutについては、元々Free プラン、Scout Team プラン、Scout Business プランの 3 つがあり、Docker Subscription とは別に課金が必要でした。
+
+![](/images/productivity-weekly-20240925/docker_scout_old_plans.png)
+*[2024/08/27 時点の Docker Scout pricing](https://web.archive.org/web/20240827214306/https://www.docker.com/products/docker-scout/)*
+
+:::
 
 ## Notice of upcoming deprecations and changes in GitHub Actions services - GitHub Changelog
 https://github.blog/changelog/2024-09-16-notice-of-upcoming-deprecations-and-changes-in-github-actions-services/
