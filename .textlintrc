@@ -22,7 +22,7 @@
       "max-comma": false, // コンマの連続を許可
       "ja-no-successive-word": {
         "allowOnomatopee": true,
-        "allow": ["○", "・", "。", "など", "まあ", "て", "!", "！"]
+        "allow": ["○", "・", "。", "など", "まあ", "て", "!", "！", "つよ"]
       },
       "max-ten": {
         "max": 10
