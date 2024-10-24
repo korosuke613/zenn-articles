@@ -35,10 +35,6 @@ user_defined:
 
 今週の共同著者は次の方です。
 - [@korosuke613](https://zenn.dev/korosuke613)
-<!-- - [@defaultcf](https://zenn.dev/defaultcf) -->
-<!-- - [@Kesin11](https://zenn.dev/kesin11) -->
-<!-- - [@r4mimu](https://zenn.dev/r4mimu) -->
-<!-- - [@uta8a](https://zenn.dev/uta8a) -->
 - [@ajfAfg](https://zenn.dev/arjef)
 
 :::
@@ -119,6 +115,8 @@ _本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 
 ## Amazon ElastiCache and Amazon MemoryDB announce support for Valkey | AWS Database Blog
 https://aws.amazon.com/jp/blogs/database/amazon-elasticache-and-amazon-memorydb-announce-support-for-valkey/
+
+Amazon ElastiCache が Valkey 
 
 ## Streamlined coding, debugging, and testing with GitHub Copilot Chat in VS Code - GitHub Changelog
 https://github.blog/changelog/2024-10-03-streamlined-coding-debugging-and-testing-with-github-copilot-chat-in-vs-code/
