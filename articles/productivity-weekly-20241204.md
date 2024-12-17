@@ -48,10 +48,15 @@ user_defined:
 ## GitHub Immutable Actionsのご紹介 - APC 技術ブログ
 https://techblog.ap-com.co.jp/entry/2024/10/30/154345
 
-## GitHub Certification 日本語対応するらしい
+GitHub Actions の Custom Action をセキュリティ的に強固にする新機能、Immutable Actions が登場しました（パブリックプレビュー）。
 
-> GitHub Certification 日本語対応したのか！嬉しすぎる受けよう（公開はまだらしい） #GitHubUniverseRecap
-https://x.com/Shitimi_613/status/1861622654551347557
+attestation 機能を使った provenance 証明、タグの変更不可、コンテナイメージとして保存など、サプライチェーン攻撃の脅威を減らせる...という感じの機能っぽいです。
+
+パブリックプレビューではありますが、waitlist に入る必要があり、自分はまだこの機能をさわれていません。早く触りたいです。
+
+皆さんの使ってみた記事をお待ちしています。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 
 ## Announcing TypeScript 5.7 - TypeScript
 https://devblogs.microsoft.com/typescript/announcing-typescript-5-7/
@@ -118,6 +123,25 @@ Deno プログラムに与える権限を必要十分にする作業がかなり
 どんどん使いやすくなっていいですね。
 
 _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
+
+## ㊗️GitHub認定試験が日本語に対応しました！
+https://x.com/GitHubJapan/status/1867012915125158169
+
+GitHub Certifications こと、GitHub 認定試験が日本語に対応しました！
+
+次の試験が日本語で受けられるようになりました[^multi_lang]。
+
+- GitHub Foundations
+- GitHub Administration
+- GitHub Actions
+
+残った GitHub Advanced Security 試験、GitHub Copilot 試験はまだ未対応とのことですが、今後対応するようです。
+
+GitHub に関する勉強や腕試し、他者との話を進める上でこういった資格取得は役立ちそうですね。僕も近いうちに受ける予定です。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
+[^multi_lang]: なお、韓国語、スペイン語、ポルトガル語 (ブラジル)にも対応したようです。
 
 ## Improved support for labeled Actions runners in CodeQL code scanning - GitHub Changelog
 https://github.blog/changelog/2024-12-03-improved-support-for-labeled-actions-runners-in-codeql-code-scanning/
