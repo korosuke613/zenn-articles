@@ -140,7 +140,7 @@ https://dev.classmethod.jp/articles/cloudfront-vpc-origins-internal-alb/
 ## Amazon CloudFront now accepts your applications’ gRPC calls | AWS News Blog
 https://aws.amazon.com/jp/blogs/aws/amazon-cloudfront-now-accepts-your-applications-grpc-calls/
 
-## Introducing Amazon Nova: Frontier intelligence and industry leading price performance | AWS News Blog 
+## Introducing Amazon Nova: Frontier intelligence and industry leading price performance | AWS News Blog
 https://aws.amazon.com/jp/blogs/aws/introducing-amazon-nova-frontier-intelligence-and-industry-leading-price-performance/
 
 ## ［速報］「Amazon Aurora DSQL」プレビュー公開、事実上無限にスケールする高性能なPostgreSQL互換の大規模分散データベース － Publickey
@@ -240,11 +240,44 @@ _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 ## docker buildx bake で高速並列ビルド - 誰かの役に立てばいいブログ
 https://ymmt.hatenablog.com/entry/2024/12/04/004608
 
+`docker buildx bake` を使うと、複数のコンテナイメージをいい感じに並列ビルドできる話です。ユースケースとしては、k8s 上で複数のマイクロサービスを運用するとき、各サービスに対するコンテナイメージをビルドする場面が紹介されています。Makefile のように、ビルドの依存関係が壊れないようにビルドしてくれる点（例えば、イメージのビルドの前にアプリケーションを必ずビルドできる）がウリとのことです。
+
+複数の AWS Lambda 関数が同一リポジトリで管理されている場合とかにも使えるかもなーと感じました。シンプルな機能なので、覚えておくと活用できる場面が色々ありそうです。
+
+_本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
+
 ## Terraform職人のためのOpenTofu再入門2024 #Terraform - Qiita
 https://qiita.com/minamijoyo/items/2738b9ad5f6754b68400
 
 ## Terraform を活用した効率的な S3 バケット管理手法 [DeNA インフラ SRE] | BLOG - DeNA Engineering
 https://engineering.dena.com/blog/2024/11/terraform-s3-management/
+
+複数の S3 バケットを Terraform でいい感じに管理する話です。紹介記事で提案されている管理手法を用いたコード例を以下に引用します:
+
+```tf
+locals {
+  buckets = {
+    # バケット名                   バケット設定                           バケットの用途
+    "A01-nginxlog-titleA-dev" = module.s3conf.common_bucket       # nginx のログ
+    "A01-lblog-titleA-dev"    = module.s3conf.common_bucket       # ロードバランサのログ
+    "A01-website-titleA-dev"  = module.s3conf.common_bucket       # ウェブサイト
+    "A01-public-titleA-dev"   = module.s3conf.public_bucket       # 公開データ
+    "A01-dbbackup-titleA-dev" = module.s3conf.expire_1week_bucket # DB のバックアップ
+    "A02-nginxlog-titleA-dev" = module.s3conf.common_bucket       # nginx のログ
+    "A02-lblog-titleA-dev"    = module.s3conf.common_bucket       # ロードバランサのログ
+    "A02-website-titleA-dev"  = module.s3conf.common_bucket       # ウェブサイト
+    "B03-nginxlog-titleB-dev" = module.s3conf.common_bucket       # nginx のログ
+    "B03-lblog-titleB-dev"    = module.s3conf.common_bucket       # ロードバランサのログ
+    "B03-public-titleB-dev"   = module.s3conf.public_bucket       # 公開データ
+  }
+}
+```
+
+for 式を駆使してバケット名を作ることで実際のバケット名が予測しづらくなったり、バケット名とバケット設定を定義する箇所がバラバラになる事態を防ぐことがモチベーションとのことです。
+
+バケット名とバケット設定を紐づける点と、バケット設定がモジュールな点が大事そうだなと感じました。モジュールなので、また違ったバケットが欲しくなっても対応が楽な点がいいですね。大量の S3 バケットを一元管理したくなったときに思い出したいです。
+
+_本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
 ## GitHub ActionsのSelf Hosted Runner向けにImage Cache Proxyを導入しました - Hatena Developer Blog
 https://developer.hatenastaff.com/entry/2024/11/26/151801
@@ -267,6 +300,11 @@ _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 ## AWS アクセス管理を一歩先へ！カミナシのセキュアな AWS アクセス管理を実現するシステムの紹介 - カミナシ エンジニアブログ
 https://kaminashi-developer.hatenablog.jp/entry/2024/12/04/080000
 
+必要十分な AWS のアクセス権限を管理するシステムの事例紹介です。カミナシさんで利用されている AWS アカウントは、定常的には ReadOnly アクセスのみ許可されていますが、紹介されているシステムを用いると、Slack App を経由して一時的に特権アクセスが可能になるとのことです。
+
+開発者体験が考え抜かれていて素晴らしい取り組みだなと感じました。また、やはり弊社を含めてどの会社でも必要十分なアクセス権の管理は苦労されているんだなという印象を受けました。この辺りをいい感じに解決してくれる AWS サービスが登場してほしいですね。
+
+_本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
 # tool 🔨
 
