@@ -1,11 +1,5 @@
 import { DiagnosticResult } from "./ReviewDogJsonLine.ts";
-import {
-  ChatCompletionCreateParamsNonStreaming,
-  CompletionUsage,
-  log,
-  LogRecord,
-  OpenAI,
-} from "../deps.ts";
+import { log, LogRecord, OpenAI } from "../deps.ts";
 
 export type ReviewResult = {
   review: {
@@ -32,8 +26,8 @@ export type OpenAIPricingData = {
 export class AiReviewer {
   private readonly openai: OpenAI;
   private static readonly SYSTEM_PROMPT = `
-あなたは日本語文章を校正するアシスタントです。
-与えられたマークダウン形式の文章で、誤字・脱字、および、文法誤りのある行を抜き出し、修正した行を出力してください。
+あなたは日本語技術記事を校正するアシスタントです。
+与えられたマークダウン形式の文章で、誤字・脱字、文法誤り、論理的・技術的な誤りのある行を抜き出し、修正した行を出力してください。
 その際、確実に修正すべき誤りのみを出力してください。
 また、以下のルールに従って修正を行ってください。
 - 句読点の追加や削除はしない
@@ -53,19 +47,28 @@ export class AiReviewer {
   private static readonly pricing: Record<string, OpenAIPricingData> = {
     // ref: https://openai.com/api/pricing/
     "gpt-4o": {
-      input: 5 / (1 * 1000000),
-      output: 15 / (1 * 1000000),
+      input: 2.5 / (1 * 1000000),
+      output: 10 / (1 * 1000000),
     },
-    "gpt-4o-2024-08-06": {
-      input: 5 / (1 * 1000000),
-      output: 15 / (1 * 1000000),
+    "o1-mini": {
+      input: 3 / (1 * 1000000),
+      output: 12 / (1 * 1000000),
+    },
+    "o1-preview": {
+      input: 15 / (1 * 1000000),
+      output: 60 / (1 * 1000000),
+    },
+    "o1": {
+      input: 15 / (1 * 1000000),
+      output: 60 / (1 * 1000000),
     },
   };
   static readonly defaultOptions: AiReviewerOptions = {
     max_tokens: 1024,
-    // GPT-4o が Structured Outputs にまだ対応してないため、最新版である gpt-4o-2024-08-06 を使用
-    // TODO: GPT-4o が Structured Outputs に対応したら、GPT-4o を使用する
-    model: "gpt-4o-2024-08-06",
+    // o1-mini か o1-preview が使いたいが、system role が使えない、structured outputs が使えないなどまだ制限があるため、gpt-4o を使用
+    // ref: https://community.openai.com/t/o1-models-do-not-support-system-role-in-chat-completion/953880/12
+    // ref: https://platform.openai.com/docs/guides/structured-outputs#supported-models
+    model: "gpt-4o",
     logging: true,
     reviewNum: 5,
   };
@@ -158,7 +161,7 @@ export class AiReviewer {
   };
 
   createReviewInput = (markdown: string) => {
-    const input: ChatCompletionCreateParamsNonStreaming = {
+    const input: OpenAI.ChatCompletionCreateParamsNonStreaming = {
       model: this.options.model,
       messages: [
         {
@@ -174,7 +177,7 @@ export class AiReviewer {
         },
       ],
       temperature: 1,
-      max_tokens: this.options.max_tokens,
+      max_completion_tokens: this.options.max_tokens,
       top_p: 1,
       frequency_penalty: 0,
       presence_penalty: 0,
@@ -215,7 +218,7 @@ export class AiReviewer {
     return response.replaceAll("```json", "").replaceAll("```", "");
   };
 
-  getPricing = (usage?: CompletionUsage) => {
+  getPricing = (usage?: OpenAI.CompletionUsage) => {
     if (usage === undefined) {
       if (this.options.logging) log.warn("No usage data from OpenAI.");
       return undefined;
@@ -227,6 +230,7 @@ export class AiReviewer {
       AiReviewer.pricing[this.options.model].output;
 
     return {
+      model: this.options.model,
       tokens: usage,
       pricing: {
         input: `${input.toFixed(3)} USD`,
