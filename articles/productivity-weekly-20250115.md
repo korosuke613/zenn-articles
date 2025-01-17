@@ -54,6 +54,15 @@ https://nodejs.org/en/blog/release/v23.6.0
 https://www.totaltypescript.com/typescript-is-coming-to-node-23
 https://satanacchio.hashnode.dev/everything-you-need-to-know-about-nodejs-type-stripping
 
+Node.js v23.6.0 がリリースされました！　わいわい！
+
+一番の目玉は、Node.js が TypeScript プログラムをネイティブに実行可能になる点です。[以前に Weekly でも紹介しましたが](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20240911#node-v22.7.x-%E3%81%A7-typescript-%E3%82%92%E3%81%9D%E3%81%AE%E3%81%BE%E3%81%BE%E5%AE%9F%E8%A1%8C%E3%81%99%E3%82%8B)、これまではネイティブ実行のためには、実行時に `--experimental-strip-types` というオプションをつける必要がありました。これが今回からデフォルトになるとのことです。
+
+しかし利用にはいくつか注意点もあります。まず、この機能は型検査せず、型に関する情報を消して JavaScript として実行するのみです。こういった仕様になっていることから、列挙型や namespace をはじめとする TypeScript 専用の機能はデフォルトではサポートされません。これらの機能の利用のためには、引き続き `--experimental-transform-types` オプションが必要です。
+
+依然として、TypeScript から JavaScript へのトランスパイルが必要な場面も少なくありません。例えば、TypeScript プログラムのネイティブ実行には多少のオーバーヘッドがかかるため、プログラムの高い起動速度が求められる場面（e.g. AWS Lambda におけるコールドスタート）では、トランスパイルによって minify する方が有利です。また、npm からライブラリを配信する際にもトランスパイルが必要です。理由としては、JavaScript ユーザーも TypeScript 製ライブラリを利用できる点や、TypeScript プログラム（`.ts`）より型定義ファイル（`.d.ts`）の方が高速に処理可能な点が挙げられています。
+
+TypeScript ネイティブ実行バトルの行く末が楽しみです。
 
 _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
@@ -81,7 +90,7 @@ https://aws.amazon.com/jp/blogs/aws/announcing-the-new-aws-asia-pacific-thailand
 # know-how 🎓
 
 ## ECSのIaCあるある『Serviceとタスクの更新をどこでやる問題』に向き合う一例 - Nealle Developer's Blog
-https://nealle-dev.hatenablog.com/entry/2025/01/08/175433 
+https://nealle-dev.hatenablog.com/entry/2025/01/08/175433
 
 Terraform などで IaC をする際、アプリケーションのデプロイまでを IaC の責務とするかどうかは悩ましい問題です。
 この記事では、Terraform は最初のタスク定義だけを作成する責務を負い、サービスでは data で取得した最新のタスク定義を参照するようにしています。
@@ -97,26 +106,33 @@ ecspresso でそのような使い方ができるのは知らなかったので�
 
 _本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
 
-## 保守しやすく変化に強いソフトウェアを支える柱　自動テストとテスト駆動開発、その全体像 ～Software Design 2022年3月号「そろそろはじめるテスト駆動開発」より | http://gihyo.jp 
-https://gihyo.jp/article/2024/01/automated-test-and-tdd 
+## 保守しやすく変化に強いソフトウェアを支える柱　自動テストとテスト駆動開発、その全体像 ～Software Design 2022年3月号「そろそろはじめるテスト駆動開発」より | http://gihyo.jp
+https://gihyo.jp/article/2024/01/automated-test-and-tdd
 
+サバンナのライオンをスタンドに持つ t-wada さんが Software Design 2022 年 3 月号に寄稿された話です。テスト駆動開発のモチベーションや嬉しさが、自動テスト、テストファーストの理解を通して説明されています。
+
+超絶要約すると次の通りです。まず、自動テストとはプログラムのテストをプログラムで書き、テストを自動的に実行可能にする取り組みです。ここで、テストコードは設計へのフィードバックになったり、実装を後回しにすると書かれないがちという理由から、テスト対象が実装されてからすぐ書いた方が効果的とされています。そこで、テスト対象を実装する前にテストコードを書く「テストファースト」というプラクティスが生まれます。しかしテストファーストにも欠点があり、その 1 つが過剰なテストの記述です。言い換えると、使う予定のない仕様を設計しがちです。そこで、イテレーティブに少しづつテストとテスト対象を育てる「テスト駆動開発」というプラクティスが生まれます。
+
+紹介記事の補足的な話が次のポッドキャストで t-wada さん本人から語られているので、こちらも併せてチェックするとより理解が深まります:
+
+https://podcasts.apple.com/jp/podcast/9-the-20th-anniversary-of-tdd/id1530076592?i=1000553250105
 
 _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
 ## Rustプロジェクトのビルド高速化に関するベストプラクティス（ローカル環境編）
-https://zenn.dev/fairydevices/articles/59cd718341da58 
+https://zenn.dev/fairydevices/articles/59cd718341da58
 
 
 _本項の執筆者: [@takoeight0821](https://zenn.dev/takoeight0821)_
 
 ## anyhowユーザー向けeyre/miette入門
-https://zenn.dev/yukinarit/articles/ee9617f20b0361 
+https://zenn.dev/yukinarit/articles/ee9617f20b0361
 
 
 _本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
 
 ## オラクル、JavaScriptの商標を自主的に手放すつもりはないとDenoに通告 － Publickey
-https://www.publickey1.jp/blog/25/javascriptdeno_1.html 
+https://www.publickey1.jp/blog/25/javascriptdeno_1.html
 
 # tool 🔨
 
