@@ -64,6 +64,21 @@ _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 ## Announcing TypeScript 5.8 Beta - TypeScript
 https://devblogs.microsoft.com/typescript/announcing-typescript-5-8-beta/
 
+TypeScript 5.8 Beta きました！　わいわい！
+破壊的変更はありません。
+
+デカい変更は以下です:
+
+- Checked Returns for Conditional and Indexed Access Types
+  - 返り値の型が条件型の場合の推論が賢くなって、`as` や `any` で誤魔化す必要がなくなります。
+  - [uhyo さんの資料](https://speakerdeck.com/uhyo/typescriptnoci-naruda-jin-hua-naruka-tiao-jian-xing-wofan-rizhi-tosuruguan-shu-noxing-tui-lun)もわかりやすいです。
+- Support for require() of ECMAScript Modules in --module nodenext
+  - TypeScript で `require()` と書いても怒られなくなります。
+- The --erasableSyntaxOnly Option
+  - [ウィでも前に紹介があったやつ](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20250129#typescript-5.8%E3%81%AEerasablesyntaxonly%E3%83%95%E3%83%A9%E3%82%B0%E3%80%82enum%E3%82%84namespace%E3%81%8C%E6%B6%88%E3%81%88%E3%82%8B%E6%97%A5%E3%81%8C%E6%9D%A5%E3%81%9F)。
+
+他に知っておくとよさそうな変更として、`--module nodenext` を指定している場合、`import` 時のアサーションとして `assert` が書けなくなった点があります。代わりに `with` を使うとよいです。
+
 _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
 ## Copilot Language Server SDK is now available - GitHub Changelog
@@ -148,6 +163,11 @@ https://techblog.enechain.com/entry/four-keys
 
 ## GoアプリのCI/CDを4倍高速化した汎用的手法まとめ【txdb】
 https://zenn.dev/jcat/articles/323ce8b4e4744d
+
+Go プログラムの CI/CD を爆速にした話です。
+いくつかの手法で改善しており、例えば [go-txdb](https://github.com/DATA-DOG/go-txdb) という SQL ドライバを使って DB 接続を伴うテストを並列実行しています。go-txdb は単一のトランザクション内でクエリを実行するため、他のテストとの競合を気にする必要がないとのことです。
+
+go-txdb 面白そう！
 
 _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
