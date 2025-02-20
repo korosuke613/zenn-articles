@@ -75,7 +75,7 @@ TypeScript 5.8 Beta きました！　わいわい！
 - Support for require() of ECMAScript Modules in --module nodenext
   - TypeScript で `require()` と書いても怒られなくなります。
 - The --erasableSyntaxOnly Option
-  - [ウィでも前に紹介があったやつ](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20250129#typescript-5.8%E3%81%AEerasablesyntaxonly%E3%83%95%E3%83%A9%E3%82%B0%E3%80%82enum%E3%82%84namespace%E3%81%8C%E6%B6%88%E3%81%88%E3%82%8B%E6%97%A5%E3%81%8C%E6%9D%A5%E3%81%9F)。
+  - [前に紹介があったやつ](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20250129#typescript-5.8%E3%81%AEerasablesyntaxonly%E3%83%95%E3%83%A9%E3%82%B0%E3%80%82enum%E3%82%84namespace%E3%81%8C%E6%B6%88%E3%81%88%E3%82%8B%E6%97%A5%E3%81%8C%E6%9D%A5%E3%81%9F)。
 
 他に知っておくとよさそうな変更として、`--module nodenext` を指定している場合、`import` 時のアサーションとして `assert` が書けなくなった点があります。代わりに `with` を使うとよいです。
 
