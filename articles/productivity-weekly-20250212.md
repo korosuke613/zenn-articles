@@ -141,6 +141,19 @@ _本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
 ## Terraform v1.11 の Write-Only Attributes を試してみる
 https://zenn.dev/terraform_jp/articles/tf-write-only-attributes
 
+Terraform v1.11 で `Write-Only Attributes` と呼ばれる Attribute が追加されました！
+これは Terraform v1.10 で登場した `Ephemeral Values` の一種です！
+
+`Ephemeral Values` とは plan ファイルや state ファイルに値が保存されない仕組みのことで、例えばシークレットなどの機密情報を Terraform で扱いたい際に役立ちます。詳しくはこちらの記事をご覧ください。
+
+https://www.hashicorp.com/ja/blog/terraform-1-10-improves-handling-secrets-in-state-with-ephemeral-values
+
+Terraform v1.11 で登場した `Write-Only Attributes` はその名の通り Attribute レベルの Ephemeral Values で、リソースレベルの `Ephemeral resources` と比較すると分かりやすいと思います。
+
+`Write-Only Attributes` を使えば Terraform リソースのある Attribute だけを隠してくれます。Zenn の記事では `aws_ssm_parameter` の例が載っていて、 `value` の代わりに `value_wo` を使うことで値が plan ファイルや state ファイルに保存されない様子が紹介されています。
+
+これを使えば機密情報の登録や更新も Terraform 上からできるわけですが、 `.tf` ファイルは基本的に git 管理すると思います。登録や更新するその隠したい値を git 管理してしまえば元も子もないので、変数などを使って外から値を渡すなど、何かしらの運用上の工夫は求められそうですね！
+
 _本項の執筆者: [@takamin55](https://zenn.dev/takamin55)_
 
 ## Four Keys導入からはじめる開発プロセスの改善 - enechain Tech Blog
