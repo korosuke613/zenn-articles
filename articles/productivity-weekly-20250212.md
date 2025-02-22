@@ -1,5 +1,5 @@
 ---
-title: ＜ここにタイトルを入力＞｜Productivity Weekly(2025-02-12)
+title: GitHub Copilot Agentモード登場など｜Productivity Weekly(2025-02-12)
 emoji: 🍼
 type: idea
 topics:
@@ -52,6 +52,23 @@ user_defined:
 ## GitHub Copilot: The agent awakens - The GitHub Blog
 https://github.blog/news-insights/product-news/github-copilot-the-agent-awakens/
 
+GitHub Copilot において、エージェントモードが追加されました（プレビュー）。
+
+エージェントモードは Copilot が反復してコードの変更、エラー認識、修正、コマンド実行等も求めてくるモードです。これまでの Copilot Edits などとは違い、与えた指令に対して単純な 1 つの回答を返して終わりではない、より自律的に動くモードです。
+
+どういうふうな機能なのかはブログ内にある動画を見るのが早いと思います。
+まだプレビューであることもあり、利用するには VSCode Insiders の利用が必要です。
+
+僕もプライベートのリポジトリにおいて利用してみたのですが、GPT-4o が利用されているからか[^model]回答速度、精度は微妙でした（）。上位モデルを使えばもっと違う体験になるんだろうなと思っています。
+
+最近は Cline といった生成 AI をエージェント的に使ってコーディングを支援する拡張機能が流行っており、その流れに乗って登場した機能っぽさがあります。どんどん競争してもらいたいですね。
+
+なお、同じブログ内で Copilot Edits が VSCode において GA になったことも書かれています。Edits 自体も便利なのでみなさん使っていきましょう。
+
+_本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
+
+[^model]: GitHub Copilot には Claude 3.5 Sonnet や OpenAI o1 などの高性能モデルを使うことができますが、僕の場合諸事情からまだ GPT-4o しか利用ができません...
+
 ## 自分のOSSのマルウェア入り偽物を作られたので通報した - 酒日記 はてな支店
 https://sfujiwara.hatenablog.com/entry/2025/02/11/094755
 
@@ -92,12 +109,6 @@ _本項の執筆者: [@takoeight0821](https://zenn.dev/takoeight0821)_
 :::message
 特に LSP 対応はしてるけど GitHub Copilot 未対応エディタみたいなエディタなんかを使っている場合は自作できていいですね。関係者は少なそうですが（平木場）。
 :::
-
-## Linux Foundation、無料オンラインコース「Kubernetes入門」の提供を開始
-https://www.linuxfoundation.jp/press-release/2025/01/free-online-course-introduction-to-kubernetes-now-available-in-japanese/
-
-Linux Foundation が CNCF と共同で作っているオンライン学習コースの日本語版が公開されました。
-https://training.linuxfoundation.org/ja/training/introduction-to-kubernetes-lfs158-jp/
 
 ## Actions Get workflow usage and Get workflow run usage endpoints closing down - GitHub Changelog
 https://github.blog/changelog/2025-02-02-actions-get-workflow-usage-and-get-workflow-run-usage-endpoints-closing-down/
@@ -142,12 +153,6 @@ GitHub Advanced Security ユーザー向けに、プルリクエストでも Cop
 Copilot Autofix 自体は無料ユーザーであっても使うことができます。このアップデートは「プルリクエストでも使用可能になった」という点がポイントですね。GitHub Advanced Security ユーザーのみに解放されているのが惜しいですが、利用可能な方はぜひ使っていきましょう。
 
 _本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
-
-## Larger hosted runner enhancements: Edit runner size and Windows Server 4vCPU runner availability - GitHub Changelog
-https://github.blog/changelog/2025-01-30-larger-hosted-runner-enhancements-edit-runner-size-and-windows-server-4vcpu-runner-availability/
-
-## Oracle justified its JavaScript trademark with Node.js—now it wants that ignored
-https://deno.com/blog/deno-v-oracle2
 
 # know-how 🎓
 
@@ -203,9 +208,6 @@ https://zenn.dev/szktty/articles/flutter-generate-api-doc
 
 _本項の執筆者: [@takoeight0821](https://zenn.dev/takoeight0821)_
 
-## いかにしてココナラはCursor Businessを導入したのか? 〜生成AIツール導入のための社内調整術〜
-https://zenn.dev/coconala/articles/coconala-cursor-business-introduction
-
 # tool 🔨
 
 ## Terraform State をビジュアルで確認できるOSS「terraform-tui」の紹介 | DevelopersIO
@@ -217,10 +219,16 @@ _本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
 - **news 📺**
+  - [Linux Foundation、無料オンラインコース「Kubernetes入門」の提供を開始](https://www.linuxfoundation.jp/press-release/2025/01/free-online-course-introduction-to-kubernetes-now-available-in-japanese/)
+    - Linux Foundation が CNCF と共同で作っているオンライン学習コースの日本語版を公開しました。
+    - 日本語化されているので敷居が低いのが嬉しいですね。学んでいきましょう
+    - https://training.linuxfoundation.org/ja/training/introduction-to-kubernetes-lfs158-jp/
+  - [Larger hosted runner enhancements: Edit runner size and Windows Server 4vCPU runner availability - GitHub Changelog](https://github.blog/changelog/2025-01-30-larger-hosted-runner-enhancements-edit-runner-size-and-windows-server-4vcpu-runner-availability/)
+    - GitHub Actions の Larger runner において、ランナーのスペックを編集できるようになりました
+      - 特に嬉しいのは IP アドレスを静的に固定していた人ですね。IP アドレスが変わらずランナースペックを変えられるのでランナースペックを変えやすくなりました
+    - また、Windows Server 2025 4vCPU ランナーが利用可能になりました（パブリックプレビュー）
   - [Go 1.24 is released! - The Go Programming Language](https://go.dev/blog/go1.24)
     - [前回のProductivity Weekly](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20250122#go1.24-new-features)で取り上げた Go 1.24 が正式リリースされました！
-- **know-how 🎓**
-- **tool 🔨**
 
 # あとがき
 
