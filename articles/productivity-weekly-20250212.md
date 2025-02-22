@@ -138,6 +138,9 @@ _本項の執筆者: [@korosuke613](https://zenn.dev/korosuke613)_
 ## Edit and validate Copilot Autofix suggestions with Copilot Workspace - GitHub Changelog
 https://github.blog/changelog/2025-01-31-edit-and-validate-copilot-autofix-suggestions-with-copilot-workspace/
 
+GitHub Advanced Security ユーザー向けに、プルリクエストでも Copilot Autofix が使えるようになりました。プルリクエストに対して Copilot がセキュリティ的に怪しいところの修正案を提示してくれます。
+Copilot Autofix 自体は無料ユーザーであっても使うことができます。このアップデートは「プルリクエストでも使用可能になった」という点がポイントですね。GitHub Advanced Security ユーザーのみに解放されているのが惜しいですが、利用可能な方はぜひ使っていきましょう。
+
 _本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
 
 ## Larger hosted runner enhancements: Edit runner size and Windows Server 4vCPU runner availability - GitHub Changelog
@@ -151,6 +154,11 @@ https://deno.com/blog/deno-v-oracle2
 ## re:Invent2024で広がった AWS Verified Accessの可能性を探る - Speaker Deck
 https://speakerdeck.com/maimyyym/reinvent-2024-verified-access-update-potentiality
 
+AWS Verified Access が HTTP/HTTPS 以外、具体的には TCP 通信で利用可能になりました。
+このスライドではユースケース別に整理して Verified Access の使い所を考察しています。
+例えば、EC2 に SSH する時に Instance Connect 経由、Session Manager 経由、Verified Access 経由の 3 つを比較して、AWS Verified Access は大規模組織で仕組み化された SSH を提供したいときに使おう、といった話が書かれています。
+今後のアップデートに期待する点など、Verified Access を検討する上で役に立つ情報が書かれていると感じました。課金を抑えるためにアクティブ・非アクティブな状態を切り替えたい...
+
 _本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
 
 ## Terraform v1.11 の Write-Only Attributes を試してみる
@@ -160,6 +168,12 @@ _本項の執筆者: [@takamin55](https://zenn.dev/takamin55)_
 
 ## Four Keys導入からはじめる開発プロセスの改善 - enechain Tech Blog
 https://techblog.enechain.com/entry/four-keys
+
+電力取引におけるリスク管理システムを開発しているチームが、新機能を素早くユーザーに提供することが大事なフェーズに入ってきたので Four Keys を活用した様子が書かれています。初めのチームと課題が Four Keys とマッチしていて、自チームの分析をした上で適切な指標を選定できている点が素晴らしいと感じました。
+ツールとして Datadog の DORA Metrics を使用されている例は見かけたことがなかったので興味深く感じました。障害対応について PagerDuty との繋ぎこみがあったり、可視化がリッチだったり、と特徴的なところが紹介されていてよかったです。
+指標を全員で確認しているところ、開発プロセスの見直しに取り組んでいる点も個人的にグッとくるポイントでした。Four Keys を受けて改善を入れていく時は CI の時間短縮などテクニックに目が行きがちですが、本来はバックログの単位などの開発プロセス全体に取り組んでいってミクロな改善に止まらないことが大切だと考えているので、素晴らしい取り組みだと思いました。
+
+_本項の執筆者: [@uta8a](https://zenn.dev/uta8a)_
 
 ## GoアプリのCI/CDを4倍高速化した汎用的手法まとめ【txdb】
 https://zenn.dev/jcat/articles/323ce8b4e4744d
