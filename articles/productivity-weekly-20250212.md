@@ -21,6 +21,11 @@ user_defined:
     _本項の執筆者: [@naotama](https://zenn.dev/naotama)_
 ---
 
+:::message alert
+Productivity Weekly 2025-02-12 号より、**投稿アカウントが [@korosuke613](https://zenn.dev/korosuke613) から [@cy_ept](https://zenn.dev/cy_ept) へ変わります！**
+今後 Productivity Weekly の記事を追いかける際は、[@cy_ept](https://zenn.dev/cy_ept) か、[サイボウズ 生産性向上チーム](https://zenn.dev/p/cybozu_ept)パブリケーションをフォローいただけると幸いです。
+:::
+
 こんにちは。サイボウズ株式会社 [生産性向上チーム](https://www.docswell.com/s/cybozu-tech/5R2X3N-engineering-productivity-team-recruitment-information)の平木場です。
 
 僕たち生産性向上チームは毎週水曜日に Productivity Weekly という「1 週間の間に発見された開発者の生産性向上に関するネタを共有する会」を社内で開催しています。
@@ -59,7 +64,7 @@ GitHub Copilot において、エージェントモードが追加されまし�
 どういうふうな機能なのかはブログ内にある動画を見るのが早いと思います。
 まだプレビューであることもあり、利用するには VSCode Insiders の利用が必要です。
 
-僕もプライベートのリポジトリにおいて利用してみたのですが、GPT-4o が利用されているからか[^model]回答速度、精度は微妙でした（）。上位モデルを使えばもっと違う体験になるんだろうなと思っています。
+僕もプライベートのリポジトリにおいて利用してみたのですが、GPT-4o が利用されているからか[^model]、Clain で Claude や DeepSeek を使った際と比べて回答は微妙でした（感覚）。上位モデルを使えばもっと違う体験になるんだろうなと思っています。
 
 最近は Cline といった生成 AI をエージェント的に使ってコーディングを支援する拡張機能が流行っており、その流れに乗って登場した機能っぽさがあります。どんどん競争してもらいたいですね。
 
@@ -203,18 +208,6 @@ go-txdb 面白そう！
 
 _本項の執筆者: [@ajfAfg](https://zenn.dev/arjef)_
 
-## APIリファレンスを生成するプロンプトを考える (Dart/Flutter)
-https://zenn.dev/szktty/articles/flutter-generate-api-doc
-
-_本項の執筆者: [@takoeight0821](https://zenn.dev/takoeight0821)_
-
-# tool 🔨
-
-## Terraform State をビジュアルで確認できるOSS「terraform-tui」の紹介 | DevelopersIO
-https://dev.classmethod.jp/articles/hands-on-terraform-visual-state-explorer/
-
-_本項の執筆者: [@defaultcf](https://zenn.dev/defaultcf)_
-
 # read more 🍘
 Productivity Weekly で出たネタを全て紹介したいけど紹介する体力が持たなかったネタを一言程度で書くコーナーです。
 
@@ -231,6 +224,15 @@ Productivity Weekly で出たネタを全て紹介したいけど紹介する体
     - [前回のProductivity Weekly](https://zenn.dev/cybozu_ept/articles/productivity-weekly-20250122#go1.24-new-features)で取り上げた Go 1.24 が正式リリースされました！
 
 # あとがき
+
+:::message alert
+Productivity Weekly 2025-02-12 号より、**投稿アカウントが [@korosuke613](https://zenn.dev/korosuke613) から [@cy_ept](https://zenn.dev/cy_ept) へ変わります！**
+今後 Productivity Weekly の記事を追いかける際は、[@cy_ept](https://zenn.dev/cy_ept) か、[サイボウズ 生産性向上チーム](https://zenn.dev/p/cybozu_ept)パブリケーションをフォローいただけると幸いです。
+:::
+
+上記の通り、実は平木場の名前で Productivity Weekly を出すのは今週号で最後になります。約 4 年前に平木場が初め、一昨年あたりから他の生産性向上チームメンバーにも執筆を手伝っていただくようになっていましたが、最近平木場の本業が忙しくなってきたこともあり、取りまとめを平木場個人ではなく生産性向上チームでの持ち回しで行うようにしました。
+今後も記事のネタは執筆していくつもりですが、平木場の名前での執筆は今回が最後になります。
+**今まで読んでくださった方々ありがとうございました！！今後ともよろしくお願いいたします！！！**
 
 
 サイボウズの生産性向上チームでは社内エンジニアの開発生産性を上げるための活動を行なっています。そんな生産性向上チームが気になる方は下のリンクをクリック！
