@@ -5,7 +5,7 @@ type: idea
 topics:
   - ProductivityWeekly
   - 生産性向上
-published: false
+published: true
 publication_name: cybozu_ept
 user_defined:
   publish_link: https://zenn.dev/cybozu_ept/articles/productivity-weekly-20250212
@@ -19,6 +19,7 @@ user_defined:
     _本項の執筆者: [@takoeight0821](https://zenn.dev/takoeight0821)_
     _本項の執筆者: [@takamin55](https://zenn.dev/takamin55)_
     _本項の執筆者: [@naotama](https://zenn.dev/naotama)_
+published_at: 2025-02-28 10:00
 ---
 
 :::message alert
