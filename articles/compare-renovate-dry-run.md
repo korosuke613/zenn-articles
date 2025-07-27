@@ -1,5 +1,5 @@
 ---
-title: "Renovate config の変更が想定通りか確認する 〜真の dry-run を求めて〜"
+title: "[Deprecated] Renovate config の変更が想定通りか確認する 〜真の dry-run を求めて〜"
 emoji: "🕵️‍♂️"
 type: "tech"
 topics: ["Renovate"]
@@ -7,6 +7,22 @@ published: true
 publication_name: "cybozu_ept"
 user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/compare-renovate-dry-run"}
 ---
+
+:::message alert
+**2025/07/27 追記**: 
+この記事の内容は古く、**現 Renovate のバージョンではうまく動作しないことを確認しています**（ちょっと前まで使えてたと思うんだけど使えなくなったかは謎）。
+
+また、本記事を出した半年後、2023 年 5 月にリリースされた Renovate [v35.76.0](https://github.com/renovatebot/renovate/releases/tag/35.76.0) より、`platform=local` オプションが追加され、ローカルにある Renovate config を使った dryrun ができるようになりました[^bikkuri]。
+今後は `platform=local` オプションを使うことをおすすめします。
+
+なお、ちょうど今年の 1 月に Renovate のローカルコンフィグの dryrun について調査した記事を公開した方がいますので、そちらもご参照ください。
+
+- **[Renovate を手元の repository に対して debug 実行する](https://blog.1q77.com/2025/01/renovate-local-debug/)**
+
+[^bikkuri]: [気づいた時びっくりしてツイートした。](https://x.com/Shitimi_613/status/1949128308605722700)
+
+:::
+
 
 こんにちは。サイボウズの生産性向上チームの [@korosuke613](https://github.com/korosuke613) です。
 
