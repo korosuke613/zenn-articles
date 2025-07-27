@@ -1,11 +1,13 @@
 ---
 title: "[Deprecated] Renovate config の変更が想定通りか確認する 〜真の dry-run を求めて〜"
-emoji: "🕵️‍♂️"
-type: "tech"
-topics: ["Renovate"]
+emoji: 🕵️‍♂️
+type: tech
+topics:
+  - Renovate
 published: true
-publication_name: "cybozu_ept"
-user_defined: {"publish_link": "https://zenn.dev/korosuke613/articles/compare-renovate-dry-run"}
+publication_name: cybozu_ept
+user_defined:
+  publish_link: https://zenn.dev/korosuke613/articles/compare-renovate-dry-run
 ---
 
 :::message alert
