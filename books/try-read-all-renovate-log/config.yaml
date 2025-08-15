@@ -1,0 +1,12 @@
+title: "Renovate のログ全部読む"
+summary: "Renovate のログを全部読んで備忘録的にまとめました"
+topics: ["renovate"] # トピック（5つまで）
+published: false # falseだと下書き
+price: 0 # 有料の場合200〜5000
+chapters:
+  - abstract
+  - setup
+  - repository-setup
+  - repository-analyze
+  - repository-update
+  - repository-result
