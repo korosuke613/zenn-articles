@@ -1,11 +1,16 @@
 ---
 title: 組織で使うためのClaude Code Action via Amazon Bedrock（認証・ログ分析・クラウド破産防止）
 published: true
-published_at: "2025-08-20 08:00"
-publication_name: "cybozu_ept"
+published_at: 2025-08-20 08:00
+publication_name: cybozu_ept
 type: tech
 emoji: 🏛️
-topics: ["GitHubActions", "claudecode", "aws", "bedrock", "ai"]
+topics:
+  - GitHubActions
+  - claudecode
+  - aws
+  - bedrock
+  - ai
 ---
 
 :::message
