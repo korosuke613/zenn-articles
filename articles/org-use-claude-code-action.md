@@ -118,16 +118,33 @@ GitHub Copilot Coding Agent は、GitHub Copilot の契約が必要で、定額�
 
 ### Anthropic API の契約を一元化する
 
+:::message
+2025 年 9 月 2 日追記。
+
+本記事を出した翌日、2025 年 8 月 21 日に Claude Team/Enterprise プランでも Claude Code Action が利用可能になりました。
+
+> Claude Code is now available on Team and Enterprise plans.
+>
+> Flexible pricing lets you mix standard and premium Claude Code seats across your organization and scale with usage.
+https://x.com/claudeai/status/1958230849171952118
+
+本節も若干追記しましたが、実際に使ってないためわかってない事も多いです。調べた感じでは、組織で Claude Code Action を使う目的ならばまだ Claude Team/Enterprise プランではないのかなという感想です。
+:::
+
 Claude Code Action を利用するには Claude API にアクセスする必要があります。主な方法は次の 4 つになります。
 
 - Claude Pro/Max を契約
+- Claude Team/Enterprise を契約
 - Anthropic API を契約
 - Amazon Bedrock を契約
 - Google Vertex AI を契約
 
-Claude Pro/Max は個人向けのサブスクリプションで、OAuth トークンを発行することで定額で利用できますが、個人にひもづくことから組織での利用には適していません。
+Claude Pro/Max は個人向けのサブスクリプションで、OAuth トークンを発行することで定額で利用できますが、個人にひもづくことから組織での利用には適していません。Claude Team/Enterprise は組織向けのサブスクリプションであり、ユーザーごとの追加課金で Claude Code が利用でき、OAuth トークン発行で Pro/Max と同様に Claude Code Action が利用できると思われますが、これも調べている限りは個人にひもづくことになりそうです。とは言え組織向けの機能（[支出上限設定、利用可能 MCP サーバの制限など](https://www.anthropic.com/news/claude-code-on-team-and-enterprise)）が使えるので、個人に紐づいても良いという場合は選択肢になり得るかもしれません。Bot ユーザーを作成するという選択肢もあるかもしれないですが、規約上可能かどうかは未確認です。詳しい方いたら教えてください（2025 年 9 月 2 日追記）。
 
+<!-- textlint-disable ja-technical-writing/no-unmatched-pair -->
 Anthropic API は、最新の機能にアクセスできるものの、API キーの管理が必要で、API キーの作成の自動化ができない、利用料制限ができない、利用ログを残せない、登場したばかりでノウハウが少ないなど、やはり組織での利用には適してないと考えます。
+（2025 年 9 月 2 日追記：Claude Team/Enterprise においてはユーザ単位の支出上限設定ができるようになったようなので、もしかしたら API でも同様のことができるようになったかもしれませんが、詳細はわかってません。詳しい方いたら(ry）
+<!-- textlint-enable ja-technical-writing/no-unmatched-pair -->
 
 [Amazon Bedrock](https://aws.amazon.com/jp/bedrock/) は AWS のサービスで、実行ログの保存、OIDC による認証、他の AWS サービスとの連携が可能です。AWS 上でワークロードを構築することで、クォータやセキュリティ、監査ログの要件を満たすことができます。
 
