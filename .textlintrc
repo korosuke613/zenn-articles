@@ -1,4 +1,5 @@
 {
+  "ignorePatterns": [".claude/"],
   "plugins": {
     "@textlint/markdown": {
       "extensions": [".md"]
