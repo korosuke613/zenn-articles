@@ -11,14 +11,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Cache Npm deps
+      - name: Install pnpm
+        uses: pnpm/action-setup@a7487c7e89a18df4991f7f222e4898a00d66ddda # v4.1.0
+
+      - name: Cache pnpm deps
         uses: actions/setup-node@v4
         with:
           node-version-file: .tool-versions
-          cache: 'npm'
+          cache: 'pnpm'
 
-      - name: Install Npm deps
-        run: npm ci
+      - name: Install pnpm deps
+        run: pnpm install --frozen-lockfile
 
       # Deno は ci-deno を main ブランチで実行しているため、ここでのキャッシュは不要
       # - name: Install and Cache Deno deps
