@@ -35,7 +35,7 @@ Billing Usage API の概要を説明します。
 
 GitHub Enterprise Cloud では、GitHub Actions の実行時間、Copilot のシート、Packages のストレージ、Codespaces の利用など、さまざまなサービスが従量課金で提供されています。組織の規模が大きくなると、これらのコストが無視できない金額になってきます。
 
-Enterprise の管理画面には利用料を得られる簡単なダッシュボード（`Billing and licensing` -> `Usage` -> `Metered usage`）があり、ある程度の情報は確認できます。
+Enterprise の管理画面には利用料を確認できる簡単なダッシュボード（`Billing and licensing` -> `Usage` -> `Metered usage`）があり、ある程度の情報は確認できます。
 
 ![](/images/github-billing-api/github-billing-usage.png)
 *https://github.blog/changelog/2024-09-24-enhanced-billing-platform-for-enterprises/ より*
@@ -53,7 +53,7 @@ Enhanced Billing Platform の管理画面から CSV をダウンロードして�
 
 GitHub からは Enhanced Billing Platform の一部としてあらゆる課金情報が取れる Billing Usage API が提供されています（[ロードマップ](https://github.com/github/roadmap/issues/246)）。Public Preview を経て、2024 年に [Enhanced Billing Platform が全 Enterprise に展開](https://github.blog/changelog/2024-09-24-enhanced-billing-platform-for-enterprises/)されたことで広く利用可能になりました[^before_api]。Billing Usage API（`GET /enterprises/{enterprise}/settings/billing/usage`）を使うと、次のことが可能になります。
 
-[^before_api]: [以前は GitHub Actions と Packages の個別 API](https://github.com/github/roadmap/issues/60)（`GET /enterprises/{enterprise}/settings/billing/actions` など、を使うことでそれらの分析も可能でしたが、すべてのランナー種類（M1 Mac 等の新しいランナーなど）が反映されなかったり、Actions と Packages 以外のコストがわからなかったりと限定的な分析しかできませんでした。なお、これらの個別 API は [2025 年 9 月に廃止されています](https://github.blog/changelog/2025-09-26-product-specific-billing-apis-are-closing-down/)。
+[^before_api]: [以前は GitHub Actions と Packages の個別 API](https://github.com/github/roadmap/issues/60)（`GET /enterprises/{enterprise}/settings/billing/actions` などを使うことでそれらの分析も可能でしたが、すべてのランナー種類（M1 Mac 等の新しいランナーなど）が反映されなかったり、Actions と Packages 以外のコストがわからなかったりと限定的な分析しかできませんでした。なお、これらの個別 API は [2025 年 9 月に廃止されています](https://github.blog/changelog/2025-09-26-product-specific-billing-apis-are-closing-down/)。
 
 - **Organization/リポジトリ/SKU 別の詳細な内訳分析**: どの Organization のどのリポジトリで、どの SKU（ランナー種類やサービス）にいくらかかっているかを一括取得できる
 - **時系列での推移追跡と将来予測**: API から取得したデータを時系列データベースに蓄積すれば、コストの増減をグラフ化できるだけでなく、トレンドに基づいた将来のコスト予測も可能になる
@@ -97,7 +97,7 @@ Billing Usage API では、次の 3 つのパラメータで取得対象の日�
 なお、`cost_center_id` パラメータでコストセンター別にデータを絞り込むことも可能ですが、本記事では割愛します。
 
 :::message
-以前は `hour` パラメータも受け付けており、時間単位でデータを取得できましたが、ある時点で廃止され[^hour_deprecation]、現在は日単位でのデータ取得のみとなります。廃止後も、レスポンスの各 `usageItem` の `date` フィールドには時刻情報が含まれているため、クライアント側で時間ごとにデータを分割できます。
+以前は `hour` パラメータも受け付けており、時間単位でデータを取得できましたが、ある時点で廃止され[^hour_deprecation]、現在は日単位でのデータ取得のみとなります。ただし、レスポンスの各 `usageItem` はイベント単位のデータであり、`date` フィールドには課金イベント発生時刻が含まれています。そのため、API のリクエストは日単位ですが、取得したデータをクライアント側で時間ごとに集計できます。
 
 [^hour_deprecation]: > Usage report API changes: We’ve removed the hour parameter from the existing usage report API and reduced the granularity of the response when using the day parameter to provide daily totals instead of hourly breakdowns. <br />https://github.blog/changelog/2025-11-03-manage-budgets-and-track-usage-with-new-billing-api-updates/#additional-improvements 
 :::
@@ -189,7 +189,7 @@ GitHub App が使えれば短命トークンで運用でき、セキュリティ
 
 Billing Usage API から取得したデータは JSON 形式のため、さまざまな方法で集計・分析できます。シンプルな方法としてはスプレッドシート（Google Sheets や Excel）への取り込み、より高度な分析には BigQuery や Snowflake などのデータウェアハウスへの投入も考えられます。
 
-筆者は S3 互換ストレージ（Ceph）+ Prometheus（Victoria Metrics）+ Grafana を組み合わせてコスト可視化・分析システムを構築しました（社内限定）。ぶっちゃけた話、社内 Kubernetes 基盤にこれらのコンポーネントがすでに用意されていたため、追加のインフラコストなしで構築できたのが決め手です。本節では、このアーキテクチャを使った実装例を紹介します。
+筆者は S3 互換ストレージ（Ceph）+ Victoria Metrics + Grafana を組み合わせてコスト可視化・分析システムを構築しました（社内限定）。ぶっちゃけた話、社内 Kubernetes 基盤にこれらのコンポーネントがすでに用意されていたため、追加のインフラコストなしで構築できたのが決め手です。本節では、このアーキテクチャを使った実装例を紹介します。
 
 ## システム構成
 
@@ -228,7 +228,7 @@ sequenceDiagram
 
 ## メトリクス設計
 
-API レスポンスに含まれる `usageItems` は個々の課金イベント単位であり、そのままではデータ量が膨大になります。そこで、scraper が `usageItems` を 1 時間単位にサマリー化し、同じ `product`/`sku`/`organizationName`/`repositoryName` の組み合わせごとに `grossAmount` と `netAmount` を合算しています。
+API レスポンスに含まれる `usageItems` は個々の課金イベント単位であり、それぞれに課金イベント発生時刻の timestamp が含まれています。そのままではデータ量が膨大になるため、scraper が `usageItems` を timestamp に基づいて 1 時間単位にサマリー化し、同じ `product`/`sku`/`organizationName`/`repositoryName` の組み合わせごとに `grossAmount` と `netAmount` を合算しています。
 
 Prometheus に公開するメトリクスは 2 種類です。`grossAmount`（割引前）と `netAmount`（割引後）を別メトリクスに分けることで、Grafana のダッシュボード変数でどちらを表示するか簡単に切り替えられるようにしています。
 
@@ -252,7 +252,7 @@ Prometheus に公開するメトリクスは 2 種類です。`grossAmount`（�
 
 Grafana には 5 種類のダッシュボードを用意しています。各ダッシュボードでは、割引前料金（`gh_billing`）と割引後料金（`gh_billing_discounted`）をダッシュボード変数 `$metric` で切り替えて表示できるようにしています。また、Copilot のコストは別の仕組みで管理しているため、Actions 等のクエリでは `product!="copilot"` で除外しています。
 
-各パネルには Data link を配置しており、クリックすると Organization/リポジトリ/SKU 別ダッシュボードにパラメータ付きで遷移できるようにしています。地味に便利です。なお、ダッシュボードを作るのは楽しいんですが、Grafana のクエリ沼にハマるとなかなか抜け出せないので気をつけてください。
+各パネルには Data link を配置しており、クリックすると Organization/リポジトリ/SKU 別ダッシュボードにパラメータ付きで遷移できるようにしています。地味に便利です。なお、ダッシュボードを作るのは楽しいんですが、Grafana のクエリ沼にハマるとなかなか抜け出せないので気をつけてください。ダッシュボードは我流で作ったものなので、ぜひみなさんも「ぼくのかんがえたさいきょうのダッシュボード」を作ってみてください。
 
 ### 全体サマリー
 
@@ -285,7 +285,7 @@ Product 別に設定した予算（Budget）に対する消化状況を確認す
 
 ![](/images/github-billing-api/ghbilling-budget.png)
 
-月末予想コストは、今月の実績コストを経過日数で割り、月の日数を掛けた線形外挿に 1.5 倍のバッファを上乗せして算出しています。MetricsQL で表すと次のようになります。1.5 倍のバッファは、月の後半にコストが増加するケースを考慮した安全マージンです。このバッファにより、ゲージが予算上限に近づいた場合でも余裕を持って対応できます。
+月末予想コストは、今月の実績コストを経過日数で割り、月の日数を掛けた線形外挿に 1.5 倍のバッファを上乗せして算出しています。MetricsQL（PromQL 互換）で表すと次のようになります。1.5 倍のバッファは、月の後半にコストが増加するケースを考慮した安全マージンです。このバッファにより、ゲージが予算上限に近づいた場合でも余裕を持って対応できます。
 
 ```promql
 # 今月の実績コスト
