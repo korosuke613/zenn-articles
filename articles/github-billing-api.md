@@ -15,7 +15,7 @@ GitHub には [Enhanced Billing Platform](https://docs.github.com/en/enterprise-
 
 本記事では、GitHub.com の利用者を対象に Billing Usage API の詳細を解説し、実践的な応用例として Billing Usage API を活用したコスト分析ダッシュボードを紹介します。
 
-なお、**著者は GitHub Enterprise Cloud を利用しているため、本記事では Enterprise レベルの API を紹介する内容となっています**。同様に、[Organization レベルの API](https://docs.github.com/en/rest/billing/usage?apiVersion=2022-11-28#get-billing-usage-report-for-an-organization)、[User レベルの API](https://docs.github.com/en/rest/billing/usage?apiVersion=2022-11-28#get-billing-usage-report-for-a-user) も提供されていますが、詳細な仕様については各ドキュメントを参照してください。
+なお、**筆者は GitHub Enterprise Cloud を利用しているため、本記事では Enterprise レベルの API を紹介する内容となっています**。同様に、[Organization レベルの API](https://docs.github.com/en/rest/billing/usage?apiVersion=2022-11-28#get-billing-usage-report-for-an-organization)、[User レベルの API](https://docs.github.com/en/rest/billing/usage?apiVersion=2022-11-28#get-billing-usage-report-for-a-user) も提供されていますが、詳細な仕様については各ドキュメントを参照してください。
 
 ![](/images/github-billing-api/ghbilling-top.png)
 *Billing Usage API を活用することでこんな感じのダッシュボードも作れます（中の情報は全てダミーです）*
@@ -47,7 +47,7 @@ Enterprise の管理画面には利用料を得られる簡単なダッシュボ
 - **複数の要素を組み合わせた可視化をするのが困難**: 特定種類（Product, SKU, Repository, Organization, Cost center）でのグルーピング、クエリによるフィルタリングはできるが、組み合わせによってできる場合とできない場合があり、例えば「Actions Linux の Organization 別利用量」を可視化するようなことができない
 - **閲覧に Enterprise Admin 権限が必要**: 管理画面の Billing ページは Enterprise Admin しかアクセスできないため、社内のエンジニアが自主的にコスト状況を確認して改善に取り組むことが難しい
 
-Enhanced Billing Platform の管理画面から CSV をダウンロードして分析することも可能ですが、定期的な分析やダッシュボード化には手作業が多く現実的ではありません。
+Enhanced Billing Platform の管理画面から CSV をダウンロードして分析することも可能ですが、定期的な分析やダッシュボード化には手作業が多く、正直やってられません。
 
 ## Billing Usage API でできること
 
@@ -182,14 +182,14 @@ API レスポンスは `usageItems` 配列を含む JSON です。各アイテ�
 **GitHub App / Fine-grained PAT について**
 この API は GitHub App では利用できません。2026 年 2 月 10 日時点で、Enterprise スコープの `manage_billing` 権限は GitHub App に付与できないため、Personal Access Token（Classic）を使用する必要があります。Fine-grained PAT でも Enterprise の billing 権限は未対応です。
 
-GitHub App が使えれば短命トークンで運用でき、セキュリティ的にも望ましいのですが、現状ではユーザーにひもづく長命な PAT を安全に管理する必要があります。なお、Enterprise API 自体は GitHub App / Fine-grained PAT 対応は [GitHub のロードマップ](https://github.com/github/roadmap/issues/793)上では Public Preview となっており、Enterprise GitHub App ではすでに一部の Enterprise API を実行可能です。しかし、Enterprise Billing Usage API を実行できるスコープはまだ提供されていません。
+GitHub App が使えれば短命トークンで運用でき、セキュリティ的にも望ましいのですが、現状ではユーザーにひもづく長命な PAT を安全に管理する必要があります。なお、Enterprise API 自体は GitHub App / Fine-grained PAT 対応は [GitHub のロードマップ](https://github.com/github/roadmap/issues/793)上では Public Preview となっており、Enterprise GitHub App ではすでに一部の Enterprise API を実行可能です。しかし、Enterprise Billing Usage API を実行できるスコープはまだ提供されていません。早く GitHub App 対応してほしいですね...。
 :::
 
 # 応用編 - コスト可視化・分析ダッシュボードの構築
 
 Billing Usage API から取得したデータは JSON 形式のため、さまざまな方法で集計・分析できます。シンプルな方法としてはスプレッドシート（Google Sheets や Excel）への取り込み、より高度な分析には BigQuery や Snowflake などのデータウェアハウスへの投入も考えられます。
 
-著者は S3 互換ストレージ（Ceph）+ Prometheus（Victoria Metrics）+ Grafana を組み合わせてコスト可視化・分析システムを構築しました（社内限定）。ぶっちゃけた話、社内 Kubernetes 基盤にこれらのコンポーネントがすでに用意されていたため、追加のインフラコストなしで構築できたのが決め手です。本節では、このアーキテクチャを使った実装例を紹介します。
+筆者は S3 互換ストレージ（Ceph）+ Prometheus（Victoria Metrics）+ Grafana を組み合わせてコスト可視化・分析システムを構築しました（社内限定）。ぶっちゃけた話、社内 Kubernetes 基盤にこれらのコンポーネントがすでに用意されていたため、追加のインフラコストなしで構築できたのが決め手です。本節では、このアーキテクチャを使った実装例を紹介します。
 
 ## システム構成
 
@@ -252,7 +252,7 @@ Prometheus に公開するメトリクスは 2 種類です。`grossAmount`（�
 
 Grafana には 5 種類のダッシュボードを用意しています。各ダッシュボードでは、割引前料金（`gh_billing`）と割引後料金（`gh_billing_discounted`）をダッシュボード変数 `$metric` で切り替えて表示できるようにしています。また、Copilot のコストは別の仕組みで管理しているため、Actions 等のクエリでは `product!="copilot"` で除外しています。
 
-各パネルには Data link を配置しており、クリックすると Organization/リポジトリ/SKU 別ダッシュボードにパラメータ付きで遷移できるようにしています。地味に便利です。
+各パネルには Data link を配置しており、クリックすると Organization/リポジトリ/SKU 別ダッシュボードにパラメータ付きで遷移できるようにしています。地味に便利です。なお、ダッシュボードを作るのは楽しいんですが、Grafana のクエリ沼にハマるとなかなか抜け出せないので気をつけてください。
 
 ### 全体サマリー
 
@@ -322,7 +322,7 @@ GitHub Actions の利用料が急増し budget に近づいた際に、ダッシ
 
 Billing Usage API を使うことで、従量課金データをプログラマティックに扱えるようになります。Organization/リポジトリ/SKU 別の詳細な内訳、柔軟な時系列での推移、その他応用的なことなど、管理画面だけでは難しかった分析が可能になります。
 
-とはいえ、いきなりこの API を使ってシステムを構築するのではなく、管理画面上での分析、CSV をダウンロードしての分析をまずは試し、必要性が出てから API を活用していくのが良いでしょう。
+とはいえ、いきなりこの API を使ってシステムを構築するのではなく、管理画面上での分析、CSV をダウンロードしての分析をまずは試し、必要性が出てから API を活用していくのが良いでしょう。個人的には、一度ダッシュボードを作ってしまうと CSV に戻れなくなるので覚悟の準備をしておいてください。
 
 GitHub Enterprise Cloud のコスト管理に課題を感じている方の参考になれば幸いです。
 
