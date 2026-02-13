@@ -230,7 +230,9 @@ sequenceDiagram
 
 API レスポンスに含まれる `usageItems` は個々の課金イベント単位であり、それぞれに課金イベント発生時刻の timestamp が含まれています。そのままではデータ量が膨大になるため、scraper が `usageItems` を timestamp に基づいて 1 時間単位にサマリー化し、同じ `product`/`sku`/`organizationName`/`repositoryName` の組み合わせごとに `grossAmount` と `netAmount` を合算しています。
 
-Prometheus に公開するメトリクスは 2 種類です。`grossAmount`（割引前）と `netAmount`（割引後）を別メトリクスに分けることで、Grafana のダッシュボード変数でどちらを表示するか簡単に切り替えられるようにしています。
+Prometheus に公開するメトリクスは 2 種類です。`grossAmount`（割引前）と `netAmount`（割引後）を別メトリクスに分けることで、ダッシュボード変数[^grafana_variables]でどちらを表示するか簡単に切り替えられるようにしています。
+
+[^grafana_variables]: [Grafana の Variables](https://grafana.com/docs/grafana/latest/visualizations/dashboards/variables/add-template-variables/)
 
 | メトリクス名 | 説明 | 値 |
 |---|---|---|
@@ -250,7 +252,7 @@ Prometheus に公開するメトリクスは 2 種類です。`grossAmount`（�
 
 ## ダッシュボードの構成
 
-Grafana には 5 種類のダッシュボードを用意しています。各ダッシュボードでは、割引前料金（`gh_billing`）と割引後料金（`gh_billing_discounted`）をダッシュボード変数 `$metric` で切り替えて表示できるようにしています。また、Copilot のコストは別の仕組みで管理しているため、Actions 等のクエリでは `product!="copilot"` で除外しています。
+Grafana には 5 種類のダッシュボードを用意しています。各ダッシュボードでは、割引前料金（`gh_billing`）と割引後料金（`gh_billing_discounted`）をダッシュボード変数[^grafana_variables]で切り替えて表示できるようにしています。
 
 各パネルには Data link を配置しており、クリックすると Organization/リポジトリ/SKU 別ダッシュボードにパラメータ付きで遷移できるようにしています。地味に便利です。なお、ダッシュボードを作るのは楽しいんですが、Grafana のクエリ沼にハマるとなかなか抜け出せないので気をつけてください。ダッシュボードは我流で作ったものなので、ぜひみなさんも「ぼくのかんがえたさいきょうのダッシュボード」を作ってみてください。
 
