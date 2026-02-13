@@ -3,6 +3,7 @@
   extends: [
     "github>korosuke613/renovate-config:npm-automerge-deps-minor-patch.json5"
   ],
+  minimumReleaseAge: "7d",
   packageRules: [
     {
       matchManagers: ["npm"],

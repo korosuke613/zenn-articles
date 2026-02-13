@@ -10,13 +10,13 @@ Zenn（技術ブログプラットフォーム）の記事管理リポジトリ�
 
 ### プレビュー
 ```bash
-npm run start  # zenn preview (port 8808)
+pnpm run start  # zenn preview (port 8808)
 ```
 
 ### textlint（記事の日本語校正）
 ```bash
-npx textlint ./articles/<記事ファイル名>.md           # 単一記事の校正
-npx textlint ./articles/productivity-weekly-*.md      # PW記事一括校正
+pnpm exec textlint ./articles/<記事ファイル名>.md           # 単一記事の校正
+pnpm exec textlint ./articles/productivity-weekly-*.md      # PW記事一括校正
 ```
 
 ### Deno ツール（tools/ 配下）
