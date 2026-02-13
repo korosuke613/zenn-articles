@@ -7,7 +7,7 @@
     "start": "zenn preview --port 8808",
     "lint:renovate-config-validator": "renovate-config-validator"
   },
-  "packageManager": "pnpm@10.29.1",
+  "packageManager": "pnpm@10.28.0",
   "devDependencies": {
     "@proofdict/textlint-rule-proofdict": "3.1.2",
     "prh": "5.4.4",
