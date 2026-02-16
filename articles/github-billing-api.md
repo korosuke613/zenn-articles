@@ -1,10 +1,13 @@
 ---
-title: "GitHub Billing Usage API のすゝめ 〜 組織全体の従量課金額を分析・可視化する"
-emoji: "💸"
+title: GitHub Billing Usage API のすゝめ 〜 組織全体の従量課金額を分析・可視化する
+emoji: 💸
 type: tech
-topics: ["GitHub", "Billing"]
-published: false
-publication_name: "cybozu_ept"
+topics:
+  - GitHub
+  - Billing
+published: true
+publication_name: cybozu_ept
+published_at: 2026-02-17 10:00
 ---
 
 こんにちは。サイボウズ株式会社、[生産性向上チーム](https://www.docswell.com/s/cybozu-tech/5R2X3N-engineering-productivity-team-recruitment-information)の平木場（[@korosuke613](https://korosuke613.dev)）です。
