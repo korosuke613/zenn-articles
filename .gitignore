@@ -9,3 +9,5 @@ rdjson.json
 
 tools/dist/*
 !tools/dist/.gitkeep
+
+tmp/
