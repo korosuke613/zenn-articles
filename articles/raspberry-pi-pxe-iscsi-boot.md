@@ -20,8 +20,6 @@ published: false
 
 構成ファイル一式は GitHub リポジトリで管理しています（非公開）。
 
-https://github.com/korosuke613/home-raspberry-pxe
-
 # なぜネットワークブートか
 
 ## SD カードの課題
@@ -82,6 +80,8 @@ graph LR
             LUN1["iSCSI LUN #1<br/>(pi-1 root fs)"]
             LUN2["iSCSI LUN #2<br/>(pi-2 root fs)"]
             LUN3["iSCSI LUN #3<br/>(pi-3 root fs)"]
+        end
+        subgraph HDD["HDD ボリューム"]
             TFTP["TFTP ディレクトリ<br/>(各 Pi のブートファイル)"]
         end
     end
@@ -100,9 +100,8 @@ graph LR
 ```mermaid
 graph TB
     Router["ルーター<br/>(192.168.0.1)<br/>DHCP サーバー"]
-    NAS["UGreen NAS<br/>(192.168.0.100)"]
 
-    subgraph NAS内サービス
+    subgraph NAS["UGreen NAS (192.168.0.100)"]
         dnsmasq["dnsmasq コンテナ<br/>(Proxy DHCP + TFTP)"]
         iscsi["iSCSI Target<br/>(NAS ネイティブ)"]
         nfs["NFS コンテナ<br/>(/boot/firmware 用)"]
@@ -113,7 +112,6 @@ graph TB
     Pi3["Pi #3<br/>aabbccdd"]
 
     Router --- Pi1 & Pi2 & Pi3
-    NAS --- dnsmasq & iscsi & nfs
     dnsmasq -. "Proxy DHCP<br/>+ TFTP" .- Pi1 & Pi2 & Pi3
     iscsi -. "iSCSI<br/>(root fs)" .- Pi1 & Pi2 & Pi3
     nfs -. "NFS<br/>(/boot/firmware)" .- Pi1 & Pi2 & Pi3
@@ -143,12 +141,18 @@ sequenceDiagram
 
 Raspberry Pi 4B は OTP（One-Time Programmable）ビットを設定することでネットワークブートが有効になります。電源 ON 後、まずルーターから IP アドレスを取得し、dnsmasq の Proxy DHCP から TFTP サーバーの情報を受け取ります。TFTP でカーネルと initramfs を取得した後、initramfs 内の iSCSI Initiator が iSCSI Target に接続し、LUN を root ファイルシステムとしてマウントします。
 
-# サーバー側セットアップ
+# NAS 側セットアップ
 
 ## Docker Compose
 
 UGreen NAS にはネイティブの Docker 機能が搭載されているため、dnsmasq（Proxy DHCP + TFTP）と NFS サーバーを Docker Compose で管理しています。一方、iSCSI Target は NAS のネイティブ機能として動作しており、Docker とは独立しています。
 
+NAS 上で動作させるサービスは次の 2 つです。
+
+- **dnsmasq**（Proxy DHCP + TFTP サーバー）: PXE クライアントにブートサーバー情報を配信し、TFTP でブートファイルを提供する。
+- **NFS サーバー**: 各 Pi のシリアル番号ディレクトリを NFS エクスポートする。
+
+:::details docker-compose.yaml の全体。
 ```yaml:docker-compose.yaml
 version: "3.8"
 
@@ -186,14 +190,15 @@ services:
         - ./tftproot/55667788:/nfsshare/tftproot/55667788
         network_mode: host
 ```
-
-`network_mode: host` が重要です。DHCP はブロードキャストを使うため、Docker のブリッジネットワークでは正しく動作しません。`host` ネットワークにすることで、コンテナがホストのネットワークインターフェースを直接使用できます。
+:::
 
 :::message
-**NFS サーバーの役割**
+**NFS サーバーの役割 ── なぜ `/boot/firmware` は iSCSI ではないのか**
 root ファイルシステムは iSCSI 経由ですが、`/boot/firmware` は NFS でマウントしています。
 
-Raspberry Pi OS で `apt upgrade` によりカーネルがアップデートされると、新しいカーネルイメージ（`kernel8.img`）や initramfs は `/boot/firmware` に書き込まれます。この `/boot/firmware` を NFS 経由で TFTP ディレクトリにマウントしておくことで、Pi 上でカーネルが更新されると TFTP サーバー上のブートファイルも自動的に更新されます。手動で TFTP ディレクトリにファイルをコピーする必要がなくなり、次回起動時から更新後のカーネルで起動します。
+iSCSI LUN は NAS から見ると生のブロックデバイスであり、中のファイルシステムにはアクセスできません。TFTP サーバー（dnsmasq）はブートファイルを NAS のファイルシステム上のディレクトリから配信するため、iSCSI LUN 内にブートファイルを置いても TFTP で配信できないのです。
+
+そこで、TFTP ディレクトリを NFS エクスポートし、Pi の `/boot/firmware` としてマウントしています。Raspberry Pi OS で `apt upgrade` によりカーネルがアップデートされると、新しいカーネルイメージ（`kernel8.img`）や initramfs は `/boot/firmware` に書き込まれます。これが NFS 経由で TFTP ディレクトリに直接反映されるため、次回起動時から更新後のカーネルで自動的に起動します。
 :::
 
 ## dnsmasq 設定
@@ -494,11 +499,11 @@ lsblk
 
 # パフォーマンス
 
-NFS → iSCSI への移行と tmpfs の導入による UnixBench の結果を示します。
+NFS → iSCSI への移行と tmpfs の導入による UnixBench の結果を示します。なお、このベンチマークは HDD 上に iSCSI LUN を配置していた時期に取得したものです。現在は SSD に移行済みのため、実際のパフォーマンスはさらに向上しています。
 
 ## ベンチマーク結果（UnixBench 6.0.0）
 
-| 項目 | NFS + tmpfs | iSCSI + tmpfs | 改善率 |
+| 項目 | NFS（HDD）+ tmpfs | iSCSI（HDD）+ tmpfs | 改善率 |
 |---|---|---|---|
 | **System Benchmarks Index Score（1 並列）** | 403.1 | 498.8 | **+23.7%** |
 | **System Benchmarks Index Score（4 並列）** | 1290.4 | 1577.3 | **+22.2%** |
@@ -557,5 +562,3 @@ Raspberry Pi 4B を PXE + iSCSI でネットワークブートする構成の要
 - **パフォーマンス**: iSCSI はブロックレベルアクセスのため NFS より高速。tmpfs 併用でさらに改善
 
 構成一式は GitHub リポジトリで管理しています（非公開）。
-
-https://github.com/korosuke613/home-raspberry-pxe
