@@ -98,7 +98,7 @@ graph LR
 ## アーキテクチャ図
 
 ```mermaid
-graph TB
+graph LR
     Router["ルーター<br/>(192.168.0.1)<br/>DHCP サーバー"]
 
     subgraph NAS["UGreen NAS (192.168.0.100)"]
@@ -529,6 +529,31 @@ Process Creation がやや低下していますが、これはベンチマーク
 # 運用してみて
 
 PXE + iSCSI 構成に移行してから数ヶ月が経過した時点での所感をまとめます。
+
+## 動かしているもの
+
+この基盤の上では k3s クラスタが稼働しており、さまざまなワークロードを動かしています。k3s クラスタ自体の構築方法は本記事のスコープ外ですが、「何のためにこの構成を組んだのか」のイメージとして、動かしているものを簡単に紹介します。
+
+### アプリケーション
+
+- **Home Assistant**: ホームオートメーション
+- **AdGuard Home**: ネットワーク全体の DNS / 広告ブロック
+- **Glance**: セルフホストダッシュボード
+- **time-news-service**: 時報・ニュース読み上げ（自作）
+- **gh-cron-trigger**: GitHub Actions ワークフローの定期実行（自作）[^alt_cronium]
+
+[^alt_cronium]: cronium という GitHub Actions ワークフローを外部から定期実行する仕組みを真似したもの。参考：[GitHub Actions の定期実行ワークフローを「時間通り」に実行する](https://zenn.dev/cybozu_ept/articles/run-github-actions-scheduled-workflows-on-time)
+
+### クラスタ基盤
+
+- **Flux CD**: GitOps によるデプロイ管理
+- **Cloudflare Tunnel**: 外部からの HTTPS アクセス
+- **external-dns**: Cloudflare Tunnel 用の Cloudflare DNS レコード管理
+- **ingress-nginx**: ローカルネットワークからの HTTPS アクセス
+- **cert-manager**: ローカルネットワーク向け HTTPS 証明書の発行
+- **nfs-provisioner**: NAS の共有フォルダを Persistent Volume として利用
+- **Grafana Alloy + kube-state-metrics**: Grafana Cloud へのメトリクス送信
+- **Headlamp**: クラスタダッシュボード
 
 ## 良かった点
 
