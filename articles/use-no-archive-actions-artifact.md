@@ -1,19 +1,20 @@
 ---
-title: "GitHub Actions のアーティファクトが zip 不要に。移行時の落とし穴と対処法"
+title: "GitHub Actionsのアーティファクトがzip化不要に。既存ジョブ移行のポイントとハマりどころ"
 emoji: "📦"
 type: tech
 topics:
   - GitHubActions
   - GitHub
 published: false
-publication_name: cybozu_ept
 ---
 
 こんにちは。サイボウズ株式会社、[生産性向上チーム](https://www.docswell.com/s/cybozu-tech/5R2X3N-engineering-productivity-team-recruitment-information)の平木場（[@korosuke613](https://korosuke613.dev)）です。
 
-GitHub Actions の `actions/upload-artifact` で、zip 化せずにアーティファクトをアップロードできるようになりました。便利な新機能ですが、移行時にハマりやすいポイントがあったので共有します。
+GitHub Actions の `actions/upload-artifact` で、zip 化せずにアーティファクトをアップロードできるようになりました。
 
 https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-and-downloading-non-zipped-artifacts/
+
+さっそく既存ジョブ対応しようとしたところ、一筋縄でいかないパターンがあったので、移行のポイントとハマりどころをまとめました。また、おまけとして複数リポジトリに横展開するための AI プロンプトも末尾に載せています。
 
 # TL;DR
 
@@ -35,10 +36,10 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
 
 # 移行判断
 
-`archive: false` を使うには前提条件があります。また、条件を満たしていても恩恵の大小があります。
+`archive: false` を使うには前提条件があります。また、条件を満たしていても恩恵の大小があります。恩恵が薄い場合は対応しなくても良いでしょう。
 
-**前提条件（必須）:**
-- `path` に指定するファイルが **1 つだけ**であること
+**必須条件:**
+- `path` に指定するファイルが **1 つだけ**であること[^failed_msg]
 
 次のようなケースでは使えません。
 
@@ -51,9 +52,11 @@ path: |
 # ❌ ディレクトリ
 path: dist/
 
-# ❌ ワイルドカード（複数マッチの可能性）
+# ❌ ワイルドカード（複数マッチの可能性があるため）
 path: output/*.json
 ```
+
+[^failed_msg]: `archive: false` を指定して複数ファイルをアップロードしようとすると、次のようなエラーが出ます。> When 'archive' is set to false, only a single file can be uploaded. Found 3 files to upload.
 
 **恩恵が大きいケース:**
 - ブラウザで直接閲覧したいファイル（HTML、画像、JSON、Markdown など）
@@ -64,17 +67,15 @@ path: output/*.json
 - 別ジョブからプログラム的にダウンロードするだけで、ブラウザ閲覧も解凍の手間も気にならない
 - 大きなテキストファイルなど zip 圧縮でサイズが大幅に減る恩恵がある
 
-**`archive: false` を使わない場合でも**、バージョンだけ `upload-artifact@v7` / `download-artifact@v8` に更新するのがおすすめです。
-
 # 設定方法
 
 まとめると次の通りです。
 
 - `actions/upload-artifact@v7` 以上を使う
   - `archive: false` を付与
-  - `name` パラメータは無視されるようになるので削除するのが推奨
+  - `name` パラメータは無視されるようになるので混乱を生まないように削除するのを推奨
 - `actions/download-artifact@v8` 以上を使う
-  - `name` パラメータを upload-artifact でアップロードするファイル名（拡張子あり）に変える
+  - `name` パラメータを upload-artifact でアップロードするファイル名（拡張子あり）に合わせる
 
 具体的な変更前後の例です。
 
@@ -84,6 +85,8 @@ path: output/*.json
   with:
     name: my-artifact
     path: /tmp/summary.json
+
+（中略）
 
 - uses: actions/download-artifact@v4
   with:
@@ -96,6 +99,8 @@ path: output/*.json
   with:
     path: /tmp/summary.json
     archive: false
+
+（中略）
 
 - uses: actions/download-artifact@v8
   with:
@@ -111,27 +116,46 @@ path: output/*.json
 
 つまり、`name: my-artifact` と指定しても、`path: /tmp/summary.json` をアップロードした場合、アーティファクト名は `summary.json` になります。
 
-この仕様は Changelog には記載されていませんが、[upload-artifact の Releases](https://github.com/actions/upload-artifact/releases) にはしっかり書いてあります。~~ちゃんと読んでから対応しろという話ですね。~~
+この仕様は Changelog には記載されていませんが、[upload-artifact の Releases](https://github.com/actions/upload-artifact/releases/tag/v7.0.0) にはしっかり書いてあります。~~ちゃんと読んでから対応しろという話ですね。~~
 
 > Adds support for uploading single files directly (unzipped). Callers can set the new archive parameter to false to skip zipping the file during upload. Right now, we only support single files. The action will fail if the glob passed resolves to multiple files. **The name parameter is also ignored with this setting. Instead, the name of the artifact will be the name of the uploaded file.**
 
 そのため、`download-artifact` 側の `name` もファイル名（拡張子含む）に合わせる必要があります。雑に `archive: false` を足すだけだと後続の `download-artifact` が失敗します。
 
-アーティファクト名を制御したい場合は、アップロード前に `mv` でファイルをリネームするのが確実です。
+気をつけましょう（適当に対応してやらかした目）。
+また、環境変数でファイル名を一元管理することで upload と download で名前がずれる事故を防ぐのも良いでしょう。
 
 ```yaml
-- name: Rename file
-  run: mv /tmp/summary.json /tmp/my-artifact.json
+env:
+  ARTIFACT_NAME: my-artifact.json
 
-- uses: actions/upload-artifact@v7
-  with:
-    path: /tmp/my-artifact.json
-    archive: false
+jobs:
+  build:
+    steps:
+      ...
+
+      - name: Rename file to artifact name
+        run: mv /tmp/summary.json /tmp/${{ env.ARTIFACT_NAME }}
+
+      - uses: actions/upload-artifact@v7
+        with:
+          path: /tmp/${{ env.ARTIFACT_NAME }}
+          archive: false
+
+  deploy:
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v8
+        with:
+          name: ${{ env.ARTIFACT_NAME }}
+          path: /tmp/
+      
+      ...
 ```
 
 # 実際に試してみた
 
-アーティファクト一覧はこんな感じになります。
+実際に `archive: false` を設定した場合のアーティファクト一覧はこんな感じになります。
 
 ![アーティファクト一覧](/images/use-no-archive-actions-artifact/artifacts.png)
 *`changelog-data` は従来の zip。`summary-github.json` が非圧縮アーティファクト*
