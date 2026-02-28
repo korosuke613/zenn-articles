@@ -230,14 +230,19 @@ GitHub Actionsで非圧縮アーティファクトのアップロード・ダウ
     path: /tmp/summaries/github.json  # 1ファイルのみ
 
 # 変更後（v7以上にアップグレード + archive: false を追加）
-- name: Rename file to match artifact name  # ← ファイルをリネームするステップを追加
-  run: mv /tmp/summaries/github.json /tmp/summaries/my-artifact.json
+# 環境変数でアーティファクト名を一元管理し、upload/download の不一致を防ぐ
+env:
+  ARTIFACT_NAME: my-artifact.json
 
-- name: Upload summary
-  uses: actions/upload-artifact@v7
-  with: # 非アーカイブ時は name パラメータが無視されるので書かないようにする
-    path: /tmp/summaries/my-artifact.json  # ← リネーム後のパスを指定
-    archive: false
+steps:
+  - name: Rename file to match artifact name
+    run: mv /tmp/summaries/github.json /tmp/summaries/${{ env.ARTIFACT_NAME }}
+
+  - name: Upload summary
+    uses: actions/upload-artifact@v7
+    with: # 非アーカイブ時は name パラメータが無視されるので書かないようにする
+      path: /tmp/summaries/${{ env.ARTIFACT_NAME }}
+      archive: false
 ```
 
 #### actions/download-artifact の更新（`archive: false` 対象）
@@ -248,21 +253,13 @@ GitHub Actionsで非圧縮アーティファクトのアップロード・ダウ
 - uses: actions/download-artifact@v7
 
 # 変更後（v8以上にアップグレード）
-# download-artifact も拡張子を含むファイル名に合わせる
 - uses: actions/download-artifact@v8
   with:
-    name: my-artifact.json  # ← upload-artifact のファイル名と一致させる
+    name: ${{ env.ARTIFACT_NAME }}  # ← upload 側と同じ環境変数を参照
     path: /tmp/summaries/
 ```
 
-> **⚠️ 重要な注意点**: `archive: false` を設定すると、アーティファクトの識別子は `name:` パラメーターの値ではなく、**アップロードしたファイルの実際のファイル名（拡張子を含む）** になります。
->
-> 例: `name: summary-github`、`path: /tmp/summaries/summary-github.json` に `archive: false` を設定すると、アーティファクト識別子は `summary-github.json` になります（`summary-github` ではない）。
->
-> **対処法**:
-> 1. アップロード前に `mv` でファイルをリネーム
-> 2. `name:` パラメーターに**拡張子を含む**ファイル名を指定（例: `my-artifact.json`）
-> 3. ダウンロード側の `name:` も同じ値（拡張子含む）に合わせる
+> **⚠️ 重要な注意点**: `archive: false` を設定すると、アーティファクトの識別子は `name:` パラメーターの値ではなく、**アップロードしたファイルの実際のファイル名（拡張子を含む）** になります。環境変数でファイル名を一元管理することで、upload と download の名前不一致を防げます。
 
 
 ### Step 3: バージョンのみ更新（`archive: false` 対象外のアーティファクト）
@@ -270,7 +267,7 @@ GitHub Actionsで非圧縮アーティファクトのアップロード・ダウ
 `archive: false` が使用できない場合（複数ファイル・ディレクトリ等）でも、
 セキュリティ修正・機能改善のため **全ての** `upload-artifact` と `download-artifact` のバージョンを更新してください。
 
-yaml
+```yaml
 # upload-artifact: v7以上に更新（archive: false は付けない）
 - uses: actions/upload-artifact@v7
   with:
@@ -285,7 +282,7 @@ yaml
   with:
     name: my-multi-file-artifact
     path: data/
-
+```
 
 ### Step 4: 変更サマリーの出力
 
