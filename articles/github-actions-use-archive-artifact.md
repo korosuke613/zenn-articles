@@ -157,13 +157,20 @@ jobs:
 
 実際に `archive: false` を設定した場合のアーティファクト一覧はこんな感じになります。
 
-![アーティファクト一覧](/images/use-no-archive-actions-artifact/artifacts.png)
+![](/images/github-actions-use-archive-artifact/artifacts.png)
 *`changelog-data` は従来の zip。`summary-github.json` が非圧縮アーティファクト*
 
 非圧縮アーティファクトをクリックすると、ダウンロードではなくブラウザで直接閲覧できます。JSON や HTML、画像、Markdown が対象です。
 
-![JSON をブラウザで直接閲覧](/images/use-no-archive-actions-artifact/json-preview.png)
+![](/images/github-actions-use-archive-artifact/json-preview.png)
 *JSON がブラウザ内でそのまま表示される。実際便利*
+
+また、VRT をやってるリポジトリでもやってみました。VRT の失敗画像を毎回 zip で落とす必要があって地味に面倒だったのですが、これで直接見られるようになって快適になりました。
+
+![](/images/github-actions-use-archive-artifact/vrt-preview.png)
+*失敗した VRT の差分画像をブラウザで直接閲覧*
+
+ワークフロー: https://github.com/korosuke613/homepage-2nd/blob/d405d6fcec58f62a07f4cc1bccdb38a7f4bc94d0/.github/workflows/vrt-regression.yaml#L139-L161
 
 # おまけ：AI に移行プロンプトを作らせた
 
