@@ -8,9 +8,9 @@ topics:
 published: false
 ---
 
-こんにちは。サイボウズ株式会社、[生産性向上チーム](https://www.docswell.com/s/cybozu-tech/5R2X3N-engineering-productivity-team-recruitment-information)の平木場（[@korosuke613](https://korosuke613.dev)）です。
+こんにちは。[@korosuke613](https://korosuke613.dev) です。
 
-GitHub Actions の `actions/upload-artifact` で、zip 化せずにアーティファクトをアップロードできるようになりました。
+2026/02/26、GitHub Actions の `actions/upload-artifact` で、zip 化せずにアーティファクトをアップロードできるようになりました。
 
 https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-and-downloading-non-zipped-artifacts/
 
