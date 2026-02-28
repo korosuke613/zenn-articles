@@ -18,8 +18,10 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
 # TL;DR
 
 - `actions/upload-artifact@v7` で `archive: false` を指定すると zip 化せずにアップロードでき、ブラウザで直接閲覧も可能になった
-- ただし `name` パラメータが無視されファイル名がアーティファクト名になるため、`download-artifact` 側の `name` も合わせる必要がある
+- ただし `name` パラメータが無視されファイル名がアーティファクト名になるため、`download-artifact` 側の `name` も合わせる必要がある[^name-note]
 - `archive: false` は単一ファイルのみ対応。デフォルトは従来通り zip 圧縮なので後方互換性あり
+
+[^name-note]: `download-artifact` で `name` を指定せず全件ダウンロードする運用の場合は影響ありません。
 
 # 何が変わったか
 
@@ -27,7 +29,9 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
 
 今回の変更で、`actions/upload-artifact@v7` に `archive: false` を指定すると、ファイルをそのままアップロードできるようになりました。さらに、非圧縮でアップロードした HTML、画像、JSON、Markdown はブラウザ内で直接閲覧できます。
 
-なお、`archive` パラメータのデフォルトは `true`（従来通り zip 圧縮）なので、後方互換性は維持されています。既存のワークフローは `v7` / `v8` にバージョンを上げるだけでそのまま動きます。
+なお、`archive` パラメータのデフォルトは `true`（従来通り zip 圧縮）なので、後方互換性は維持されています[^compat]。既存のワークフローは `v7` / `v8` にバージョンを上げるだけでそのまま動きます。
+
+[^compat]: [upload-artifact v7.0.0](https://github.com/actions/upload-artifact/releases/tag/v7.0.0)、[download-artifact v8.0.0](https://github.com/actions/download-artifact/releases/tag/v8.0.0) のリリースノート参照。`archive` パラメータは明示的なオプトインが必要な設計です。
 
 # 移行判断
 
@@ -193,10 +197,10 @@ GitHub Actionsで非圧縮アーティファクトのアップロード・ダウ
 
 #### actions/upload-artifact の更新（`archive: false` 対象）
 
-yaml
+```yaml
 # 変更前
 - name: Upload summary
-  uses: actions/upload-artifact@v4  # または v3, v5, v6
+  uses: actions/upload-artifact@v6
   with:
     name: my-artifact
     path: /tmp/summaries/github.json  # 1ファイルのみ
@@ -210,22 +214,22 @@ yaml
   with: # 非アーカイブ時は name パラメータが無視されるので書かないようにする
     path: /tmp/summaries/my-artifact.json  # ← リネーム後のパスを指定
     archive: false
-
+```
 
 #### actions/download-artifact の更新（`archive: false` 対象）
 `archive: false` でアップロードしたアーティファクトをダウンロードするには v8 以上が必要です。
 
-yaml
+```yaml
 # 変更前
-- uses: actions/download-artifact@v4  # または v3
+- uses: actions/download-artifact@v7
 
 # 変更後（v8以上にアップグレード）
 # download-artifact も拡張子を含むファイル名に合わせる
 - uses: actions/download-artifact@v8
   with:
-    name: my-artifact.json  # ← upload 時の name（拡張子含む）と一致させる
+    name: my-artifact.json  # ← upload-artifact のファイル名と一致させる
     path: /tmp/summaries/
-
+```
 
 > **⚠️ 重要な注意点**: `archive: false` を設定すると、アーティファクトの識別子は `name:` パラメーターの値ではなく、**アップロードしたファイルの実際のファイル名（拡張子を含む）** になります。
 >
