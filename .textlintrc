@@ -6,7 +6,12 @@
     }
   },
   "filters": {
-    "comments": true
+    "comments": true,
+    "allowlist": {
+      // Zenn 独自構文（:::details 等）のタイトル行を無視する
+      // マークダウンパーサーが ::: を除去するためノードテキストは "details ..." になる
+      "allow": ["/details .+/"]
+    }
   },
   "rules": {
     "preset-ja-technical-writing": {
