@@ -17,28 +17,62 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
 
 # TL;DR
 
-- 概要
-  - `actions/upload-artifact@v7` で `archive: false` を指定すると zip 化せずにアップロードできるようになった
-  - 非圧縮アーティファクトはブラウザで直接閲覧可能（JSON、HTML、画像、Markdown など）
-- `archive: false` を検討すべきケース
-  - アップロードするファイルが 1 つだけ
-  - ブラウザで直接閲覧したい（HTML、画像、JSON、Markdown など）
-  - 既に圧縮済みのファイル（jar、tar.gz 等）を二重圧縮したくない
-- `archive: false` の恩恵が薄いケース
-  - 別ジョブからプログラム的にダウンロードするだけで、ブラウザ閲覧も解凍の手間も気にならない
-  - 大きなテキストファイルなど zip 圧縮でサイズが大幅に減る
-  - 複数ファイルやディレクトリをまとめてアップロードしている（そもそも `archive: false` が使えない）
-- 設定方法
-  - `actions/upload-artifact@v7` 以上を使う
-    - `archive: false` を付与
-      - ただし、`path` で指定するファイルが複数になる場合は使えない（複数ファイル・ディレクトリ・ワイルドカード指定の場合）
-    - `name` パラメータは無視されるようになるので削除するのが推奨
-  - `actions/download-artifact@v8` 以上を使う
-    - `name` パラメータを upload-artifact でアップロードするファイル名（拡張子あり）に変える
+- `actions/upload-artifact@v7` で `archive: false` を指定すると zip 化せずにアップロードでき、ブラウザで直接閲覧も可能になった
+- ただし `name` パラメータが無視されファイル名がアーティファクト名になるため、`download-artifact` 側の `name` も合わせる必要がある
+- `archive: false` は単一ファイルのみ対応。デフォルトは従来通り zip 圧縮なので後方互換性あり
+
+# 何が変わったか
+
+従来、GitHub Actions のアーティファクトはアップロード時に必ず zip 圧縮されていました。そのため、ブラウザからダウンロードすると zip を展開する手間があり、JSON 1 つ取得するだけでも解凍が必要でした。
+
+今回の変更で、`actions/upload-artifact@v7` に `archive: false` を指定すると、ファイルをそのままアップロードできるようになりました。さらに、非圧縮でアップロードした HTML、画像、JSON、Markdown はブラウザ内で直接閲覧できます。
+
+なお、`archive` パラメータのデフォルトは `true`（従来通り zip 圧縮）なので、後方互換性は維持されています。既存のワークフローは `v7` / `v8` にバージョンを上げるだけでそのまま動きます。
+
+# 移行判断
+
+`archive: false` を使うには前提条件があります。また、条件を満たしていても恩恵の大小があります。
+
+**前提条件（必須）:**
+- `path` に指定するファイルが **1 つだけ**であること
+
+次のようなケースでは使えません。
+
+```yaml
+# ❌ 複数ファイル
+path: |
+  file1.json
+  file2.json
+
+# ❌ ディレクトリ
+path: dist/
+
+# ❌ ワイルドカード（複数マッチの可能性）
+path: output/*.json
+```
+
+**恩恵が大きいケース:**
+- ブラウザで直接閲覧したいファイル（HTML、画像、JSON、Markdown など）
+- 既に圧縮済みのファイル（jar、tar.gz 等）を二重圧縮したくない
+- ダウンロード後に zip を解凍する手間を省きたい
+
+**恩恵が薄いケース:**
+- 別ジョブからプログラム的にダウンロードするだけで、ブラウザ閲覧も解凍の手間も気にならない
+- 大きなテキストファイルなど zip 圧縮でサイズが大幅に減る恩恵がある
+
+**`archive: false` を使わない場合でも**、バージョンだけ `upload-artifact@v7` / `download-artifact@v8` に更新するのがおすすめです。
 
 # 設定方法
 
-`actions/upload-artifact@v7` の `archive: false` を使います。ダウンロード側は `actions/download-artifact@v8` が必要です。
+まとめると次の通りです。
+
+- `actions/upload-artifact@v7` 以上を使う
+  - `archive: false` を付与
+  - `name` パラメータは無視されるようになるので削除するのが推奨
+- `actions/download-artifact@v8` 以上を使う
+  - `name` パラメータを upload-artifact でアップロードするファイル名（拡張子あり）に変える
+
+具体的な変更前後の例です。
 
 ```yaml
 # 変更前
@@ -65,9 +99,7 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
     path: /tmp/
 ```
 
-`archive: false` は**単一ファイルのみ**対応です。複数ファイル・ディレクトリ・ワイルドカード指定では使えません。
-
-# ハマりどころ：`name` パラメータの挙動が変わる
+## ハマりどころ - `name` パラメータの挙動変化
 
 ここが一番の落とし穴です。
 
@@ -75,7 +107,7 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
 
 つまり、`name: my-artifact` と指定しても、`path: /tmp/summary.json` をアップロードした場合、アーティファクト名は `summary.json` になります。
 
-この仕様は Changelog には記載されていませんが、[upload-artifact の Releases](https://github.com/actions/upload-artifact/releases) にはしっかり書いてあります。
+この仕様は Changelog には記載されていませんが、[upload-artifact の Releases](https://github.com/actions/upload-artifact/releases) にはしっかり書いてあります。~~ちゃんと読んでから対応しろという話ですね。~~
 
 > Adds support for uploading single files directly (unzipped). Callers can set the new archive parameter to false to skip zipping the file during upload. Right now, we only support single files. The action will fail if the glob passed resolves to multiple files. **The name parameter is also ignored with this setting. Instead, the name of the artifact will be the name of the uploaded file.**
 
@@ -105,30 +137,11 @@ https://github.blog/changelog/2026-02-26-github-actions-now-supports-uploading-a
 ![JSON をブラウザで直接閲覧](/images/use-no-archive-actions-artifact/json-preview.png)
 *JSON がブラウザ内でそのまま表示される。実際便利*
 
-# 移行チェックリスト
-
-既存ワークフローを移行する際の判断基準です。
-
-- **`archive: false` が使える条件**: `path` に指定するファイルが 1 つだけ
-- **使えない場合**（複数ファイル・ディレクトリ等）: `archive: false` は付けず、バージョンだけ `upload-artifact@v7` / `download-artifact@v8` に更新
-- **移行時の確認ポイント**:
-  - `download-artifact` の `name` をファイル名（拡張子含む）に変更したか
-  - アーティファクト名を制御したい場合は事前に `mv` でリネームしているか
-
 # おまけ：AI に移行プロンプトを作らせた
 
 複数リポジトリに横展開するために、AI（Claude）に移行判断と改修を任せるプロンプトを作りました。対応要否の判断から改修まで一気通貫で頼めます。
 
-実際にこのプロンプトで移行した PR がこちらです。
-
-https://github.com/korosuke613/mynewshq/pull/233
-
-試行錯誤の過程は [Discussion](https://github.com/korosuke613/mynewshq/discussions/219#discussioncomment-15954107) に残しています。
-
-<details>
-<summary>プロンプト全文</summary>
-
-```
+````markdown
 # GitHub Actions 非圧縮アーティファクト対応の検討と改修依頼
 
 ## 背景
@@ -254,6 +267,10 @@ yaml
 - `archive: false` を適用した箇所と適用しなかった箇所の理由
 
 変更しない場合も理由を明記してください。
-```
+````
 
-</details>
+実際にこのプロンプトで移行した PR がこちらです。
+
+https://github.com/korosuke613/mynewshq/pull/233
+
+試行錯誤の過程は [Discussion](https://github.com/korosuke613/mynewshq/discussions/219#discussioncomment-15954107) に残しています。
