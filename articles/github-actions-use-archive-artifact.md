@@ -1,11 +1,12 @@
 ---
-title: "GitHub Actionsのアーティファクトがzip化不要に。既存ジョブ移行のポイントとハマりどころ"
-emoji: "📦"
+title: GitHub Actionsのアーティファクトがzip化不要に。既存ジョブ移行のポイントとハマりどころ
+emoji: 📦
 type: tech
 topics:
   - GitHubActions
   - GitHub
-published: false
+published: true
+published_at: 2026-03-02 10:00
 ---
 
 こんにちは。[@korosuke613](https://korosuke613.dev) です。
