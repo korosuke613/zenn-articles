@@ -6,7 +6,7 @@ topics:
   - GitHubActions
   - GitHub
 published: true
-published_at: 2026-03-02 10:00
+published_at: 2026-03-01 10:00
 ---
 
 こんにちは。[@korosuke613](https://korosuke613.dev) です。
