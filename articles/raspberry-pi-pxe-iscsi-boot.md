@@ -491,14 +491,14 @@ auto_initramfs=1
 `cmdline.txt` にはカーネルパラメータとして iSCSI の接続情報を記述します。**全パラメータを 1 行で記述する必要があります。**
 
 ```text:tftproot/<シリアル番号>/cmdline.txt
-ip=::::raspberrypi-1:eth0:dhcp ISCSI_INITIATOR=iqn.1993-08.org.debian:01:rpi4-<シリアル番号> ISCSI_TARGET_IP=192.168.0.100 ISCSI_TARGET_PORT=3260 ISCSI_TARGET_NAME=iqn.2025-03.com.ugreen:target-1.<ターゲットID> ISCSI_USERNAME=<ユーザー名> ISCSI_PASSWORD=<パスワード> root=UUID=<rootパーティションのUUID> rw rootwait cgroup_memory=1 cgroup_enable=memory cgroup_enable=cpuset
+ip=::::pi-1:eth0:dhcp ISCSI_INITIATOR=iqn.1993-08.org.debian:01:rpi4-<シリアル番号> ISCSI_TARGET_IP=192.168.0.100 ISCSI_TARGET_PORT=3260 ISCSI_TARGET_NAME=iqn.2025-03.com.ugreen:target-1.<ターゲットID> ISCSI_USERNAME=<ユーザー名> ISCSI_PASSWORD=<パスワード> root=UUID=<rootパーティションのUUID> rw rootwait cgroup_memory=1 cgroup_enable=memory cgroup_enable=cpuset
 ```
 
 各パラメータの説明は次の通りです[^iscsi-cmdline-case]。
 
 | パラメータ | 説明 |
 |---|---|
-| `ip=::::raspberrypi-1:eth0:dhcp` | DHCP でネットワーク設定を取得。ホスト名を指定 |
+| `ip=::::pi-1:eth0:dhcp` | DHCP でネットワーク設定を取得。ホスト名を指定 |
 | `ISCSI_INITIATOR` | この Pi の iSCSI Initiator IQN。シリアル番号を含めて一意にする |
 | `ISCSI_TARGET_IP` | iSCSI Target サーバー（NAS）の IP アドレス |
 | `ISCSI_TARGET_PORT` | iSCSI ポート（標準: 3260） |
