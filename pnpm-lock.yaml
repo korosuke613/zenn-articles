@@ -21,7 +21,7 @@ importers:
         specifier: 15.5.2
         version: 15.5.2
       textlint-filter-rule-allowlist:
-        specifier: ^4.0.0
+        specifier: 4.0.0
         version: 4.0.0(textlint@15.5.2)
       textlint-filter-rule-comments:
         specifier: 1.2.2
@@ -2761,10 +2761,6 @@ packages:
 
   js-yaml@3.14.1:
     resolution: {integrity: sha512-okMH7OXXJ7YrN9Ok3/SXrnu4iX9yOk+25nqX4imS2npuvTYDmo/QEZoqwZkYaIDk3jVvBOTOIEgEhaLOynBS9g==}
-    hasBin: true
-
-  js-yaml@4.1.0:
-    resolution: {integrity: sha512-wpxZs9NoxZaJESJGIZTyDEaYpl0FKSA+FB9aJiyemKhMwkxQg63h4T1KJgUGHpTqPDNRcmmYLugrRjJlBtWvRA==}
     hasBin: true
 
   js-yaml@4.1.1:
@@ -8551,10 +8547,6 @@ snapshots:
       argparse: 1.0.10
       esprima: 4.0.1
 
-  js-yaml@4.1.0:
-    dependencies:
-      argparse: 2.0.1
-
   js-yaml@4.1.1:
     dependencies:
       argparse: 2.0.1
@@ -10449,7 +10441,7 @@ snapshots:
       '@textlint/ast-node-types': 12.6.1
       '@textlint/get-config-base-dir': 2.0.0
       '@textlint/regexp-string-matcher': 1.1.0
-      js-yaml: 4.1.0
+      js-yaml: 4.1.1
       textlint: 15.5.2
 
   textlint-filter-rule-comments@1.2.2(textlint@15.5.2):
