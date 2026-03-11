@@ -7,6 +7,7 @@ topics:
   - iSCSI
   - PXE
   - ネットワーク
+  - 自宅サーバ
 published: true
 ---
 
