@@ -1,9 +1,13 @@
 ---
-title: "Raspberry Pi 4B を SD カード・USB ストレージ無しで運用する 〜 PXE + iSCSI ネットワークブート構築備忘録"
-emoji: "🥧"
-type: "tech"
-topics: ["RaspberryPi", "iSCSI", "PXE", "Docker", "ネットワーク"]
-published: false
+title: Raspberry Pi 4B を SD カード・USB ストレージ無しで運用する 〜 PXE + iSCSI ネットワークブート構築備忘録
+emoji: 🥧
+type: tech
+topics:
+  - RaspberryPi
+  - iSCSI
+  - PXE
+  - ネットワーク
+published: true
 ---
 
 ![](/images/raspberry-pi-pxe-iscsi-boot/home-server.jpeg =400x)
