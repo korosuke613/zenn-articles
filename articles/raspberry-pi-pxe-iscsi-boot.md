@@ -6,23 +6,22 @@ topics: ["RaspberryPi", "iSCSI", "PXE", "Docker", "ネットワーク"]
 published: false
 ---
 
-# はじめに
+![](/images/raspberry-pi-pxe-iscsi-boot/home-server.jpeg =400x)
+*令和最新版おうちサーバ（Raspberry Pi 4B × 3 + UGREEN の NAS × 1）<br />牛のぬいぐるみは母校である宮崎大学のマスコットキャラクター「[みやだいもうくん](https://x.com/miyacoop/status/2027208975914353047)」*
 
-:::message alert
-**TODO**: 実際のサーバー（Raspberry Pi + NAS）の写真をここに貼る
-:::
+こんにちは。[korosuke613](https://zenn.dev/korosuke613) です。最近おうちサーバにハマっています。Raspberry Pi 4B 3 台と UGREEN の NAS で色々動かしています。
 
-家庭で Raspberry Pi 4B を 3 台運用していると、SD カードの突然死に怯える日々を送ることになります。停電やカーネルパニックのたびに「今度はどの SD が壊れたか」と胃を痛めるのは健全とは言えません。
+とても楽しいおうちサーバですが、何も考えずに Raspberry PI 4B を 3 台運用していると、SD カードの突然死に怯える日々を送ることになります。また、とりあえず外付け HDD を USB 接続したとしても、うまくやらないと接触不良に悩まされたり、電源の用意がダルかったりします。
 
-本記事では、SD カードを完全に排除し、**PXE（Preboot Execution Environment）と iSCSI を組み合わせたネットワークブート**で Raspberry Pi 4B を運用する構成の備忘録をまとめます。NAS の SSD 上に root ファイルシステムを配置し、ネットワーク経由でブートさせることで、SD カードの脆弱性から解放されます。
+***「解放されたい...脆弱な SD カードから...micro USB Type-B ケーブルから...」***
 
-現在、この基盤の上で k3s クラスタを動かし、Home Assistant や AdGuard Home などのセルフホストサービスを運用しています。本記事では PXE + iSCSI の構成に焦点を絞り、k3s クラスタの構築については対象外とします。
+そんな思いから、本記事では SD カード、USB ケーブル接続の外付け HDD/SSD を完全に排除し、LAN ケーブルを経由した **PXE（Preboot Execution Environment）と iSCSI を組み合わせたネットワークブート**で Raspberry Pi 4B を運用する構成の備忘録をまとめます。
+
+NAS の SSD 上に root ファイルシステムを配置し、ネットワーク経由でブートさせることで、不安定な運用から解放されることを目指します。
 
 :::message
-本記事は筆者が **Raspberry Pi 4B** で実際に構築した際の記録です。Raspberry Pi はモデルによってブートの仕組みが異なり（例: Pi 4B は EEPROM、Pi 3B 以前は OTP）、本記事の手順がそのまま他のモデルに適用できるとは限りません。他のモデルで構築する場合は、公式ドキュメントも合わせて確認してください。
+本記事は筆者の環境で実際に構築した際の記録です。本記事の手順がそのまま適用できるとは限りません。参考程度にしてください。
 :::
-
-構成ファイル一式は GitHub リポジトリで管理しています（非公開）。
 
 # なぜネットワークブートか
 
