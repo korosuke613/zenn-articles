@@ -1,5 +1,5 @@
 ---
-title: "Raspberry Pi 4B を SD カード・USB ストレージ無しで運用する 〜 PXE + iSCSI ネットワークブートの構築備忘録"
+title: "Raspberry Pi 4B を SD カード・USB ストレージ無しで運用する 〜 PXE + iSCSI ネットワークブート構築備忘録"
 emoji: "🥧"
 type: "tech"
 topics: ["RaspberryPi", "iSCSI", "PXE", "Docker", "ネットワーク"]
@@ -623,7 +623,7 @@ Raspberry Pi 4B を PXE + iSCSI でネットワークブートする構成と構
 :::message
 **おまけ：動かしているもの**
 
-サーバ郡の上では k3s クラスタが稼働しており、さまざまなワークロードを動かしています。最近は AI もいるおかげで何でもかんでも自作できていいですね。
+サーバ群の上では k3s クラスタが稼働しており、さまざまなワークロードを動かしています。最近は AI もいるおかげで何でもかんでも自作できていいですね。
 
 - アプリケーション
   - **Home Assistant**: ホームオートメーション
