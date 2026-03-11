@@ -6,10 +6,8 @@ topics:
   - RaspberryPi
   - iSCSI
   - PXE
-  - Docker
   - ネットワーク
 published: true
-published_at: 2026-03-12 10:00
 ---
 
 ![](/images/raspberry-pi-pxe-iscsi-boot/home-server.jpeg =400x)
