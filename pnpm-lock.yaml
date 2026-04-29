@@ -12,8 +12,8 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(encoding@0.1.13)
       prh:
-        specifier: 6.0.2
-        version: 6.0.2
+        specifier: 6.0.6
+        version: 6.0.6
       renovate:
         specifier: 43.40.0
         version: 43.40.0(typanion@3.14.0)
@@ -1877,6 +1877,10 @@ packages:
     resolution: {integrity: sha512-qejHi7bcSD4hQAZE0tNAawRK1ZtafHDmMTMkrrIGgSLl7hTnQHmKCeB45xAcbfTqK2zowkM3j3bHt/4b/ARbYQ==}
     engines: {node: '>=0.3.1'}
 
+  diff@9.0.0:
+    resolution: {integrity: sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw==}
+    engines: {node: '>=0.3.1'}
+
   dir-glob@3.0.1:
     resolution: {integrity: sha512-WkrWp9GR4KXfKGYzOLmTuGVi1UWFfws377n9cc55/tb6DuqyF6pcQ5AbiHEshaDpY9v6oaSr2XCDidGmMwdzIA==}
     engines: {node: '>=8'}
@@ -3602,8 +3606,8 @@ packages:
     resolution: {integrity: sha512-UATF+R/2H8owxwPvF12Knihu9aYGTuZttGHrEEq5NBWz38mREh23+WvCVKX3fhnIZIMV7ye6E1fnqAl+V6WYEw==}
     hasBin: true
 
-  prh@6.0.2:
-    resolution: {integrity: sha512-JmPZukALNA50LiSps4WHwM3XseGJZkmhuLOI5lbFP7NZ1R2Xan8wda7obMz+9ZYCICI9h8uofJxv7sM3ubwLgA==}
+  prh@6.0.6:
+    resolution: {integrity: sha512-WJ7aaIa37vwHYg5sa1VaqykJiO/6AEkbQOTEnp/52XDXnbMcBPY1++oeV5trjFrLbiTqJY5nO5BaR/MR5ioJHw==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -7543,6 +7547,8 @@ snapshots:
 
   diff@8.0.3: {}
 
+  diff@9.0.0: {}
+
   dir-glob@3.0.1:
     dependencies:
       path-type: 4.0.0
@@ -9625,10 +9631,10 @@ snapshots:
       diff: 4.0.2
       js-yaml: 3.14.1
 
-  prh@6.0.2:
+  prh@6.0.6:
     dependencies:
       commander: 14.0.3
-      diff: 8.0.3
+      diff: 9.0.0
       js-yaml: 4.1.1
 
   proc-log@6.1.0:
